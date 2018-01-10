@@ -21,7 +21,5 @@ gems:             [jekyll-paginate, jekyll-seo-tag, jekyll-sitemap, jekyll-gist]
 paginate:         5
 
 # Custom vars
-version:          2.1.0
-
 github_username:  bcrestel
 linkedin_username: crestel
