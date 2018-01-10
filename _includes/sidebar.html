@@ -26,7 +26,10 @@
         {% endif %}
       {% endfor %}
 
-      <a class="sidebar-nav-item" href="{{ site.emailme }}">Contact</a>
+
+    <a href="{{ site.emailme }}"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/{{ site.linkedin_username }}"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/{{ site.github_username }}"><i class="fa fa-github"></i></a>
     </nav>
 
     <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
