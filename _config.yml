@@ -8,13 +8,14 @@ permalink:        pretty
 # Setup
 title:            Fourre-tout
 tagline:          'A bit of everything'
-description:      'A place for me to save some notes, some ideas, or some
-computing tricks.'
+description:      'Some notes, some ideas, some tricks'
 url:              https://bcrestel.github.io
 baseurl:          /
 
 author:
   name:           'Ben C'
+
+emailme:          mailto:ben.crestel@zoho.com
 
 gems:             [jekyll-paginate, jekyll-seo-tag, jekyll-sitemap, jekyll-gist]
 paginate:         5
@@ -22,5 +23,5 @@ paginate:         5
 # Custom vars
 version:          2.1.0
 
-github:
-  repo:           https://github.com/bcrestel
+github_username:  bcrestel
+linkedin_username: crestel
