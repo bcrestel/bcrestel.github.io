@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A first post
+tag: jekyll markdown
 ---
 
 There are a few features that I would like to add to this blog.
@@ -12,7 +13,7 @@ by following [that link](http://longqian.me/2017/02/09/github-jekyll-tag/).
 in [this](http://joshualande.com/jekyll-github-pages-poole) blog post.
 3. And of course, I will need support for
 [MathJax](https://github.com/github/pages-gem/issues/307).
-Let's check that it works, $x^2 + y^2 = z^2$.
 
-A few useful references to write in Jekyll:
+A few useful references for markdowns syntax:
 * A [cheat-sheet for markdowns](https://gist.github.com/roachhd/779fa77e9b90fe945b0c)
+* And another, [better one](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)
