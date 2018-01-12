@@ -13,21 +13,21 @@ Also, it is more appropriate for validation of a single model, not necessarily c
 Finally, it is more limited to apply to time-series data.
 * Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC): these two criteria do explicitly penalize models with large number of parameters.
   * AIC: It is generally given as
-  \[ AIC(\beta) = 2k - 2\ln(\mathcal{L}) \]
+  $$ AIC(\beta) = 2k - 2\ln(\mathcal{L}) $$
   where $k$ is the number of parameters and $\mathcal{L}$ is the likelihood at the MLE.
   * BIC: the BIC criterion imposes a stronger penalty on the number of parameters of the model,
-  \[ BIC(\beta) = \ln(n) k - 2\ln(\mathcal{L}) \]  
+  $$ BIC(\beta) = \ln(n) k - 2\ln(\mathcal{L}) $$  
 These two criteria are extremely popular; one disadvantage is their reliance on the Likelihood function which requires a specific distributional assumption.
 
 
 Just as an exercise, let us derive the AIC in the case of linear regression. For the linear regression, assuming Gaussian noise $\varepsilon \sim \mathcal{N}(0, \Sigma)$, we have
-\[ Y = X \cdotp \beta + \beta \]
+$$ Y = X \cdotp \beta + \beta $$
 The log-likelihood function is then given by
-\[ \ln(\mathcal{L}) = -\frac12 \left( \ln( \det(2\pi \Sigma) ) \right) - \frac12 (Y - X \cdotp \beta)^T \Sigma^{-1} (Y - X \cdotp \beta) \]
+$$ \ln(\mathcal{L}) = -\frac12 \left( \ln( \det(2\pi \Sigma) ) \right) - \frac12 (Y - X \cdotp \beta)^T \Sigma^{-1} (Y - X \cdotp \beta) $$
 In the case of iid normal noise, i.e., $\Sigma = \sigma^2 I$, we have
-\[ \ln(\mathcal{L}) = -\frac12 \left( n \ln( 2\pi \sigma^2 ) \right) - \frac1{2\sigma^2} e^T e \]
+$$ \ln(\mathcal{L}) = -\frac12 \left( n \ln( 2\pi \sigma^2 ) \right) - \frac1{2\sigma^2} e^T e $$
 where $e = Y - X \cdotp \beta$ and $n$ is the number of observations. 
 Let us denote by $\hat{\beta}$ the MLE (and $\hat{e}=Y-X \cdotp \hat{\beta}$)
 As we typically do not know the value of $\sigma^2$, we instead estimate it with the standard error $s^2 = \frac{e^Te}{n}$. This gives
-\[ AIC = 2k+n + n \ln(2\pi) + n \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) = n \left[ 1 + 2\ln(2\pi) + \frac{2k}n + \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right). \]
+$$ AIC = 2k+n + n \ln(2\pi) + n \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) = n \left[ 1 + 2\ln(2\pi) + \frac{2k}n + \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right). $$
 As a comparision, in Greene (2005) they use $2k/n + \ln(e^Te/n)$, which is, up to constant terms that do not vary in-between models, the same.
