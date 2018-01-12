@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A first post
-tag: jekyll markdown
+tags: jekyll markdown
 ---
 
 There are a few features that I would like to add to this blog.
