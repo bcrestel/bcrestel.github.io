@@ -7,13 +7,13 @@ tag: jekyll
 For this blog, I am using the [poole/hyde](https://github.com/poole/hyde)
 example. Unfortunately, this repo does not seem to be maintained anymore, and
 the list of pull requests has grown steadily since 2015. The main modifications I
-had to make to run this example are:
+had to make to run this blog are:
 * in `_config.yml`:
     - change the markdown to `kramdown`
     - remove `relative_permalinks: true`
     - add the gems `jekyll-paginate, jekyll-seo-tag, jekyll-sitemap, jekyll-gist`
 * in the `_includes/head.html`
-    - replace the `{{ site.baseurl }}` with a simple slash
+    - replace the ` { { site.baseurl }} ` with a simple slash
 
 I also added Mathjax. I found online different approaches to do that. What seems
 to work was to add the Mathjax script in the header of the html pages. Building
