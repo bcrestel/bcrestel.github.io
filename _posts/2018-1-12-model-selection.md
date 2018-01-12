@@ -31,3 +31,5 @@ As we typically do not know the value of $\sigma^2$, we instead estimate it with
 \\[ AIC = 2k+n + n \ln(2\pi) + n \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) = n \left[ 1 + 2\ln(2\pi) + \frac{2k}n + \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) \right]. \\]
 As a comparision, in Greene (2005) they use $2k/n + \ln(e^Te/n)$, which is, up to constant terms that do not vary in-between models, the same.
 A good reference for that calculation can be found [here](http://statweb.stanford.edu/~jtaylo/courses/stats203/notes/selection.pdf).
+
+In a future post, I'd like to talk about [model averaging](https://arxiv.org/pdf/1709.08221.pdf).
