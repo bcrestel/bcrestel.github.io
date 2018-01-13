@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Model Selection
+title: Model Selection--a first elementary discussion
 tags: statistics model_selection
 ---
 
-Model selection is central problem of statistical inference, whether you have to choose the independent variables to include in your linear regression, or compare between completely unrelated techniques.
+Model selection is a central problem of statistical inference, whether you have to choose the independent variables to include in your linear regression, or compare between completely unrelated techniques.
 In the context of linear regression, using $R^2$ to compare models would lead to over-fitting, and even the adjusted \$R^2\$ does not necessarily penalize larger models sufficiently.
 An army of other methods exist (see [here](http://www.modelselection.org/model-selection.pdf)), among which 3 really stands out:
 * cross-validation: it comes in many different flavours, but at its core, the idea is to leave out some of your training data to later test your model on. You can repeat the procedure leaving different distinct datasets, or not.
@@ -30,6 +30,6 @@ Let us denote by $\hat{\beta}$ the MLE (and $\hat{e}=Y-X \cdotp \hat{\beta}$)
 As we typically do not know the value of $\sigma^2$, we instead estimate it with the standard error $s^2 = \frac{e^Te}{n}$. This gives
 \\[ AIC = 2k+n + n \ln(2\pi) + n \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) = n \left[ 1 + 2\ln(2\pi) + \frac{2k}n + \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) \right]. \\]
 As a comparision, in Greene (2005) they use $2k/n + \ln(e^Te/n)$, which is, up to constant terms that do not vary in-between models, the same.
-A good reference for that calculation can be found [here](http://statweb.stanford.edu/~jtaylo/courses/stats203/notes/selection.pdf).
+An additional reference for model selection in regression is [here](http://statweb.stanford.edu/~jtaylo/courses/stats203/notes/selection.pdf).
 
 In a future post, I'd like to talk about [model averaging](https://arxiv.org/pdf/1709.08221.pdf).
