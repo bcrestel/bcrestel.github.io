@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Model Selection--a first elementary discussion
+title: AIC in linear regression
 tags: statistics model_selection
 ---
 
@@ -8,9 +8,10 @@ Model selection is a central problem of statistical inference, whether you have 
 In the context of linear regression, using $R^2$ to compare models would lead to over-fitting, and even the adjusted \$R^2\$ does not necessarily penalize larger models sufficiently.
 An army of other methods exist (see [here](http://www.modelselection.org/model-selection.pdf)), among which 3 really stands out:
 * cross-validation: it comes in many different flavours, but at its core, the idea is to leave out some of your training data to later test your model on. You can repeat the procedure leaving different distinct datasets, or not.
-One obvious disadvantage of cross-validation is its potential computational cost, especially if you want to exhaust all possible splitting of the parameter space.
-Also, it is more appropriate for validation of a single model, not necessarily comparision of different models with different number of parameters.
-Finally, it is more limited to apply to time-series data.
+One obvious disadvantage of cross-validation is its potential computational cost, especially if you want to exhaust all possible splitting of the parameter space. 
+However, in the case of linear regression, the cross-validation error can be
+computed directly after solving the regression. 
+Also, cross-validation is more restricted when applied to time-series data.
 * Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC): these two criteria do explicitly penalize models with large number of parameters.
   * AIC: It is generally given as
   \\[ AIC(\beta) = 2k - 2\ln(\mathcal{L}) \\]
