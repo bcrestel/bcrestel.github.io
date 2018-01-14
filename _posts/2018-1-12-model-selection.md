@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AIC in linear regression
-tags: statistics model_selection
+tags: statistics model_selection regression
 ---
 
 Model selection is a central problem of statistical inference, whether you have to choose the independent variables to include in your linear regression, or compare between completely unrelated techniques.
