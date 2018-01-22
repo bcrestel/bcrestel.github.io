@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Gaussian measures in high dimension
-tags: gaussian highdimension statistics chi 
+tags: gaussian dimensionality statistics chi distributions
 ---
 
 High dimensional spaces can be counter-intuitive. [For instance](https://www.johndcook.com/blog/2011/09/01/multivariate-normal-shell/), 
