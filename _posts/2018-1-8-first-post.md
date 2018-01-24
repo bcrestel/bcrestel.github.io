@@ -16,4 +16,4 @@ in [this](http://joshualande.com/jekyll-github-pages-poole) blog post.
 
 A few useful references for markdowns syntax:
 * A [cheat-sheet for markdowns](https://gist.github.com/roachhd/779fa77e9b90fe945b0c)
-* And another, [better one](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)
+* And another, [better one](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
