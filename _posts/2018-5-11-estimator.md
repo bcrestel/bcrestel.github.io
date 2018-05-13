@@ -54,3 +54,31 @@ samples increase.
 Without a proof, one can show that with $\theta$ the fourth moment of the
 underlying distribution, we have
 \\[ Var[S^2] = \frac1n (\theta - \frac{n-3}{n-1} \sigma^4) \\]
+
+
+#### Hypothesis testing
+A common test for a random sample is to test the value of its mean.
+To do so, we can use the statistic
+\\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \\]
+where $\mu$ is the value of the statistic we test for.
+For hypothesis testing, we need to know the distribution of that statistic. In
+the general case, we can only conclude asymptotically as the [central limit
+theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) states that if the
+underlying distribution has finite variance, 
+\\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \rightarrow \mathcal{N}(0,1) \\]
+In practice, $\sigma$ is rarely known, and we want to replace it with $S$. We
+know that $S$ is a consistent estimator of $\sigma$, and we can show that $\sigma /
+S \rightarrow 1$. Then by Slutsky's theorem,
+\\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \frac{\sigma}{S} \rightarrow \mathcal{N}(0,1) \\]
+
+However this result is only valid asymptotically. Often in practice, people
+assume the asymptotic regime is valid, and use a standard normal distribution
+for that statistic; but there is no general rule to know when that approximation
+is valid. 
+
+On the other hand, if the random samples come from a *normal distribution*
+$\mathcal{N}(\mu,\sigma^2)$, we can say something more general. In that case,
+\\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1) \\]
+and
+\\[ \frac{\bar{X} - \mu}{S / \sqrt{n}} \sim t_{n-1} \\]
+a Student's t-distribution with $n-1$ degrees of freedoms.
