@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Playing with the Netflix dataset
-tags: pandas netflix
+tags: pandas netflix ML
 ---
 
 I downloaded the Netflix dataset from
