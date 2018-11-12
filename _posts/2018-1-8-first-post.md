@@ -4,6 +4,12 @@ title: A first post
 tags: jekyll markdown
 ---
 
+If you want to serve this blog on your local machine, in the main directory,
+type
+```
+jekyll serve
+```
+
 There are a few features that I would like to add to this blog.
 1. I would like to manage tags. This is handled in Jekyll with the gem
 jekyll-tagging, but unfortunately this gem is not available on GitHub. However
