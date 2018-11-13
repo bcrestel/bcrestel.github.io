@@ -122,7 +122,8 @@ test to test the correlation of a time-series. It allows to test whether
 the first $h$ auto-correlations of a time-series are like white noise (null) or
 not (serial correlation). We define the statistic
 \\[ Q = n (n+2) \sum_{k=1}^h \frac{\hat{\rho}_k^2}{n-k} \sim \chi^2(h) \\]
-where $\hat{\rho}_k$ is the lag-k sample autocorrelation.
+where $\hat{\rho}_k$ is the lag-k sample autocorrelation. Note that this is a
+one-sided test.
 
 
 ## Unit root test
