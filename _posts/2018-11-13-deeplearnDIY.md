@@ -66,7 +66,7 @@ $$ L(\{ {\bf W}^l, {\bf b}^l \}_l) =
 
 To estimate the loss function, we simply plug, for each data pair $({\bf x}_i,
 {\bf y}_i)$, the input ${\bf x}_i$ in the input layer, i.e., we set ${\bf a}^0 =
-{\bf x}_i$, then propagate that forward recursively
+{\bf x}_i$, then propagate that forward sequentially
 
 $$ \begin{align*}
 {\bf a}^1 & = F^1({\bf W}^1 {\bf x}_i + {\bf b}^1) \\
@@ -84,7 +84,8 @@ layers. This is done via the backpropagation algorithm; for more details on the
 backpropagation, see this <a href="/2018/11/13/backprop">post</a>.
 The main results are that, after a forward propagation (see previous section),
 the gradient of the loss function with respect to all parameters can be
-recursively calculated starting from the output layer $L$ by using the formulas
+calculated sequentially starting from the output layer $L$, and moving backward
+to the first layer, by using the formulas
 
 $$ \begin{align*}
 \frac{\partial L}{\partial {\bf b}^L} & = \frac1N \sum_{i=1}^N
