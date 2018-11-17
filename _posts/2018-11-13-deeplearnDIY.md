@@ -58,7 +58,7 @@ the network is therefore a function of all parameters and the input variable,
 i.e., $${\bf a}^L = {\bf a}^L( \{ {\bf W}^l, {\bf b}^l \}_l; {\bf x})$$.
 For the loss function, I will use a least-square misfit, which leads to 
 
-$$ L(\{ {\bf W}^l, {\bf b}^l \}_l) = 
+$$ \mathcal{L}(\{ {\bf W}^l, {\bf b}^l \}_l) = 
 \frac1{2N} \sum_{i=1}^N 
 \| {\bf a}^L( \{ {\bf W}^l, {\bf b}^l \}_l; {\bf x_i}) 
 - {\bf y}_i 
@@ -66,14 +66,25 @@ $$ L(\{ {\bf W}^l, {\bf b}^l \}_l) =
 
 To estimate the loss function, we simply plug, for each data pair $({\bf x}_i,
 {\bf y}_i)$, the input ${\bf x}_i$ in the input layer, i.e., we set ${\bf a}^0 =
-{\bf x}_i$, then propagate that forward sequentially
+{\bf x}_i$, then propagate that forward sequentially. To emphasize the
+dependence on a specific data point, we write ${\bf a}^k = {\bf a}^k({\bf
+x}_i)$,
 
 $$ \begin{align*}
-{\bf a}^1 & = F^1({\bf W}^1 {\bf x}_i + {\bf b}^1) \\
-{\bf a}^2 & = F^2({\bf W}^2 {\bf a}^1 + {\bf b}^2) \\
+{\bf a}^1({\bf x}_i) & = F^1({\bf W}^1 {\bf x}_i + {\bf b}^1) \\
+{\bf a}^2({\bf x}_i) & = F^2({\bf W}^2 {\bf a}^1({\bf x}_i + {\bf b}^2) \\
 \vdots & \\
-{\bf a}^L & = F^L({\bf W}^L {\bf a}^{L-1} + {\bf b}^L) 
+{\bf a}^L({\bf x}_i) & = F^L({\bf W}^L {\bf a}^{L-1}({\bf x}_i) + {\bf b}^L) 
 \end{align*} $$
+
+Similarly we denote $${\bf z}^k = {\bf z}^k({\bf x}_i) = 
+{\bf W}^k {\bf a}^{k-1}({\bf x}_i) + {\bf b}^k$$.
+And we decompose the loss function into 
+$$ \mathcal{L}(\{ {\bf W}^l, {\bf b}^l \}_l) = 
+1/N \sum_{i=1}^N c(\{ {\bf W}^l, {\bf b}^l \}_l, {\bf x}_i)$$ where
+
+$$ c(\{ {\bf W}^l, {\bf b}^l \}_l, {\bf x}_i) = 
+\frac12 \| {\bf a}^L( \{ {\bf W}^l, {\bf b}^l \}_l; {\bf x_i}) - {\bf y}_i \|^2 $$
 
 
 ## Calculating derivatives
@@ -83,18 +94,29 @@ function $L$ with respect to the parameters ${\bf W}^l$ and ${\bf b}^l$ at each
 layers. This is done via the backpropagation algorithm; for more details on the
 backpropagation, see this <a href="/2018/11/13/backprop">post</a>.
 The main results are that, after a forward propagation (see previous section),
-the gradient of the loss function with respect to all parameters can be
-calculated sequentially starting from the output layer $L$, and moving backward
-to the first layer, by using the formulas
+the gradient of the loss function can be calculated as
 
 $$ \begin{align*}
-\frac{\partial L}{\partial {\bf b}^L} & = \frac1N \sum_{i=1}^N
-\begin{bmatrix} f'( z_1^L )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_L}^L)
+\frac{\partial \mathcal{L}}{\partial {\bf b}^l} & = \frac1N \sum_{i=1}^N 
+\frac{\partial c({\bf x}_i)}{\partial {\bf b}^l} \\
+\frac{\partial \mathcal{L}}{\partial {\bf W}^l} & = \frac1N \sum_{i=1}^N 
+\frac{\partial c({\bf x}_i)}{\partial {\bf W}^l} 
+\end{align*} $$
+
+For each contribution $c({\bf x}_i)$ to the loss function, its derivatives 
+with respect to all parameters can be
+calculated sequentially starting from the output layer $L$, and moving backward
+to the first layer, by using the formulas for each $i=1,\dots,N$,
+
+$$ \begin{align*}
+\frac{\partial c({\bf x}_i)}{\partial {\bf b}^L} & = 
+\begin{bmatrix} f'( z_1^L({\bf x}_i) )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_L}^L({\bf x}_i))
 \end{bmatrix} \cdotp ({\bf a}^L({\bf x}_i) - {\bf y}_i) \\
-\frac{\partial L}{\partial {\bf b}^l} & = \begin{bmatrix}
-f'( z_1^l )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_l}^l)
-\end{bmatrix} \cdotp ({\bf W}^{l+1})^T \cdotp \frac{\partial L}{\partial {\bf
+\frac{\partial c({\bf x}_i)}{\partial {\bf b}^l} & = \begin{bmatrix}
+f'( z_1^l({\bf x}_i) )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_l}^l({\bf x}_i))
+\end{bmatrix} \cdotp ({\bf W}^{l+1})^T \cdotp \frac{\partial c({\bf x}_i)}{\partial {\bf
 b}^{l+1}} , \quad \forall l=1,\dots,L-1\\
- \frac{\partial L}{\partial {\bf W}^l} & =
-\frac{\partial L}{\partial {\bf b}^l} \cdotp ({\bf a}^{l-1})^T , \quad \forall l=1,\dots,L
+ \frac{\partial c({\bf x}_i)}{\partial {\bf W}^l} & =
+\frac{\partial c({\bf x}_i)}{\partial {\bf b}^l} \cdotp ({\bf a}^{l-1}({\bf x}_i))^T , 
+\quad \forall l=1,\dots,L
 \end{align*} $$
