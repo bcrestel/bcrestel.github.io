@@ -126,6 +126,6 @@ b}^{l+1}} , \quad \forall l=1,\dots,L-1\\
 
 
 I implemented all those ideas from scratch in Python;
-The code is available on [github](https://github.com/bcrestel/DIYDeepLearning).
+The code is available on [GitHub](https://github.com/bcrestel/DIYDeepLearning).
 You can use it to assemble a neural network and calculate its derivatives using
 the backpropagation algorithm.
