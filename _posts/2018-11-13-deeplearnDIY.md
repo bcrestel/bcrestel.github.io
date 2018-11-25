@@ -60,9 +60,7 @@ For the loss function, I will use a least-square misfit, which leads to
 
 $$ \mathcal{L}(\{ {\bf W}^l, {\bf b}^l \}_l) = 
 \frac1{2N} \sum_{i=1}^N 
-\| {\bf a}^L( \{ {\bf W}^l, {\bf b}^l \}_l; {\bf x_i}) 
-- {\bf y}_i 
-\|^2$$
+\| {\bf a}^L( \{ {\bf W}^l, {\bf b}^l \}_l; {\bf x}_i) - {\bf y}_i \|^2$$
 
 To estimate the loss function, we simply plug, for each data pair $({\bf x}_i,
 {\bf y}_i)$, the input ${\bf x}_i$ in the input layer, i.e., we set ${\bf a}^0 =
@@ -111,7 +109,9 @@ to the first layer, by using the formulas for each $i=1,\dots,N$,
 $$ \begin{align*}
 \frac{\partial c({\bf x}_i)}{\partial {\bf b}^L} & = 
 \begin{bmatrix} f'( z_1^L({\bf x}_i) )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_L}^L({\bf x}_i))
-\end{bmatrix} \cdotp ({\bf a}^L({\bf x}_i) - {\bf y}_i) \\
+\end{bmatrix} \cdotp 
+\frac{\partial c({\bf x}_i)}{\partial {\bf a}^L} 
+\\
 \frac{\partial c({\bf x}_i)}{\partial {\bf b}^l} & = \begin{bmatrix}
 f'( z_1^l({\bf x}_i) )  & & 0 \\   &   \ddots & \\  0    &  &   f'(z_{n_l}^l({\bf x}_i))
 \end{bmatrix} \cdotp ({\bf W}^{l+1})^T \cdotp \frac{\partial c({\bf x}_i)}{\partial {\bf
@@ -120,6 +120,30 @@ b}^{l+1}} , \quad \forall l=1,\dots,L-1\\
 \frac{\partial c({\bf x}_i)}{\partial {\bf b}^l} \cdotp ({\bf a}^{l-1}({\bf x}_i))^T , 
 \quad \forall l=1,\dots,L
 \end{align*} $$
+
+
+## Initialization
+
+Initialization is quite critical to the success of neural nets. 
+
+Typically, all biases ${\bf b}^l$ are initialized to zero.
+
+You however don't want to do that with the weights, or you'd effectively kill
+all layers (see [post](/2018/11/13/backprop)). Also, you want to make sure that
+you do not saturate all neurons, for all data points. For that reason, you tend
+to choose random values centered around zero. And this must go along with 
+normalized input data, to avoid immediate saturation of neurons. There are a few
+heuristic to choose an weight initialization distribution.
+
+
+#### Symmetry
+
+If in a layer one uses the exact same weights for each neuron (either at
+initialization, or during the optimization), then all neurons of that layer
+will remain the same. That is apparent when looking at the derivatives. Whatever
+the vector misfit (for the output layer), or the derivative from the layer just
+after, if all weights are the same, the derivative will be the same. It is
+therefore important to "break the symmetry" in the initialization.
 
 
 ## Implementation
