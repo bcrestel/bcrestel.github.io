@@ -32,7 +32,7 @@ want to rely on the power iteration.
 
 The algorithm is pretty simple. You sample a random vector $v$, then repeat the
 following steps
-* multiply by $A$, $v = A.v$
+* multiply by $A$, i.e., $v = A.v$
 * normalize $v$, i.e., $v = v / \| v\|$
 
 Then $v$ will converge to the dominant eigenvector. Why? Since $A$ is
@@ -51,7 +51,7 @@ eigenvector. It will be the dominant eigenvector if we look in the hyperplane
 defined by the dominant eigenvector, that is $q_1^\perp$. One idea would be to
 first compute $q_1$ using the power iteration, then repeat the same procedure
 but projecting $v$ onto $q_1^\perp$ at each step. That would be:
-* multiply by $A$, $v = A.v$
+* multiply by $A$, i.e., $v = A.v$
 * project onto $q_1^\perp$, i.e., $v = v - (v^T.q_1)q_1$
 * normalize $v$, i.e., $v = v / \| v\|$
 
@@ -62,7 +62,7 @@ sample a matrix $V$ with as many columns as you want eigenvectors. Then after
 each left-multiplication by $A$, instead of projecting then normalizing, simply
 do a [QR decomposition](https://en.wikipedia.org/wiki/QR_decomposition)
 of $V$ and keep the $Q$ matrix. 
-* left-multiply by $A$, $V = A.V$
+* left-multiply by $A$, i.e., $V = A.V$
 * project and normalize with a QR decomposition, i.e., $V=Q$ where $Q,R = QR(V)$
 
 That matrix will converge
