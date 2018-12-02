@@ -68,7 +68,8 @@ underlying distribution has finite variance,
 \\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \rightarrow \mathcal{N}(0,1) \\]
 In practice, $\sigma$ is rarely known, and we want to replace it with $S$. We
 know that $S$ is a consistent estimator of $\sigma$, and we can show that $\sigma /
-S \rightarrow 1$. Then by Slutsky's theorem,
+S \rightarrow 1$. 
+Then by [Slutsky's theorem](https://en.wikipedia.org/wiki/Slutsky%27s_theorem),
 \\[ \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \frac{\sigma}{S} \rightarrow \mathcal{N}(0,1) \\]
 
 However this result is only valid asymptotically. Often in practice, people
