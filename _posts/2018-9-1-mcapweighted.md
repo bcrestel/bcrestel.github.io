@@ -29,7 +29,9 @@ w_{i,t-1} X_{t-1} \notag \\
 & = X_{t-1} \left( 1 + \sum_i w_{i,t-1} r_{i,t} \right),
 \end{align} $$
 since by definition $\sum_i w_{i,t} = 1$ at any time $t$.
-
+Note that the same conclusion applies to all type of returns, including
+continuously compounded returns
+$$\bar{r}_{i,t}$$, since $1+r_{i,t} = e^{\bar{r}_{i,t}}$.
 
 #### Self-rebalancing
 Let's define $M_{i,t}$ as the market-cap of security $i$, and let $M_t =
