@@ -15,4 +15,4 @@ done by the Design team, and can now be found on
 [Confluence](https://elementai.atlassian.net/wiki/spaces/UX/pages/693273903/Signature).
 The only place where we differ from the tutorial is that instead of pasting part
 of the HTML signature into the .mailsignature file, we need to delete
-everything in the initial file, then paste everything from EAI's HTML file.
+everything below the Mime-Version line in the initial file, then paste everything from EAI's HTML file.
