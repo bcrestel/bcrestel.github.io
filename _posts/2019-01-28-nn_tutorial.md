@@ -17,11 +17,13 @@ functions and loss functions.
  when defining your own NN.
 * `nn.Linear`: already defines a linear layer (also have convolution
 layers,....)
-* optim: provides a broad selection of optimizer that can be used to train your
- neural network. Also using those optimizers (in particular, the `step` method)
-avoid having to use `torch.no_grad()`.
+* `optim`: provides a broad selection of optimizer that can be used to train your
+ neural network. You still need to compute the gradient yourself, and zero out
+the gradient after the update step.
 The parameters of the NN are passed to the optimizer when being instantiated,
 which, in addition to telling the optimizer what parameters to optimize, also
 provide the optimizer with gradient information.
-* Dataset: provides a convenient way to manipulate datasets; allows to combine
- train and test set when slicing.
+* `Dataset`: provides a convenient way to manipulate datasets; allows to slice
+train and test sets together.
+* `DataLoader`: manages mini-batches automatically; you just give it a Dataset and
+a batch size.
