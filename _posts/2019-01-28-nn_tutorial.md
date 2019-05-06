@@ -27,3 +27,6 @@ provide the optimizer with gradient information.
 train and test sets together.
 * `DataLoader`: manages mini-batches automatically; you just give it a Dataset and
 a batch size.
+* `conv2d`: pytorch has a lot of layers already built-in that can be directly 
+used when building an object of type `nn.Module`. 
+* `nn.Sequential`:  it is another way of defining a model, instead of `nn.Module`. 
