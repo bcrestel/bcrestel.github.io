@@ -17,3 +17,15 @@ you can do something like
 ```
 <server exec sessionid> -- bash -c 'jupyter notebook --ip=$(hostname -I)'
 ```
+
+When running inside a Docker image, you need to take a few more steps. First,
+you need to publish the `8888` port of your machine, i.e.,
+```
+docker run -it -p 8888:8888 -v <...> image:version /bin/bash
+```
+Then inside your container
+```
+jupyter notebook --ip=$(hostname -I) --allow-root
+```
+Then on my laptop, the second url was the one that worked
+(`http://127.0.0.1:888/?token=...`).
