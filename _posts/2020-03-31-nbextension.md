@@ -34,4 +34,4 @@ matter.
 A few useful extensions:
 * table of content
 * collapsible headings
-
+* move selected cells
