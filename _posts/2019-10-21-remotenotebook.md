@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Running a jupyter notebook on a remote server
-tags: python jupyter remote
+tags: python remote notebook
 ---
 
 Super simple, but because I have the memory of a squirrel I need to mark it

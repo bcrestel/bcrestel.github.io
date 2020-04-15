@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jupyter Extensions
-tags: jupyter notebook python
+tags: notebook python
 ---
 
 Jupyter Notebook offer really neat extensions that can honestly transform your
