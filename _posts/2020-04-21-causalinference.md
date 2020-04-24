@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Causality inference 
+title: Causal Inference 
 tags: causality 
 ---
 
@@ -59,20 +59,19 @@ mechanism of the system.  The recommended survey paper for that framework is the
 by Judea Pearl.
 
 # The special case of causal inference with Time series data
-% TODO: Look at Runge
-% [thesis](https://edoc.hu-berlin.de/bitstream/handle/18452/17669/runge.pdf?sequence=1),
-% especially the litt review
-% Keep in mind the blog post
-% https://towardsdatascience.com/inferring-causality-in-time-series-data-b8b75fe52c46#2c77
-% PCMCI (derived from PC:
-% https://cse.sc.edu/~mgv/csce582sp14/presentations/SpirtesGlymourPC.pdf):
-% https://advances.sciencemag.org/content/advances/5/11/eaau4996.full.pdf along
-% with the repo https://github.com/jakobrunge/tigramite
-% and the website: https://causeme.uv.es/
-% (maybe) recent paper from Runge:
-% https://www.nature.com/articles/s41467-019-10105-3.pdf
-% Good review paper on statistical methdods (Granger-causality): "Simulation Study of Direct Causality Measures in Multivariate
-% Time Series" 
+[//]: TODO: Look at Runge
+[//]: [thesis](https://edoc.hu-berlin.de/bitstream/handle/18452/17669/runge.pdf?sequence=1),
+[//]: especially the litt review
+[//]: Keep in mind the blog post
+[//]: https://towardsdatascience.com/inferring-causality-in-time-series-data-b8b75fe52c46#2c77
+[//]: PCMCI (derived from PC:
+[//]: https://cse.sc.edu/~mgv/csce582sp14/presentations/SpirtesGlymourPC.pdf):
+[//]: https://advances.sciencemag.org/content/advances/5/11/eaau4996.full.pdf along
+[//]: with the repo https://github.com/jakobrunge/tigramite
+[//]: and the website: https://causeme.uv.es/
+[//]: (maybe) recent paper from Runge:
+[//]: https://www.nature.com/articles/s41467-019-10105-3.pdf
+[//]: Good review paper on statistical methdods (Granger-causality): "Simulation Study of Direct Causality Measures in Multivariate Time Series" 
 
 
 # Other references
