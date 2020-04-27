@@ -12,6 +12,11 @@ could also benefit a Deep Learning model (e.g., pre-training offline, then
 fine-tuning inside the model).
 
 # Deep Learning 
+* _Bao, W., Yue, J., & Rao, Y. (2017). A deep learning framework for financial
+ time series using stacked autoencoders and long-short term memory. PloS one,
+ 12(7)_
+[link](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5510866/pdf/pone.0180944.pdf):
+Stacked autoencoders for financial time series
 
 * _Zhao, R., Deng, Y., Dredze, M., Verma, A., Rosenberg, D., & Stent, A. (2019,
  May). Visual Attention Model for Cross-sectional Stock Return Prediction and
@@ -33,6 +38,9 @@ time)
 
 
 ## CNN based
+* A blog
+ [post](https://dida.do/blog/temporal-convolutional-networks-for-sequence-modeling)
+ explaining the basics of Temporal Convolutional Network (TCN).
 * _Borovykh, A., Bohte, S., & Oosterlee, C. W. (2017). Conditional time series
  forecasting with convolutional neural networks. arXiv preprint
  arXiv:1703.04691_
