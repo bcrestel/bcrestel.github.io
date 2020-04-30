@@ -4,12 +4,65 @@ title: Dimensionality reduction for time series
 tags: time-series dimensionality deeplearning ML
 ---
 
-When provided with a large amount of time-series data, it could be of interest
-to compress that information into a lower-dimensional dataset.
-This can be done inside a Deep Learning model, but we may also want to test
-machine learning approaches, and an offline dimensionality reduction approach
-could also benefit a Deep Learning model (e.g., pre-training offline, then
-fine-tuning inside the model).
+One of the challenges of this project is to handle the sheer size of the data.
+Starting with over a 100,000 features, this number is beyond reach for any
+modern machine learning or deep learning forecasting model. We therefore need to
+find a way to compress that information to a manageable size, meaning a 100x or
+even 1,000x compression factor. The intent of this section is to review the
+literature on the techniques we can apply to reach that ambitious compression
+rate.
+
+The classical appraoch for dimensionality reduction remains Principal Component
+Analysis (PCA), which boils down to a Singular Value Decomposition (SVD) of the
+matrix formed by all time serie stacked column-wise. For a probabilistic
+interpretation, time series would be centered to zero. Then after decomposition
+into principal components, we could retain only the first few components that
+describe an acceptable percentage of the variance in the data. As described the
+underlying machinery of PCA is a SVD which can quickly become intractable in
+high dimension. In "Randomized numerical linear algebra: Foundations &
+algorithms" [martinsson2020randomized], the authors describe how the tools from
+randomized numerical linear algebra can facilitate SVD in very large dimension,
+given that we're only interested in keeping a small number of dominant principal
+components.  Another limitation of standard PCA is its brittleness in the
+presence of corrupted data. In the presence of sometimes of even a small
+fraction of outliers, the quality of the output of a standard PCA can
+dramatically deterioriate. To remedy that shortcoming, several robust PCA
+techniques have been developped in the low-dimensional regime. In "Principal
+component analysis with contaminated data: The high dimensional case"
+[xu2010principal], the authors introduced a robust PCA technique that can handle
+up to 50% of corruption in high dimensional datasets.
+PCA, despite its popularity, does not address some specificities of time series
+datasets. In [yu2016temporal] ("Temporal regularized matrix factorization for
+high-dimensional time series prediction"), the authors introduce a matrix
+factorization technique that assumes a temporal dynamic in latent space,
+therefore providing more sensible results.
+In a different, albeit potentially complementary approach, we could first
+cluster the time series [aghabozorgi2015time] ("Time-series clustering--a decade
+review"), then apply a dimensionality reduction like PCA inside each cluster.
+
+With the all the advantages of matrix factorization techniques, these methods
+remain fundamentally linear. Kernel PCA was developped to remedy that potential
+shortcoming. But with very large datasets, deep learning methods become an
+interesting alternative. In this section, we survey the use of autoencoders
+[goodfellow2016deep, ballard1987modular] to perform dimensionality reduction on
+large multivariate time series.
+Interestingly, we still find a number of papers in finance relying on
+greedy layer-wise training of autoencoders (also referred to as stacked
+autoencoders), like the highly cited
+[bao2017deep](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5510866/pdf/pone.0180944.pdf).
+However we do not explore that area of the literature, as it is believe today
+that modern deep learning does not require this approach.
+More traditionally, the standard approach for multivariate datasets would be to
+encode across the features, at each time step. This could be done with a
+fully-connected auto-encoder, but in order to capture the dynamics of the time
+series, recurrent layers would be required.
+More recently [bai2018empirical], it was shown that convolutional networks, in
+particular a simple 1D dilated convolution model like the Temporal Convolutional
+Network (TCN), can be better suited than recurrent networks for sequence modeling.
+
+
+
+
 
 # Deep Learning 
 * _Bao, W., Yue, J., & Rao, Y. (2017). A deep learning framework for financial
