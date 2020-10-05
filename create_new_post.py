@@ -2,6 +2,8 @@
 
 import argparse
 import datetime
+import subprocess
+import os
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Parse function arguments.')
@@ -11,10 +13,14 @@ if __name__ == "__main__":
 
 	args = parser.parse_args()
 
-	# Create blog post with correct header
+	# Create blog post file with correct header
 	today = datetime.datetime.today()
 	filename = f"{today.year}-{today.month:02d}-{today.day:02d}-" + '_'.join(args.title[0].split(' '))
+	file_path = f"_posts/{filename}.md"
 	text = (f"---\nlayout: post\ntitle: {args.title[0]}\ntags: {' '.join(args.tags)}\n---\n\n")
-	with open(f"_posts/{filename}.md", "w") as file:
+	with open(file_path, "w") as file:
 		file.write(text)
 
+	# open file in vim
+	cmd = os.environ.get('EDITOR', 'vim') + ' ' + file_path
+	subprocess.call(cmd, shell=True)
