@@ -39,4 +39,6 @@ In the initial attention paper, the keys and values are the same, the query is
 the hidden cell from the decoder, and the dot
 product $Q K^T$ is replaced with a neural network that takes $Q, K$ as inputs.
 
-Ref: http://jalammar.github.io/illustrated-transformer/
+Additional References: 
+* [Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
+* [stackexchange](https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms)
