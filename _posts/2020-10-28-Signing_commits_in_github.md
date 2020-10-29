@@ -59,6 +59,23 @@ git config commit.gpgsign true
 and you can commit the same way you were doing before (without the `-S`
 argument).
 
+Now I still had to enter my passphrase when signing commits. Which can quickly
+become annoying. So I followed the steps highlighted
+[here](https://gist.github.com/bcomnes/647477a3a143774069755d672cb395ca). At a
+high level, you need to `brew install pinentry-mac`, then create 2 files,
+`~/.gnupg/gpg-agent.conf` in which you add
+```
+# Connects gpg-agent to the OSX keychain via the brew-installed$
+# pinentry program from GPGtools. This is the OSX 'magic sauce',$
+# allowing the gpg key's passphrase to be stored in the login$
+# keychain, enabling automatic key signing.$
+pinentry-program /usr/local/bin/pinentry-mac
+```
+then `~/.gnupg/gpg.conf` where you add
+```
+use-agent
+```
+
 Ref: This
 [post](https://juliansimioni.com/blog/troubleshooting-gpg-git-commit-signing/)
 is pretty good.
