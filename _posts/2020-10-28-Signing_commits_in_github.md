@@ -37,4 +37,20 @@ gpg, and it broke all my symlinks for python3. It actually installed 3.9, which
 as unversioned symlinks placed in a different folder. So I had to fix all that,
 and re-install our library.
 
-
+Now that this works, I still had a few things to do before being able to sign my
+commits. The first, mandatory step is to
+[create](https://github.com/keybase/keybase-issues/issues/2798) the following
+environment variable `export GPG_TTY=$(tty)`. Otherwise, you will never get a
+prompt for the gpg passphrase and your signed commit will fail.
+Once this is done, you can sign your commit with the argument `-S`, then enter
+your GPG passphrase. If you want to automate all that, just enter the following
+2 lines:
+```
+git config gpg.program gpg
+git config commit.gpgsign true
+```
+and you can commit the same way you were doing before (without the `-S`
+argument).
+This
+[post](https://juliansimioni.com/blog/troubleshooting-gpg-git-commit-signing/)
+is pretty good.
