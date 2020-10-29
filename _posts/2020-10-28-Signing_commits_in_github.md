@@ -20,10 +20,17 @@ gpg`.
 When this is installed, you can create a GPG key by typing `gpg
 --full-generate-key`. You'll be prompted with a series of questions, and after
 that you get a key. Now you need to export your public key. To do, find the info
-of your key, by typing `gpg --list-secret-keys --keyid-format LONG`; on the row
+of your key, by typing 
+```
+gpg --list-secret-keys --keyid-format LONG
+``` 
+On the row
 `sec`, you'll see `rsa4096` if you chose 4,096 bits RSA key, and after that is
-your key ID. You can next export that key by typing `gpg --armor --export
-<key_ID> > .gpg/public.key`; this will save your public key to a file
+your key ID. You can next export that key by typing 
+```
+gpg --armor --export <key_ID> > .gpg/public.key
+```
+This will save your public key to a file
 `.gpg/public.key`. You can share that file with whoever needs it.
 
 In the case of github, you'll copy the content of that file into the box
@@ -51,6 +58,7 @@ git config commit.gpgsign true
 ```
 and you can commit the same way you were doing before (without the `-S`
 argument).
-This
+
+Ref: This
 [post](https://juliansimioni.com/blog/troubleshooting-gpg-git-commit-signing/)
 is pretty good.
