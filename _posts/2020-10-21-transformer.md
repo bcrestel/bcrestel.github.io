@@ -42,3 +42,4 @@ product $Q K^T$ is replaced with a neural network that takes $Q, K$ as inputs.
 Additional References: 
 * [Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/)
 * [stackexchange](https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms)
+* [Paper Dissected: Attention is all you need"](https://mlexplained.com/2017/12/29/attention-is-all-you-need-explained/)
