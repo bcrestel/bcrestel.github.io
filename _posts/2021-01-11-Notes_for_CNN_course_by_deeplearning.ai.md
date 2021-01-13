@@ -49,6 +49,10 @@ pointwise then sum them all.
 Similar to what you would do with the actual operator, $$ f \star g = \int_{-\infty}^{\infty} f(\tau)g(t-\tau) d\tau $$, where for each
 $t$ the function $g$ (the kernal, or filter) is shifted by an amount $t$.
 
+Actually, this mathematical definition is a little bit different as the kernel
+is mirrored around its axes (we have $g(t-\tau)$ as a function of $\tau$). This
+is discussed in the section on [Video: Strided Convolutions](## Video: Strided Convolutions).
+
 Don't need to re-implement a convolution operator: python -> conv_forward,
 tensorflow -> tf.nn.conv2d, keras -> cond2D
 
@@ -56,3 +60,55 @@ Why is this doing edge detection?
 Look at picture with 2 colors separated by a vertical edge. 
 Apply 3x3 kernel: 1,0,-1 (in x direction; same in y).
 Obtain a thick edge, in your 4x4 image, in the middle.
+
+## Video: More Edge Detection
+
+Introduces more examples for filters, for instance for horizontal edge
+detection. But also different types of vertical edge detectors:
+eg, 1,0,-1//2,0,-2//1,0,-1 (Sobel filter)
+or 3,0,-3//10,0,-10//3,0,-3/ (Scharr filter).
+But you can parametrize the values of your kernel, and learn the ideal kernel
+for your problem. And that is a key idea of modern computer vision.
+
+## Video: Padding
+
+Discrete convolution presented shrink the image, so you could only apply it a
+few times. Initial image n x n, kernel f x f, then convolved image $n-f+1 \times
+n-f+1$.
+
+Also, pixels close to the edge of an image are used much less in the convolution
+compared to central pixels.
+
+Solution for both problems: pad the image before applying convolution operator,
+i.e., add pixels on the outside of the image: eg, 6x6 ->(padding) 8x8
+->(convolution w/ 3x3 kernel) 6x6. 
+Padded convoluted image has dim $n+2p-f+1 \times n+2p-f+1$
+By convention, you pad with 0's.
+
+How much to pad? Valid convolution vs Same convolution
+* Valid convolution = no padding
+* Same convolution: pad so as to offset the shrinking effect of the convolution
+(final image has same dim as input image) -> $2p = f-1$
+
+Note that by convention, in computer vision, f is typically an odd number: 1
+(less common), 3,
+5, 7. That
+has the advantage that you can have a symmetric padding.
+
+## Video: Strided Convolutions
+
+Stride = by how many pixels you shift the kernel (vertically and horizontally).
+So the convolved image will be smaller with stride 2 than with stride 1.
+Resulting image side length: $(n+2p-f)/s+1$ (potentially rounded if needed)
+
+[Cross-correlation](https://en.wikipedia.org/wiki/Cross-correlation) vs
+convolution:\\
+As discussed earlier, the actual convolution operator would require to flip the
+kernel around its axes, since we do $$\int_{-\infty}^{\infty} f(\tau) g(t-\tau)
+d\tau $$. But in deep learning, people don't flip it. So in that sense, this is
+closer to the cross-correlation operator whic is defined, for real functions, as
+$$\int_{-\infty}^{\infty} f(\tau) g(t+\tau) d\tau$$. 
+But as explained in the video, the convention is such that people in deep
+learning still call that a convolution operator.
+
+
