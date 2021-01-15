@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Notes for CNN course by deeplearning.ai
+title: Notes for CNN course by deeplearning.ai (week 1)
 tags: cnn course deeplearning
 ---
 
@@ -110,5 +110,65 @@ closer to the cross-correlation operator whic is defined, for real functions, as
 $$\int_{-\infty}^{\infty} f(\tau) g(t+\tau) d\tau$$. 
 But as explained in the video, the convention is such that people in deep
 learning still call that a convolution operator.
+
+## Video: Convolutions over volumes
+
+Application: RGB images (3 color channels).\\
+Convolve RGB image with a 3d kernel (same number of channels).
+
+Notation: Image 6 x 6 x 3 = (height, width, channels).
+Number of channels in image and kernel must be equal.
+
+Really this 2d convolutions repeated over a stack of 2d images. Not really a 3d
+convolution. You could imagine having an image of dim 6 x 6 x 6, and convolve
+along the third dim also.
+
+Multiple filter:
+You can apply different kernels to the same image(s) and stack the results to
+generate also a 3d output. For intance, you could combine the output of a
+vertical edge detector and horizontal edge detector.
+
+Dim summary when using `nb_filters_used` filters on an image of `c` channels: image = n x n x c, kernel = f x f x c, then output = n-f+1 x n-f+1 x
+nb_filters_used
+
+## Video: One layer of a convolutional layer
+
+Convolutional layer = activation_function (multiple filters--with the right
+number of channels-- + a bias), where bias is a single real number.
+So output has same dimension as the previous multiple filter example.
+
+And number of parameters is equal to (dim of kernel + 1) x nb_kernels. And this
+number of parameters is independent of the dimension of the input!
+
+Notations for layer $l$:
+* $f^{[l]}$ = filter size
+* $p^{[l]}$ = padding
+* $s^{[l]}$ = stride
+* input: $n_H^{[l-1]} \times n_w^{[l-1]} \times n_C^{[l-1]}$
+* output: $n_H^{[l]} \times n_w^{[l]} \times n_C^{[l]}$, where
+$$n_{H/W}^{[l]} = (n_{H/W}^{[l-1]} + 2p^{[l]} - f^{[l]}) / s^{[l]} + 1$$.
+* And $n_c^{[l]}$ is equal to the number of filters used in the convolutional
+layer. 
+* Each filter has dim $f^{[l]} \times f^{[l]} \times n_c^{[l-1]}$ as the
+number of channels in the kernel has to be equal to the number of channels in
+the input image.
+* Weights: $f^{[l]} \times f^{[l]} \times n_c^{[l-1]} \times n_c^{[l]}$
+* Bias: $n_c^{[l]}$
+
+Note: ordering Batch, Height, Width, Channel is not universal as some people
+will put channel after batch.
+
+## Video: A simple convolutional network example
+
+Basic idea is to stack convolutional layers one after the other. At then, you
+can flatten the last image and pass it to an appropriate loss function.
+
+One general trend is that the image dimension is going down as we progress in
+the net, while the number of channels go up.
+
+Basic convolution network includes: convolutional layers, pooling layers, and
+fully connected layers.
+
+## Video: Pooling Layers
 
 
