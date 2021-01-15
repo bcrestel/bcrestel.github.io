@@ -58,10 +58,39 @@ HDFS; need to pre-compute). Features in Feature Store are updated daily. Also
 created a Domain Specific Language to transform existing features (extract
 day-of-week, eg); this DSL is part of the model configuration and therefore
 guarantees that the same transforms are applied for training and inference.
-2. Train models: 
-3. Evaluate models
-4. Deploy models
-5. Make predictions
-6. Monitor predictions
+2. Train models: _A model configuration specifies the model type,
+hyper-parameters, data source reference, and feature DSL expressions, as well as
+compute resource requirements (the number of machines, how much memory, whether
+or not to use GPUs, etc.). It is used to configure the training job, which is
+run on a YARN or Mesos cluster._ At the time of the article, framework only did
+offline training. After training completed, publish a report with 
+performance metrics and results plots, and save _the original configuration, the learned
+parameters, and the evaluation report_. Michelangelo can be used for
+hyperparameters search, and works with single models or _partitioned models_,
+i.e. models trained on multiple folds.
+3. Evaluate models: Michelangelo typically used to identify best model then push
+it to production. They have a system to keep track of all experiments run (ie,
+all models trained) by storing: basic info (user name, time, duration,...),
+datasets used, model configuration (ie, also including features, and even
+features importance visualization), results (metrics, charts, full learned
+parameters of the trained model, info/data required for model visualization).
+4. Deploy models: 3 types of deployment: offline (model packaged in a container,
+ready to be loaded on demand), online (model deployed and queried via Remote
+Procedure Calls), or library deployment (invoked via Java API). _In all cases,
+the required model artifacts (metadata files, model parameter files, and
+compiled DSL expressions) are packaged in a ZIP archive and copied to the
+relevant hosts across Uber’s data centers using our standard code deployment
+infrastructure._ 
+5. Make predictions: Framework allows to deploy multiple models to the same
+servicing constainer which can be used for A/B testing or seamless model update.
+They have a nice summary
+[plot](http://1fykyq3mdn5r21tpna3wkdyi-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/image3.png)
+of the different scenarios.
+6. Monitor predictions: Michelangelo allows to log a percentage of the
+prediction data then combine with realized values to calculate real performance
+of the model. They can then visualize evoluation of model performance and/or set
+threshold for automatic alerts. See
+[here](http://1fykyq3mdn5r21tpna3wkdyi-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/image8.png).
 
-
+Future developments (at the time): autoML, model viz, online learning,
+distributed DL.
