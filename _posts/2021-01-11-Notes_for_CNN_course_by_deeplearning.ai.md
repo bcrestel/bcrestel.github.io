@@ -82,7 +82,7 @@ compared to central pixels.
 Solution for both problems: pad the image before applying convolution operator,
 i.e., add pixels on the outside of the image: eg, 6x6 ->(padding) 8x8
 ->(convolution w/ 3x3 kernel) 6x6. 
-Padded convoluted image has dim $n+2p-f+1 \times n+2p-f+1$
+Padded convoluted image has dim $n+2p-f+1 \times n+2p-f+1$.
 By convention, you pad with 0's.
 
 How much to pad? Valid convolution vs Same convolution
@@ -119,7 +119,7 @@ Convolve RGB image with a 3d kernel (same number of channels).
 Notation: Image 6 x 6 x 3 = (height, width, channels).
 Number of channels in image and kernel must be equal.
 
-Really this 2d convolutions repeated over a stack of 2d images. Not really a 3d
+Really this is 2d convolutions repeated over a stack of 2d images. Not really a 3d
 convolution. You could imagine having an image of dim 6 x 6 x 6, and convolve
 along the third dim also.
 
@@ -160,7 +160,7 @@ will put channel after batch.
 
 ## Video: A simple convolutional network example
 
-Basic idea is to stack convolutional layers one after the other. At then, you
+Basic idea is to stack convolutional layers one after the other. At the end, you
 can flatten the last image and pass it to an appropriate loss function.
 
 One general trend is that the image dimension is going down as we progress in
@@ -171,4 +171,48 @@ fully connected layers.
 
 ## Video: Pooling Layers
 
+Pooling layers are often found in convolutional networks. The intuition behind
+these layers is not well understood, but they are commonly used as they seem to
+improve performance.
 
+The idea is to apply a filter (or kernel), the same way we did it for
+convolution layers. That is a pooling layers has a size $f$ and a stride $s$.
+But instead of applying a convolution kernel for every step of the filter, we
+instead apply a single function. In practice, we find max pooling (most common)
+and average pooling (not as common). 
+For max pooling for instance, at every step of the filter, we take the max
+within that filter.
+We sometimes find average pooling at the end of a network, to compress an image
+into a single pixel.
+Interestingly, pooling layers have no parameter to learn (only hyperparameters).
+
+When the input image has multiple channels, we apply the pooling filter to each
+layer.
+Most commonly, we don't apply padding with pooling layers.
+
+## Video: CNN example
+
+Introduce an example of CNN to do digit recognition on a 32 x 32 x 3 RGB image.
+The presented CNN is inspired by LeNet-5.
+
+* convolutional layer 1: 6 filters with hyperparameters $f=5, s=1, p=0$
+* max pooling layer 1: $f=2, s=2$.
+* convolutional layer 2: 16 filters with hyperparameters $f=5, s=1, p=0$
+* max pooling layer 2: $f=2, s=2$.
+* fully-connected layer 3: flatten output of max pooling layer 2 -> fc3 = 400 x
+ 120
+* fc4: 120 x 84
+* Softmax layer (I guess fc5 + softmax): 84 x 10 (10 digits to recognize)
+
+We notice that throughout the layers, the image decreases while the number of
+channels increase.
+Also, we notice the alternance conv layer / pool layer a few times, followed by
+a few fully-connected layers.
+
+## Video: Why convolutions?
+
+What makes convolution layers efficient for image recognition?
+* weight sharing: you work on the input image with limited number of parameters
+* sparsity of connections: each output pixel only depends on a few of the input
+ pixels
+* Conv layers are believed to be good at preserving translation invariance.
