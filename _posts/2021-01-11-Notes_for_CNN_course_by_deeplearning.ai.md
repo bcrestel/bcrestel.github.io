@@ -135,7 +135,8 @@ nb_filters_used
 
 Convolutional layer = activation_function (multiple filters--with the right
 number of channels-- + a bias), where bias is a single real number.
-So output has same dimension as the previous multiple filter example.
+So output has same dimension as the example in the previous video. Don't forget
+that there is a single bias per filter.
 
 And number of parameters is equal to (dim of kernel + 1) x nb_kernels. And this
 number of parameters is independent of the dimension of the input!
@@ -216,3 +217,8 @@ What makes convolution layers efficient for image recognition?
 * sparsity of connections: each output pixel only depends on a few of the input
  pixels
 * Conv layers are believed to be good at preserving translation invariance.
+
+## Assignments
+
+I put my assignments on
+[github](https://github.com/bcrestel/cnn_deeplearningai/tree/main/assignments/week1).
