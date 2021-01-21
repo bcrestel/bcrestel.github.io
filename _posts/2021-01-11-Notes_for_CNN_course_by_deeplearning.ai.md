@@ -191,6 +191,30 @@ When the input image has multiple channels, we apply the pooling filter to each
 layer.
 Most commonly, we don't apply padding with pooling layers.
 
+Also, it is important to realize that padding, in the context of pooling
+layers, does not have the same meaning as for convolutional layers. In the
+context of pooling layers, same padding means that the picture will be enlarged
+such that the kernel can be applied an exact number of times. Whereas with valid
+padding, the kernel is applied as many times as it can fit. 
+In other words, even with same padding, the output image does not necessarily
+have the same dimension as the input. For instance,
+```
+A = tf.ones((1, 14, 32, 1))
+P1 = tf.nn.max_pool(A, ksize=[1,8,8,1], strides=[1,8,8,1], padding='SAME')
+P2 = tf.nn.max_pool(A, ksize=[1,8,8,1], strides=[1,8,8,1], padding='VALID')
+with tf.Session() as sess:
+    print(f"P1.shape = {sess.run(P1).shape}")
+    print(f"P2.shape = {sess.run(P2).shape}")
+```
+will give
+```
+P1.shape = (1, 2, 4, 1)
+P2.shape = (1, 1, 4, 1)
+```
+This
+[post](https://datascience.stackexchange.com/questions/67334/whats-the-purpose-of-padding-with-maxpooling)
+also explains it well.
+
 ## Video: CNN example
 
 Introduce an example of CNN to do digit recognition on a 32 x 32 x 3 RGB image.
@@ -222,3 +246,4 @@ What makes convolution layers efficient for image recognition?
 
 I put my assignments on
 [github](https://github.com/bcrestel/cnn_deeplearningai/tree/main/assignments/week1).
+
