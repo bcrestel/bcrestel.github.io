@@ -247,3 +247,8 @@ What makes convolution layers efficient for image recognition?
 I put my assignments on
 [github](https://github.com/bcrestel/cnn_deeplearningai/tree/main/assignments/week1).
 
+## Additional references
+
+This blog
+[post](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) has
+very nice visualizations of what convolutional layers do.
