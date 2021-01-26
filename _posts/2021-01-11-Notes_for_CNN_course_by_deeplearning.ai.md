@@ -252,3 +252,8 @@ I put my assignments on
 This blog
 [post](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) has
 very nice visualizations of what convolutional layers do.
+
+## Supplementary note
+
+When you have a dilated convolution, the dimension of the output becomes
+$$int \left( \frac{N+2p-d*(f-1) - 1}{s} \right) + 1$$.
