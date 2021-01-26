@@ -37,6 +37,7 @@ shrink the size of the image.
 * fully connected layers: 400x120, 120x84, 84x10.
 * output layer today would probably be a softmax. In the paper, they used
  something else that is not common today.
+
 All non-linearities were tanh or sigmoid. Also, they applied activation
 functions after the pooling layers.
 Total network had about 60,000 parameters, which is small by today's standard
@@ -65,6 +66,7 @@ described below. The input image is 227x227x3.
 * conv layer, 3x3, same padding, 384 channels ->13x13x384 
 * conv layer, 3x3, same padding, 256 channels ->13x13x256
 * Fully-connected layers: 9216 -> 4096 -> 4096 -> 1,000 (Softmax)
+
 Many similarities with LeNet-5, but AlexNet has about 60M parameters.
 Also, they used ReLU activation functions.
 They also used another type of layer called Local Response Normalization, which
@@ -99,6 +101,7 @@ The input is 224x224x3.
 * conv: 512 channels -> 14x14x512
 * max pooling -> 7x7x512
 * fc: 4096 -> 4096 -> 10,000 (softmax)
+
 VGG-16 has about 138M parameters, which is large even by today's standards.
 16 is the number of layers. There is also a VGG-19, but performance is
 comparable.
@@ -120,4 +123,68 @@ Elementary block of a ResNet is a Residual Block, which adds a skip connection
 linear part but before the application of the ReLU activation function, the
 value of layer output a few levels below is added, eg, 
 $a^{[l+2]} = g(z^{[l+1]} + a^{[l]})$.
+
+## Video: Why ResNets work?
+
+Uses an intuitive example to try and show why ResNets work.
+Intuition is that ResNets can very easily learn the identity map (W=0, b=0).
+That means, it's easy for a ResNets layer plugged after an existing DL to do at
+least as well. Then after training, it's easy to imagine that the addition of
+the ResNets will improve performance.
+
+Something else to notice about ResNets is that you need to have $z^{[l+2]}$ and
+$a^{[l]}$ that have same dimension. For that reason, you often see people using
+the same convolution (or same padding).
+However, this is not mandatory, as one can add a linear transformation of
+$a^{[l]}$ so that its dimension match with $z^{[l+2]}$. That linear
+transformation can be learned or fixed (eg, padding,...).
+
+## Video: Networks in Networks and 1x1 Convolutions
+
+In the paper [Network in Network](https://arxiv.org/pdf/1312.4400.pdf), they
+discuss the use of a 1x1 convolution. It's interesting in the case of a
+multi-channel image, where it takes a linear combination of each channels
+(before passing it through a non-linear activation function).
+
+This idea of 1x1 convolution can be used to shrink the number of channels of an
+image w/o altering the height or width.
+altering
+
+## Video: Inception Network Motivation
+
+Main motivation is that instead of choosing amongh a 1x1 convolution, a 3x3
+convolution, a 5x5 convolution, or a max-pooling layer, why don't you just do
+them all in a single layer. Then stack all the outputs along the channel
+dimension. That's what the inception layer is about.
+You of course need same padding to preserve the height and width and be able to
+stack them along the channel dimension.
+
+Problem of that approach is the computational cost. For instance, 5x5 conv with
+same padding, going from 28x28x192 to 28x28x32 involves about 120M fp
+operations.
+A solution is to introduce a bottleneck layer, that is 1x1 convolution that
+reduces the number of channles (eg, from 192 down to 16). Then apply the 5x5
+convolution on that output with a reduced number of channels. You can reduce the
+computational cost by 1/10th.
+
+## Video: [Inception network](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf)
+
+A visualization of the architecture of the inception network can be found
+[here](https://cdn.analyticsvidhya.com/wp-content/uploads/2018/10/googlenet.png).
+
+Rough idea is as descrbied in the previous section: apply 1x1, 3x3, 5x5
+convolutions, and max-pooling in parallel, the concatenate all the channels
+together. To reduce computational cost, 3x3 and 5x5 convolutional layers are
+preceded by a bottleneck layer, and to avoid having max-pooling dominate the
+output, it is followed by a bottleneck layer. All of this represents an
+inception module.
+The inception network is more or less a stack of multiple inception modules.
+
+A noticeable addition is that you find intermediate probes in the network that
+try to predict the outcome with a sequence of fully-connected layers followed by
+a softmax. The rationale behind that is to try and force the network to
+regularize itself by trying to do these intermediate predictions.
+
+## Video: Using open-source implementation
+
 
