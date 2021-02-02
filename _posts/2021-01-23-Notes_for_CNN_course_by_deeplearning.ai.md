@@ -185,6 +185,56 @@ try to predict the outcome with a sequence of fully-connected layers followed by
 a softmax. The rationale behind that is to try and force the network to
 regularize itself by trying to do these intermediate predictions.
 
+_Important note_: Inception was the architecture used to introduce [batch
+norm](http://proceedings.mlr.press/v37/ioffe15.pdf). A few other modifications
+were made to the network though (learning rate, no dropout,...).
+
 ## Video: Using open-source implementation
+
+github
+
+## Video: Transfer Learning
+
+At least in computer vision, transfer learning should always be considered
+unless you have an exceptionally large dataset. Transfer learning ranges from:
+i. keeping all layers frozen and replacing/training the output layer (eg,
+softmax layer)
+ii. keeping a few layers frozen (if you have more data)
+iii. re-training the entire network, starting from the trained model as
+initialization.
+
+## Video: Data augmentation
+
+In most computer vision applications today, you never have enough data. Data
+augmentation can help "get" more data.
+
+A few common methods:
+* mirroring
+* random cropping
+* rotation (less common)
+* shearing (less common)
+* local warping (less common)
+
+Another type of data augmentation is color shifting, where you add random
+perturbations to the RGB channels.
+Also, there is a "PCA color augmentation" (see AlexNet paper).
+
+In terms of computational efficiency, data augmentation can be done a separate
+CPU thread, before passing the augmented data to the CPU/GPU used for training,
+which is completely paralelizable.
+
+Note that data augmentation most often comes with a set of hyparameters that
+also need to be selected.
+
+## Video: State of Computer Vision
+
+Less data means you'll need more hand-engineering to get good results.
+
+Other tips:
+* Ensemble: good for competition or benchmark, but rarely used in production due
+ to the computational cost
+*  multi-crop at test time: compute prediction for multiple cropped version of
+  your input image, then average the results. Same problem as ensemble for
+production solution
 
 
