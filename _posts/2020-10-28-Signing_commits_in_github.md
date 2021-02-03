@@ -10,6 +10,10 @@ Github put together a
 [page](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/managing-commit-signature-verification)
 to explain the different steps.
 
+# On my local machine
+
+## Create a GPG key
+
 The first step is to add a GPG key to you github account. You can check if you
 already have one by going to Settings > SSH and GPG keys. If the field for GPG
 is empty, then you need to create one. To do so, you need
@@ -19,7 +23,11 @@ gpg`.
 
 When this is installed, you can create a GPG key by typing `gpg
 --full-generate-key`. You'll be prompted with a series of questions, and after
-that you get a key. Now you need to export your public key. To do, find the info
+that you get a key. 
+
+## Exporting your key to github
+
+Now you need to export your public key. To do, find the info
 of your key, by typing 
 ```
 gpg --list-secret-keys --keyid-format LONG
@@ -36,6 +44,8 @@ This will save your public key to a file
 In the case of github, you'll copy the content of that file into the box
 provided when you want to add a new GPG key.
 
+## Sign your commits
+
 Now that this is done, you add your GPG key to your local git config by doing
 `git config --global user.signingkey <key_ID>`. You can then sign your commit by
 adding the `-S` argument when doing `git commit`..... Well, that is if we didn't
@@ -50,7 +60,13 @@ commits. The first, mandatory step is to
 environment variable `export GPG_TTY=$(tty)`. Otherwise, you will never get a
 prompt for the gpg passphrase and your signed commit will fail.
 Once this is done, you can sign your commit with the argument `-S`, then enter
-your GPG passphrase. If you want to automate all that, just enter the following
+your GPG passphrase. 
+You can check that a commit was signed by doing
+```
+git verify-commit <commit_hash>
+```
+
+If you want to automate all that, just enter the following
 2 lines:
 ```
 git config gpg.program gpg
@@ -58,6 +74,8 @@ git config commit.gpgsign true
 ```
 and you can commit the same way you were doing before (without the `-S`
 argument).
+
+## Save passphrase of the GPG key
 
 Now I still had to enter my passphrase when signing commits. Which can quickly
 become annoying. So I followed the steps highlighted
@@ -76,6 +94,40 @@ then `~/.gnupg/gpg.conf` where you add
 use-agent
 ```
 
-Ref: This
+# On a remote server
+Obvioulsy, you don't need to re-create the key. You can simply modify the global
+`.gitconfig` file to add `user.name, user.email, user.signingkey`.
+
+Then, you also need to add your **private** key to `gpg` on the remote server.
+To do that, you first need to export your private key from your local machine,
+```
+gpg --armor --export-secret-keys <key_ID> > ~/.gpg/private.key
+```
+Then on the remote server, you add that private key by doing
+```
+gpg --import ~/.../private.key
+```
+You will be prompted for your GPG passphrase, and that's it. You can check that
+you added the GPG key successfully doing
+```
+gpg --list-secret-keys --keyid-format LONG
+``` 
+
+After that, you can sign your commits with the `-S` option
+``` 
+git commit -S
+``` 
+Note that I didn't have to set up the environment variable `GPG_TTY` (even
+though that environment variable was not defined).
+
+You can automate the signing of commits the way you would do locally.
+
+It looks like we could use `pinentry` on a unix server. But I haven't tried yet.
+
+
+
+# References
+
+This
 [post](https://juliansimioni.com/blog/troubleshooting-gpg-git-commit-signing/)
 is pretty good.
