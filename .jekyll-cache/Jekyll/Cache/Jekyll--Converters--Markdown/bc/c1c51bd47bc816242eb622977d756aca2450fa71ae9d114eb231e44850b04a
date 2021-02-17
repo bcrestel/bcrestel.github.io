@@ -1,8 +1,0 @@
-I"$<p>I had some issue formatting a <a href="https://bcrestel.github.io/tags">page</a> containing all tags used in the blog. All
-the coding had already been done in a <a href="/2018/01/11/adding-tag/">blog post</a>
-that I followed. However, instead of having all tags written next to each other
-on the same line, they were placed on top of each other, which would take a lot
-more screen space. I didn’t really dig to the bottom of it, but it turns out
-this can be fixed by defining the tag page as an html file, instead of a
-markdown file (md).</p>
-:ET

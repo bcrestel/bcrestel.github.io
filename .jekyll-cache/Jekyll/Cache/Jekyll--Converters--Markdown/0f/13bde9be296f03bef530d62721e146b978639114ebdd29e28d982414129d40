@@ -1,3 +1,0 @@
-I"Æ<p>I had some issues with the links pointing to the main page in the sidebar. They would always point to the current page. I fixed this by changing <code>site.baseurl</code> to <code>site.url</code> in the definition of these two links (title and Home) in the file <code>_includes/sidebar.html</code>.<br />
-Also, as I was looking for a solution to that problem, I found that all urlâ€™s in Jekyll should really be defined as <code>{ { site.baseurl } }{ { post.url } }</code>, and the variable <code>baseurl</code> should be left empty, instead of <code>/</code>. I found <a href="http://downtothewire.io/2015/08/15/configuring-jekyll-for-user-and-project-github-pages/">this page</a> to be pretty useful.</p>
-:ET

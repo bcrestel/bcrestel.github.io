@@ -1,9 +1,0 @@
-I"ü<p>You can pass local environment variables to your ssh session, and even use those
-to define environment variables inside your ssh session. For that, you need to
-execute a command which requires the flag <code>-t</code> prior to your server address. An
-example,</p>
-<pre><code>ssh -p 2222 -A -t myname@myserver "SERVER_ENV_VAR=$LOCAL_ENV_VAR; export SERVER_ENV_VAR; bash -l"
-</code></pre>
-<p>After that, you should see an environemnt variable called <code>SERVER_ENV_VAR</code>
-inside your ssh session.</p>
-:ET
