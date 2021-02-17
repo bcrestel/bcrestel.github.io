@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Correlation, covariance, and standard deviation &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Correlation, covariance, and standard deviation</h1>
+  <span class="post-date">02 May 2018</span>
+  <p>I want to illustrate how correlation and covariance relates to the standard
+deviation of the random variables they involve.</p>
+
+<p>Let’s introduce two random variables $X_i$, $i=1,2$, and the centered random
+variables $Y_i = X_i - \mathbb{E}[X_i]$. Then we have 
+\(\mathbb{E}[Y_i] = 0\), \(Var[Y_i] = Var(X_i)\), \(Cov(Y_1, Y_2) =
+Cov(X_1,X_2)\).
+We then introduce two new random variables, $\tilde{X}_i$, with the same
+expectation as $X_i$, but with a re-scaled standard deviation,</p>
+
+\[\begin{align}
+\tilde{X}_i &amp; = \mathbb{E}[X_i] + a_i Y_i \notag \\
+ &amp; = \mathbb{E}[X_i] + a_i (X_i - \mathbb{E}[X_i]) 
+\end{align}\]
+
+<p>with $a_i \in \mathbb{R}$. We can immediately verify that
+$\mathbb{E}[\tilde{X}_i] = \mathbb{E}[X_i]$ and $Var[\tilde{X}_i] = a_i^2
+Var[X_i]$.</p>
+
+<p>Then, the covariance of $\tilde{X}_1$ and $\tilde{X}_2$ gives</p>
+
+\[\begin{align}
+Cov(\tilde{X}_1,\tilde{X}_2) &amp; =
+\mathbb{E}[(\tilde{X}_1-\mathbb{E}[\tilde{X}_1])(\tilde{X}_2-\mathbb{E}[\tilde{X}_2])]
+\notag
+\\ 
+&amp; = a_1a_2 \mathbb{E}[Y_1 Y_2] \notag \\
+&amp; = a_1a_2 Cov(X_1,X_2)
+\end{align}\]
+
+<p>Whereas the correlation between $\tilde{X}_1$ and $\tilde{X}_2$ is given by</p>
+
+\[\begin{align}
+corr(\tilde{X}_1,\tilde{X}_2) &amp; =
+\frac{Cov(\tilde{X}_1,\tilde{X}_2)}{\sqrt{Var[\tilde{X}_1] Var[\tilde{X}_2]}}
+\notag \\
+&amp; = \frac{Cov({X}_1,{X}_2)}{\sqrt{Var[{X}_1] Var[{X}_2]}} \notag \\
+&amp; = 
+corr({X}_1,{X}_2)
+\end{align}\]
+
+<p>In words, the covariance scales with the standard deviation of each random
+variable, whereas the correlation is oblivious to the standard deviations.</p>
+
+
+<span>[
+  
+    
+    <a href="/tag/correlation"><code class="highligher-rouge"><nobr>correlation</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/statistics"><code class="highligher-rouge"><nobr>statistics</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/covariance"><code class="highligher-rouge"><nobr>covariance</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

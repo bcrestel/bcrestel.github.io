@@ -1,0 +1,29 @@
+I"³<p>Fast AI wrote a really nice pytorch
+<a href="https://pytorch.org/tutorials/beginner/nn_tutorial.html">tutorial</a>
+which starts from a very manual
+implementation of a one hidden layer neural network trained on MNIST data, then
+gradually adds on pytorch built-in capabilities.
+It nicely shows off what pytorch can do, and how it simplifies the coding.
+The different steps involve using:</p>
+<ul>
+  <li><code>torch.nn.functional</code>: provides already built-in function for most common activation 
+functions and loss functions.</li>
+  <li><code>nn.Module</code>: provides a class to define a neural network that can be inherited
+ when defining your own NN.</li>
+  <li><code>nn.Linear</code>: already defines a linear layer (also have convolution
+layers,â€¦.)</li>
+  <li><code>optim</code>: provides a broad selection of optimizer that can be used to train your
+ neural network. You still need to compute the gradient yourself, and zero out
+the gradient after the update step.
+The parameters of the NN are passed to the optimizer when being instantiated,
+which, in addition to telling the optimizer what parameters to optimize, also
+provide the optimizer with gradient information.</li>
+  <li><code>Dataset</code>: provides a convenient way to manipulate datasets; allows to slice
+train and test sets together.</li>
+  <li><code>DataLoader</code>: manages mini-batches automatically; you just give it a Dataset and
+a batch size.</li>
+  <li><code>conv2d</code>: pytorch has a lot of layers already built-in that can be directly 
+used when building an object of type <code>nn.Module</code>.</li>
+  <li><code>nn.Sequential</code>:  it is another way of defining a model, instead of <code>nn.Module</code>.</li>
+</ul>
+:ET

@@ -1,0 +1,12 @@
+I"<p>Font awesome is an easy way to include cool icons to your website, like the one
+for Github, Linkedin, or just email (see side bar). To use, all you need to do
+is add</p>
+<pre><code class="language-html">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+</code></pre>
+<p>the header of your html file. Then <a href="https://www.w3schools.com/icons/fontawesome_icons_webapp.asp">choose</a> 
+the icon you want to use. You can modify the size of the icons by adding the
+appropriate <a href="https://fontawesome.com/how-to-use/on-the-web/styling/sizing-icons">option</a>.
+For instance, for a large Github icon, you would add</p>
+<pre><code class="language-html">&lt;i class="fa fa-github fa-lg"&gt;
+</code></pre>
+:ET

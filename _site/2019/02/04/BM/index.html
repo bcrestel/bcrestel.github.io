@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Note on Brownian motion &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Note on Brownian motion</h1>
+  <span class="post-date">04 Feb 2019</span>
+  <p>I just want to summarize a few results that I find useful when dealing with
+arithmetic and geometric Brownian motions.
+For simplicity, I looked  at unitary time steps. If it’s not the case (e.g., daily
+rate of change, looked hourly), then some minor adjustment needs to be done.</p>
+
+<h2 id="arithmetic-brownian-motion">Arithmetic Brownian motion</h2>
+
+<p>The SDE for the ABM is given by
+\(dI_t = \mu I_0 d_t + \sigma I_0 dW_t\)</p>
+
+<p>The solution is then
+\(I_d = I_0 (1 + \mu d + \sigma W_d)\)
+where $W_d$ is a Brownian motion. This means the following moments for the
+quantity $I_d$,</p>
+
+\[\begin{aligned}
+\mathbb{E}[I_d] &amp; = I_0 (1 + \mu d) \\
+\text{Var}[I_d] &amp; = \sigma^2 I_0^2 d \\
+\text{Cov}[I_d, I_{d'}] &amp; = \sigma^2 I_0^2 \min(d,d') \\
+\end{aligned}\]
+
+<h2 id="geometric-brownian-motion">Geometric Brownian motion</h2>
+
+<p>You can find some info from Wikipedia, 
+<a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">here</a>
+and 
+<a href="https://en.wikipedia.org/wiki/Log-normal_distribution">here</a>.
+The SDE for GBM is
+\(dI_t = \mu I_t d_t + \sigma I_t dW_t\).
+Then the solution is
+\(I_d = I_0 \exp \left( (\mu - \sigma^2/2)d + \sigma W_d \right)\).
+This means the following moments for the
+quantity $I_d$,</p>
+
+\[\begin{aligned}
+\mathbb{E}[I_d] &amp; = I_0 e^{\mu d} \\
+\text{Var}[I_d] &amp; = I_0^2 e^{2\mu d}(e^{\sigma^2 d} - 1) \\
+\text{Cov}[I_d, I_{d'}] &amp; = I_0^2 e^{\mu(d+d')} \left( e^{\sigma^2 \min(d,d')}
+-1 \right)
+\end{aligned}\]
+
+<p>For the covariance, you can derive it as</p>
+
+\[\begin{aligned}
+\text{Cov}[I_d, I_{d'}] &amp; = \mathbb{E}[I_d I_{d'}] - \mathbb{E}[I_d]
+\mathbb{E}[I_{d'}] \\
+&amp; = I_0^2 e^{(\mu-\sigma^2/2)(d+d')} \mathbb{E}[e^{\sigma(W_d + W_{d'})}] - 
+I_0^2 e^{\mu(d+d')}
+\end{aligned}\]
+
+<p>And the last part is equal to $\mathbb{E}[e^Y]$ where $Y$ is 
+<a href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal</a> 
+with
+parameters $\log Y \sim \mathcal{N}(0, \sigma^2(d+d’+2\min(d,d’)))$, such that
+$\mathbb{E}[e^Y] = \exp[\sigma^2/2(d+d’+2\min(d,d’)]$ and the result follows.</p>
+
+<p>It is interesting to convert the variables $\mu, \sigma$ into the empirical
+moments of the quantity $I_d$. This is</p>
+
+\[\begin{aligned}
+\mu &amp; = \frac1d \log \frac{\mathbb{E}[I_d]}{I_0} \\
+\sigma^2 &amp; = \frac1d \log \left( 1 + \frac{\text{Var}[I_d]}{I_0^2 e^{2 \mu d}} \right)
+\end{aligned}\]
+
+<span>[
+  
+    
+    <a href="/tag/statistics"><code class="highligher-rouge"><nobr>statistics</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/brownianmotion"><code class="highligher-rouge"><nobr>brownianmotion</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,71 @@
+I"<p>I received a Mac for work. It’s beautiful, it’s fancy, and I have no idea how to use it. I’m going to summarize here the steps I followed to set up my laptop, in particular getting git, python, and a compile environment.</p>
+
+<h1 id="git">Git</h1>
+<p>First up, <strong>git</strong> of course. Mac does not ship with an equivalent of apt-get, but you can install one of several package managers. I went for <a href="https://docs.brew.sh/Installation">Homebrew</a>. 
+I didn’t want to have to install it in sudo mode (not sure this was such a big deal, in the end), so I decided to install it in my personal folder (/Users/local). 
+But to make it possible to execute the softwares installed via Homebrew from any directory, I had to add the path to the directory where I installed Homebrew to my PATH. 
+This is done by modifying the file paths</p>
+<pre><code>sudo vim /etc/paths
+</code></pre>
+<p>Also, during the install, I had to install the command-line tools from XCode. This part was handled automatically by Mac App Store.
+Once Homebrew was installed, I updated and upgraded</p>
+<pre><code>brew update
+brew upgrade
+</code></pre>
+
+<p>With Homebrew installed, I can next install git with a simple command</p>
+<pre><code>brew install git
+</code></pre>
+<p>This installation of git ships with a bunch of other app, like gitk. The latter requires to have jdk installed, which I did from the website (can’t find the link now).</p>
+
+<p>Next, I need autocomplete to make it work. For that you can simply install bash-completion</p>
+<pre><code>brew install bash-completion
+</code></pre>
+<p>Then you need to point you bashrc file to that command.</p>
+
+<h3 id="update-2021-02-17">Update 2021-02-17</h3>
+
+<p>I didn’t have to change the file <code>/etc/paths</code>. I directly changed <code>$PATH</code> in my <code>.zshrc</code> file. I suppose the modification of the <code>/etc/paths</code> is more solid, but so far I haven’t run into any complications.
+For the auto-completion, I added</p>
+<pre><code>autoload -Uz compinit &amp;&amp; compinit
+</code></pre>
+<p>to my <code>.zshrc</code> file.
+To add the git branch in my terminal prompt (btw, <code>brew install iterm</code>), I added</p>
+<pre><code>source /Users/bencrestel/Work/other/zsh_setup/zsh-git-prompt/zshrc.sh
+</code></pre>
+<p>after cloning the repo <a href="https://github.com/olivierverdier/zsh-git-prompt">zsh-git-prompt</a>. I fine-tuned the aspect of the prompt and ended up with</p>
+<pre><code>PROMPT='%B%F{blue}%n%f@%F{green}%m%f:%F{red}%~%b%f$(git_super_status) %# '
+</code></pre>
+
+<h1 id="docker">Docker</h1>
+<p>Still using Homebrew, I could install <strong>docker</strong>. However to have the nice Docker GUI with it, 
+I had to use cask,</p>
+<pre><code>brew cask install docker
+</code></pre>
+
+<h3 id="update-2021-02-17-1">Update 2021-02-17</h3>
+
+<p>To specify a cask, now you need to do</p>
+<pre><code>brew install --cask docker
+</code></pre>
+
+<p>I also installed the desktop app.</p>
+
+<h1 id="jekyll">Jekyll</h1>
+<p>Jekyll is nice to power simple, efficient blogs. You install via Ruby, and the instructions provided <a href="https://jekyllrb.com/docs/installation/macos/">here</a> were sufficient, except for a few jekyll modules (jekyll-gist, jekyll-seo-tag,…) which I had to install using gem again. But it worked in the end.</p>
+
+<h3 id="update-2021-02-17-2">Update 2021-02-17</h3>
+
+<p>This time I installed ruby 3.0, which seems to work a bit differently. The first steps in the above link are still required, but next to install missing dependencies (<code>webrick</code>, <code>kramdown-parser-gfm</code>, <code>jekyll-watch</code>,…), I had to use <code>bundle add &lt;...&gt;</code>. This install the missing dependencies locally, only for your project. The only piece that I was missing was a <code>Gemfile</code>; you can simply create a text file with that name and add the single line <code>source "https://rubygems.org"</code>.
+Then everytime you do <code>bundle add &lt;...&gt;</code>, it adds a new line to that <code>Gemfile</code> with that new dependency.</p>
+
+<h1 id="pipenv">pipenv</h1>
+<p>Next, and still using Homebrew, I installed <strong>pipenv</strong>, which seems to be a nice lightweight environment manager that can be useful for software development. A nice little intro <a href="https://pipenv.readthedocs.io/en/latest/">video</a> is posted on that website.</p>
+
+<h1 id="pyenv">pyenv</h1>
+<p>Pyenv is meant to be a simpler way to define environments. I installed via Homebrew. Then to create a Python 3.6 environment, you do</p>
+<pre><code>pyenv init
+pyenv install 3.6.0
+</code></pre>
+<p>Note: It never worked for me</p>
+:ET

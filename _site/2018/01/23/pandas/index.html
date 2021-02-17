@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Cookbook for Pandas &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Cookbook for Pandas</h1>
+  <span class="post-date">23 Jan 2018</span>
+  <p>I end up looking for how to do things in pandas way too often. So I’ll summarize
+some basic features that I need.</p>
+<ul>
+  <li>datetime
+    <ul>
+      <li>converting to datetime format
+        <pre><code class="language-python">df['time'] = pd.to_datetime(df['time'])
+</code></pre>
+        <p>It can also be used on the index</p>
+        <pre><code class="language-python">df.index = pd.to_datetime(df.index)
+</code></pre>
+      </li>
+      <li>Shift a timeindex by constant time
+        <pre><code class="language-python">df.index = df.index - datetime.timedelta(hours=6)
+</code></pre>
+      </li>
+      <li>Change sampling frequency; for instance, going from 1min data to 20min data
+        <pre><code class="language-python">df.set_index('time', inplace=True)
+df20 = df['open'].resample('20min').first()
+df20['close'] = df['close'].resample('20min').last()
+df20['mean'] = 0.5*(df['open'].resample('20min').mean() + df['close'].resample('20min').mean() )
+df20['low'] = df['low'].resample('20min').min()
+df20['high'] = df['high'].resample('20min').max()
+</code></pre>
+        <p>Many different frequencies can be used with <code>resample</code>, the main ones being</p>
+        <pre><code>M   monthly
+W   weekly
+D   daily
+H   hourly
+</code></pre>
+        <p>A nice reference is available
+<a href="https://stackoverflow.com/questions/17001389/pandas-resample-documentation">here</a>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>Normalize data (e.g, ‘volume’) by their daily maximum; assuming the index is every minute,
+    <pre><code class="language-python">df['date'] = df.index.date
+df.volume / df.groupby('date').volume.transform(np.max)
+</code></pre>
+  </li>
+  <li>Plot results (‘res’) of a groupby with timeindex, all on top of each other. The trick
+here is to turn off the use of the index when plotting,
+    <pre><code class="language-python">df.groupby('date').res.plot(use_index=False)
+plt.show()
+</code></pre>
+  </li>
+  <li>take negation of a boolean index selection: <code>~</code>.
+For instance, the following example sets all entries in the ‘movie’ column to
+NaN where they do not end with a colon ‘:’,
+    <pre><code class="language-python">df.loc[~df['movie'].str.endswith(':'),'movie'] = np.NaN
+</code></pre>
+  </li>
+</ul>
+
+<span>[
+  
+    
+    <a href="/tag/pandas"><code class="highligher-rouge"><nobr>pandas</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/python"><code class="highligher-rouge"><nobr>python</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/cookbook"><code class="highligher-rouge"><nobr>cookbook</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/ML"><code class="highligher-rouge"><nobr>ML</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

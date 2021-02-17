@@ -1,0 +1,22 @@
+I"�<p>There are a few ways to manage dependencies: conda, poetry, pipenv. I recently
+discovered a different way, <a href="https://github.com/jazzband/pip-tools">pip-tools</a>.
+It’s actually very easy to use and in particular easy to integrate with a docker
+image. You simply create a requirements.in file which pip-compile converts to a
+requirements.txt file that you can then pip install inside your image by doing
+<code>pip install -r requirements.txt</code>.</p>
+
+<p>There are multiple comparisons of poetry, pipenv, and pip-tools out there,
+including <a href="https://pythonspeed.com/articles/pipenv-docker/">this one</a> that
+compares specifically in the context of combining with docker, and <a href="https://hynek.me/articles/python-app-deps-2018/#pip-tools--everything-old-is-new-again">that
+one</a>
+that did a dec 2019 update and still declares pip-tools the winner. I also found
+that <a href="https://alexwlchan.net/2017/10/pip-tools/">blog post</a> useful as it shows
+a quick example of how to write a requirements.in.</p>
+
+<p>You can install <code>pip-tools</code> through pip, <code>pip install pip-tools</code>. The only
+things you need to be careful with are the python version and OS you use to
+convert you requirements.in file to requirements.txt file. These needs to be the
+same as what you’ll use for your virtual environment. With Docker, this can be
+controlled by applying <code>pip-tools</code> inside a running container, then re-building
+that image.</p>
+:ET

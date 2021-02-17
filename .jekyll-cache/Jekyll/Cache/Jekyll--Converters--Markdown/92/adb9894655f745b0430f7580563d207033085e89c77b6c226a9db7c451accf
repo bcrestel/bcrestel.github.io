@@ -1,0 +1,210 @@
+I"�<h2 id="blog-posts">Blog Posts</h2>
+
+<ul>
+  <li>
+    <p>13 Feb 2021 » <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/"> Sequence Models by deeplearning.ai </a></p>
+  </li>
+  <li>
+    <p>08 Feb 2021 » <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/"> Notes for CNN course by deeplearning.ai (week 4) </a></p>
+  </li>
+  <li>
+    <p>02 Feb 2021 » <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/"> Notes for CNN course by deeplearning.ai (week 3) </a></p>
+  </li>
+  <li>
+    <p>02 Feb 2021 » <a href="/2021/02/02/How_to_rename_a_commit/"> How to rename a commit </a></p>
+  </li>
+  <li>
+    <p>23 Jan 2021 » <a href="/2021/01/23/Notes_for_CNN_course_by_deeplearning.ai/"> Notes for CNN course by deeplearning.ai (week 2) </a></p>
+  </li>
+  <li>
+    <p>20 Jan 2021 » <a href="/2021/01/20/The_Future_of_PyTorch/"> The Future of PyTorch </a></p>
+  </li>
+  <li>
+    <p>19 Jan 2021 » <a href="/2021/01/19/Google_AutoML_for_forecasting/"> Google AutoML for forecasting </a></p>
+  </li>
+  <li>
+    <p>13 Jan 2021 » <a href="/2021/01/13/Underspecification_in_ML/"> Underspecification in ML </a></p>
+  </li>
+  <li>
+    <p>13 Jan 2021 » <a href="/2021/01/13/Michelangelo_Uber_ML_platform/"> Michelangelo Uber ML platform </a></p>
+  </li>
+  <li>
+    <p>11 Jan 2021 » <a href="/2021/01/11/Notes_for_CNN_course_by_deeplearning.ai/"> Notes for CNN course by deeplearning.ai (week 1) </a></p>
+  </li>
+  <li>
+    <p>03 Jan 2021 » <a href="/2021/01/03/First_steps_with_rpy2/"> First steps with rpy2 </a></p>
+  </li>
+  <li>
+    <p>29 Oct 2020 » <a href="/2020/10/29/Fixing_jekyll/"> Fixing jekyll </a></p>
+  </li>
+  <li>
+    <p>28 Oct 2020 » <a href="/2020/10/28/Signing_commits_in_github/"> Signing commits in github </a></p>
+  </li>
+  <li>
+    <p>26 Oct 2020 » <a href="/2020/10/26/Ideal_Calibration/"> Ideal Calibration </a></p>
+  </li>
+  <li>
+    <p>21 Oct 2020 » <a href="/2020/10/21/transformer/"> Transformer </a></p>
+  </li>
+  <li>
+    <p>06 Oct 2020 » <a href="/2020/10/06/Under_determined_least_squares/"> Under determined least squares </a></p>
+  </li>
+  <li>
+    <p>05 Oct 2020 » <a href="/2020/10/05/Prediction_interval_vs_Confidence_interval/"> Prediction interval vs Confidence interval </a></p>
+  </li>
+  <li>
+    <p>11 Aug 2020 » <a href="/2020/08/11/ssh-env/"> Pass environment variables in your ssh session </a></p>
+  </li>
+  <li>
+    <p>04 Aug 2020 » <a href="/2020/08/04/rst_pycharm/"> rst in pycharm </a></p>
+  </li>
+  <li>
+    <p>23 Jul 2020 » <a href="/2020/07/23/pycharmssh/"> Pycharm with ssh interpreter </a></p>
+  </li>
+  <li>
+    <p>21 Jul 2020 » <a href="/2020/07/21/cmake/"> Installing cmake 3.17.3 inside a Docker image </a></p>
+  </li>
+  <li>
+    <p>21 Jul 2020 » <a href="/2020/07/21/buildarg/"> Passing environment variables to you Docker build </a></p>
+  </li>
+  <li>
+    <p>02 Jul 2020 » <a href="/2020/07/02/pip-tools/"> pip-tools </a></p>
+  </li>
+  <li>
+    <p>14 Apr 2020 » <a href="/2020/04/14/bn/"> Bayesian Networks </a></p>
+  </li>
+  <li>
+    <p>07 Apr 2020 » <a href="/2020/04/07/causalnex/"> CausalNex, a toolkit for causal reasoning </a></p>
+  </li>
+  <li>
+    <p>31 Mar 2020 » <a href="/2020/03/31/nbextension/"> Jupyter Extensions </a></p>
+  </li>
+  <li>
+    <p>24 Feb 2020 » <a href="/2020/02/24/aharticle/"> Article about AI companies </a></p>
+  </li>
+  <li>
+    <p>21 Oct 2019 » <a href="/2019/10/21/remotenotebook/"> Running a jupyter notebook on a remote server </a></p>
+  </li>
+  <li>
+    <p>31 Jul 2019 » <a href="/2019/07/31/poetry/"> How-to Poetry </a></p>
+  </li>
+  <li>
+    <p>29 Jul 2019 » <a href="/2019/07/29/boxcox/"> Bias adjustment in Box-Cox transformation </a></p>
+  </li>
+  <li>
+    <p>10 May 2019 » <a href="/2019/05/10/swa/"> Bayesian inference in Deep Learning </a></p>
+  </li>
+  <li>
+    <p>01 Mar 2019 » <a href="/2019/03/01/pyomo/"> Installing pyomo </a></p>
+  </li>
+  <li>
+    <p>01 Mar 2019 » <a href="/2019/03/01/git-notebooks/"> Tracking notebooks with git </a></p>
+  </li>
+  <li>
+    <p>04 Feb 2019 » <a href="/2019/02/04/BM/"> Note on Brownian motion </a></p>
+  </li>
+  <li>
+    <p>28 Jan 2019 » <a href="/2019/01/28/nn_tutorial/"> Fast AI’s Pytorch tutorial </a></p>
+  </li>
+  <li>
+    <p>14 Jan 2019 » <a href="/2019/01/14/gan/"> Literature on GANs </a></p>
+  </li>
+  <li>
+    <p>14 Jan 2019 » <a href="/2019/01/14/dl/"> Literature on Deep Learning </a></p>
+  </li>
+  <li>
+    <p>09 Jan 2019 » <a href="/2019/01/09/nlrpower/"> Fitting power models </a></p>
+  </li>
+  <li>
+    <p>07 Jan 2019 » <a href="/2019/01/07/torch/"> Intro to pytorch </a></p>
+  </li>
+  <li>
+    <p>03 Jan 2019 » <a href="/2019/01/03/RNN/"> Recurrent Neural Networks </a></p>
+  </li>
+  <li>
+    <p>21 Dec 2018 » <a href="/2018/12/21/convex/"> Notes on convex optimization </a></p>
+  </li>
+  <li>
+    <p>04 Dec 2018 » <a href="/2018/12/04/setupMac/"> Setting up my MacBook Pro </a></p>
+  </li>
+  <li>
+    <p>01 Dec 2018 » <a href="/2018/12/01/docker/"> How to get started with Docker </a></p>
+  </li>
+  <li>
+    <p>28 Nov 2018 » <a href="/2018/11/28/poweriteration/"> Power iteration for the $k$ dominant eigenvectors </a></p>
+  </li>
+  <li>
+    <p>26 Nov 2018 » <a href="/2018/11/26/softplus/"> A continuation scheme for RELU activation functions </a></p>
+  </li>
+  <li>
+    <p>26 Nov 2018 » <a href="/2018/11/26/conv/"> Convolution, cross-correlation </a></p>
+  </li>
+  <li>
+    <p>23 Nov 2018 » <a href="/2018/11/23/softmax/"> The softmax activation function </a></p>
+  </li>
+  <li>
+    <p>23 Nov 2018 » <a href="/2018/11/23/loss-fct/"> Loss functions </a></p>
+  </li>
+  <li>
+    <p>13 Nov 2018 » <a href="/2018/11/13/deeplearnDIY/"> DIY Deep Learning </a></p>
+  </li>
+  <li>
+    <p>13 Nov 2018 » <a href="/2018/11/13/backprop/"> Bro, do you even backprop? </a></p>
+  </li>
+  <li>
+    <p>12 Nov 2018 » <a href="/2018/11/12/StatTests/"> Statistical Hypothesis Tests </a></p>
+  </li>
+  <li>
+    <p>12 Nov 2018 » <a href="/2018/11/12/MatrixCalculus/"> Conventions for Matrix Calculus </a></p>
+  </li>
+  <li>
+    <p>04 Sep 2018 » <a href="/2018/09/04/fontawesome/"> Using Font Awesome on your webpage </a></p>
+  </li>
+  <li>
+    <p>01 Sep 2018 » <a href="/2018/09/01/mcapweighted/"> Market-cap weighted portfolios are self-rebalancing </a></p>
+  </li>
+  <li>
+    <p>11 May 2018 » <a href="/2018/05/11/estimator/"> Sample mean, sample variance </a></p>
+  </li>
+  <li>
+    <p>04 May 2018 » <a href="/2018/05/04/deltameth/"> Delta method and convergence of random variables </a></p>
+  </li>
+  <li>
+    <p>02 May 2018 » <a href="/2018/05/02/correlation/"> Correlation, covariance, and standard deviation </a></p>
+  </li>
+  <li>
+    <p>15 Feb 2018 » <a href="/2018/02/15/netflix-dataset/"> Playing with the Netflix dataset </a></p>
+  </li>
+  <li>
+    <p>04 Feb 2018 » <a href="/2018/02/04/defHTF/"> Terminology and notations in supervised learning </a></p>
+  </li>
+  <li>
+    <p>23 Jan 2018 » <a href="/2018/01/23/pandas/"> Cookbook for Pandas </a></p>
+  </li>
+  <li>
+    <p>21 Jan 2018 » <a href="/2018/01/21/tags/"> Tags page </a></p>
+  </li>
+  <li>
+    <p>20 Jan 2018 » <a href="/2018/01/20/concentration_measure/"> Gaussian measures in high dimension </a></p>
+  </li>
+  <li>
+    <p>15 Jan 2018 » <a href="/2018/01/15/hyp-testing/"> Hypothesis testing with linear regression </a></p>
+  </li>
+  <li>
+    <p>12 Jan 2018 » <a href="/2018/01/12/model-selection/"> AIC in linear regression </a></p>
+  </li>
+  <li>
+    <p>11 Jan 2018 » <a href="/2018/01/11/fix-url/"> Fix some incorrect links </a></p>
+  </li>
+  <li>
+    <p>11 Jan 2018 » <a href="/2018/01/11/adding-tag/"> Adding tags on Github </a></p>
+  </li>
+  <li>
+    <p>09 Jan 2018 » <a href="/2018/01/09/starter/"> Getting started </a></p>
+  </li>
+  <li>
+    <p>08 Jan 2018 » <a href="/2018/01/08/first-post/"> A first post </a></p>
+  </li>
+</ul>
+
+:ET

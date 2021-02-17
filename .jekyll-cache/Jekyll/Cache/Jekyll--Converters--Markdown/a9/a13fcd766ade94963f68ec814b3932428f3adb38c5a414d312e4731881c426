@@ -1,0 +1,44 @@
+I"N<p>For this blog, I am using the <a href="https://github.com/poole/hyde">poole/hyde</a>
+example. Unfortunately, this repo does not seem to be maintained anymore, and
+the list of pull requests has grown steadily since 2015. The main modifications I
+had to make to run this blog are:</p>
+<ul>
+  <li>in <code>_config.yml</code>:
+    <ul>
+      <li>change the markdown to <code>kramdown</code></li>
+      <li>remove <code>relative_permalinks: true</code></li>
+      <li>add the gems <code>jekyll-paginate, jekyll-seo-tag, jekyll-sitemap, jekyll-gist</code></li>
+    </ul>
+  </li>
+  <li>in the <code>_includes/head.html</code>
+    <ul>
+      <li>replace the ` { { site.baseurl }} ` with a simple slash</li>
+    </ul>
+  </li>
+</ul>
+
+<p>I also added Mathjax. I found online different approaches to do that. What seems
+to work was to add the Mathjax script in the header of the html pages. Building
+on the original organization, this meant adding the script to the file
+<code>_includes/head.html</code>. Following this discussion on
+<a href="https://github.com/github/pages-gem/issues/307">github</a>, I added the following
+lines,</p>
+<pre><code class="language-html">&lt;!-- Mathjax --&gt;
+&lt;script type="text/x-mathjax-config"&gt; MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); &lt;/script&gt;
+&lt;script type="text/x-mathjax-config"&gt;
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+     processEscapes: true
+   }
+ });
+&lt;/script&gt;
+&lt;script
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"&gt;&lt;/script&gt;
+</code></pre>
+<p>Let’s check that it works inline $x^2 + y^2 = z^2$. It also works in displayMath
+mode,
+\[ \mathbb{P}(A|B) = \frac{\mathbb{P}(B|A) \mathbb{P}(A)}{\mathbb{P}(B)} \]</p>
+
+:ET

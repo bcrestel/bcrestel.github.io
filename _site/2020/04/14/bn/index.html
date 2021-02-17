@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Bayesian Networks &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Bayesian Networks</h1>
+  <span class="post-date">14 Apr 2020</span>
+  <p>Bayesian Networks are probabilistic graphical models that offer a convenient,
+compact way of representing joint probability distribution. A Bayesian Network
+consists of a Directed Acyclic Graph (DAG) that connects different parameters
+(node), each edge indicating a dependence (an edge from node A to node B if
+the variable A helps explain B). Each node (random variable) is associated a
+distribution in the form of a Conditional Probability Distribution (CPD), the
+condition being on all the parent of that node. By definition, Bayesian Networks
+do not contain cycles. Which is not the case of Markov Random Fields. For that
+reason, Bayesian Networks are most often used when one tries to understand a
+causal relationship between the variables.</p>
+
+<p>The construction of a Bayesian Networks involve at least 2 steps:</p>
+<ol>
+  <li>Generating the structure of the DAG (i.e., what nodes are connected and in
+what direction). That is what the <a href="https://papers.nips.cc/paper/8157-dags-with-no-tears-continuous-optimization-for-structure-learning.pdf">DAGs with NO
+TEARS</a>
+algorithm does, in an efficient wayi (along with
+<a href="https://github.com/xunzheng/notears">code</a>).</li>
+  <li>Estimating the CPDs. This can be done by MLE or Bayesian estimation.</li>
+</ol>
+
+<p>The website for the Quantum Black library causalnex contains a brief
+<a href="https://causalnex.readthedocs.io/en/latest/04_user_guide/04_user_guide.html#">introduction to Bayesian
+Networks</a>.
+A longer, mode in-depth explanation can be found in this Stanford class on
+<a href="https://ermongroup.github.io/cs228-notes/">Probabilistic Graphical Models</a>.
+An in-between solution might be to look at the slides for these two
+presentations <a href="http://www.ee.columbia.edu/~vittorio/Lecture12.pdf">1</a> and
+<a href="http://www.cs.tau.ac.il/~haimk/pgm-seminar/Graphicals-tomer.pdf">2</a>.
+For sequential or temporal models, Dynamic Bayesian Networks were developped.
+Kevin Muprhy has a <a href="https://www.cs.ubc.ca/~murphyk/Papers/dbntalk.pdf">tutorial</a>
+on his webpage.</p>
+
+<span>[
+  
+    
+    <a href="/tag/causality"><code class="highligher-rouge"><nobr>causality</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/bayesian"><code class="highligher-rouge"><nobr>bayesian</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

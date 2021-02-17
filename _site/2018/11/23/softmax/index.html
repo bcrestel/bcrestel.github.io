@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      The softmax activation function &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">The softmax activation function</h1>
+  <span class="post-date">23 Nov 2018</span>
+  <p>Notations are defined in that <a href="/2018/11/13/deeplearnDIY">post</a>.</p>
+
+<p>A very popular activation function for classification with a deep net is the
+softmax, which is defined as</p>
+
+\[{\bf a}^l = [ \frac{\exp(a^{l-1}_1)}{\sum_{i=1}^{n_{l-1}} \exp(a^{l-1}_i)},
+\dots,
+\frac{\exp(a^{l-1}_{n_{l-1}})}{\sum_{i=1}^{n_{l-1}} \exp(a^{l-1}_i)} ]^T\]
+
+<p>That is ${\bf a}^l = F^l({\bf a}^{l-1})$ with
+$F^l(x) = [f_1(x), \dots, f_{n_l}(x)]^T$ where</p>
+
+\[f_i(x) = \frac{\exp(x_i)}{\sum_j \exp(x_j)}\]
+
+<p>That type of activation function is different to what was covered in that
+<a href="/2018/11/13/deeplearnDIY">post</a> for 2 reasons: (1) it does not have any
+parameters to optimize, and (2) each coordinate depends on all other
+coordinates. Let’s see how we back-propagate the gradient in that case.</p>
+
+<p><strong>For the output layer</strong>, which is the most common use-case for a softmax layer,
+we need to modify the chain-rule to skip the output layer and start instead at
+layer $L-1$,</p>
+
+\[\frac{\partial c}{\partial {\bf b}^{L-1}} = 
+\frac{\partial {\bf a}^{L-1}}{\partial {\bf b}^{L-1}}
+\frac{\partial {\bf a}^{L}}{\partial {\bf a}^{L-1}}
+\frac{\partial c}{\partial {\bf a}^{L}}\]
+
+<p>The only term that was not covered previously is \(\frac{\partial {\bf
+a}^{L}}{\partial {\bf a}^{L-1}}\) which is simply the gradient of $F^L$.</p>
+
+<p><strong>For a hidden layer</strong>, which is definitely not the most common case for a
+softmax activation function but could the case of another type of function, we
+have</p>
+
+\[\begin{align*}
+\frac{\partial c}{\partial {\bf b}^{l-1}} &amp; = 
+\frac{\partial {\bf a}^{l-1}}{\partial {\bf b}^{l-1}}
+\frac{\partial {\bf a}^{l}}{\partial {\bf a}^{l-1}}
+\frac{\partial {\bf z}^{l+1}}{\partial {\bf a}^{l}}
+\frac{\partial c}{\partial {\bf z}^{l+1}} \\
+&amp; = \frac{\partial {\bf a}^{l-1}}{\partial {\bf b}^{l-1}}
+\frac{\partial {\bf a}^{l}}{\partial {\bf a}^{l-1}}
+\frac{\partial {\bf z}^{l+1}}{\partial {\bf a}^{l}}
+\frac{\partial c}{\partial {\bf b}^{l+1}} \\
+\end{align*}\]
+
+<p>Again, the only term we didn’t before is \(\frac{\partial {\bf a}^{l}}{\partial
+{\bf a}^{l-1}}\), which is the gradient of $F^l$.</p>
+
+<span>[
+  
+    
+    <a href="/tag/deeplearning"><code class="highligher-rouge"><nobr>deeplearning</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/ML"><code class="highligher-rouge"><nobr>ML</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/optimization"><code class="highligher-rouge"><nobr>optimization</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/calculus"><code class="highligher-rouge"><nobr>calculus</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

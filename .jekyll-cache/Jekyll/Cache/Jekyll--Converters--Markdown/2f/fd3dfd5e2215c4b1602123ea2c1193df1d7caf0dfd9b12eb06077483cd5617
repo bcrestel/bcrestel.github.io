@@ -1,0 +1,264 @@
+I"�/<p>I decided to take the course <a href="https://www.coursera.org/learn/convolutional-neural-networks">Convolutional Neural
+Networks</a> by
+<a href="https://www.deeplearning.ai/">deeplearning.ai</a> and hosted by Coursera. And I’m
+going to take some notes in this document</p>
+
+<h1 id="week-1-foundations-of-convolutional-neural-networks">Week 1: Foundations of Convolutional Neural Networks</h1>
+
+<p>Objectives:</p>
+<ul>
+  <li>Explain the convolution operation</li>
+  <li>Apply two different types of pooling operations</li>
+  <li>Identify the components used in a convolutional neural network (padding, stride, filter, …) and their purpose</li>
+  <li>Build and train a ConvNet in TensorFlow for a classification problem</li>
+</ul>
+
+<h2 id="video-computer-vision">Video: Computer Vision</h2>
+
+<p>Example of vision problems:</p>
+<ul>
+  <li>Image classification: decide what picture represents (given set number of categories)</li>
+  <li>object detection: draw boxes around specific objects in a picture</li>
+  <li>neural style transfer: content image + style image -&gt; content image with the
+ style of the style image</li>
+</ul>
+
+<p>Challenges:
+Input can be really big: 64x64x3 images -&gt; 12288 pixels; very small. Large
+images can get really big very quickly. 1000x1000x3 = 3M pixels. With a first
+layer of 1,000 nodes, you end up with 30M weights just for the first layer. With
+so many parameters, hard not to overfit; plus need lots of memory.</p>
+
+<p>To still be able to use large images, you need to use CNN.</p>
+
+<h2 id="video-edge-detection-example">Video: Edge Detection Example</h2>
+
+<p>CNN based off the <a href="https://en.wikipedia.org/wiki/Convolution">convolution
+operation</a>. Illustrated by the edge detection
+example.
+Another interest ref for convolution is <a href="https://colah.github.io/posts/2014-07-Understanding-Convolutions/">Colah’s
+blog</a>.</p>
+
+<p>How do you detect edges in an image?
+Show an example of a 6x6 matrix convolved with a 3x3 kernel (or filter), giving
+a 4x4 image.
+You just slide the kernel over the image and at each step multiply the entries
+pointwise then sum them all.
+Similar to what you would do with the actual operator, \(f \star g = \int_{-\infty}^{\infty} f(\tau)g(t-\tau) d\tau\), where for each
+$t$ the function $g$ (the kernal, or filter) is shifted by an amount $t$.</p>
+
+<p>Actually, this mathematical definition is a little bit different as the kernel
+is mirrored around its axes (we have $g(t-\tau)$ as a function of $\tau$). This
+is discussed in the section on <a href="## Video: Strided Convolutions">Video: Strided Convolutions</a>.</p>
+
+<p>Don’t need to re-implement a convolution operator: python -&gt; conv_forward,
+tensorflow -&gt; tf.nn.conv2d, keras -&gt; cond2D</p>
+
+<p>Why is this doing edge detection?
+Look at picture with 2 colors separated by a vertical edge. 
+Apply 3x3 kernel: 1,0,-1 (in x direction; same in y).
+Obtain a thick edge, in your 4x4 image, in the middle.</p>
+
+<h2 id="video-more-edge-detection">Video: More Edge Detection</h2>
+
+<p>Introduces more examples for filters, for instance for horizontal edge
+detection. But also different types of vertical edge detectors:
+eg, 1,0,-1//2,0,-2//1,0,-1 (Sobel filter)
+or 3,0,-3//10,0,-10//3,0,-3/ (Scharr filter).
+But you can parametrize the values of your kernel, and learn the ideal kernel
+for your problem. And that is a key idea of modern computer vision.</p>
+
+<h2 id="video-padding">Video: Padding</h2>
+
+<p>Discrete convolution presented shrink the image, so you could only apply it a
+few times. Initial image n x n, kernel f x f, then convolved image $n-f+1 \times
+n-f+1$.</p>
+
+<p>Also, pixels close to the edge of an image are used much less in the convolution
+compared to central pixels.</p>
+
+<p>Solution for both problems: pad the image before applying convolution operator,
+i.e., add pixels on the outside of the image: eg, 6x6 -&gt;(padding) 8x8
+-&gt;(convolution w/ 3x3 kernel) 6x6. 
+Padded convoluted image has dim $n+2p-f+1 \times n+2p-f+1$.
+By convention, you pad with 0’s.</p>
+
+<p>How much to pad? Valid convolution vs Same convolution</p>
+<ul>
+  <li>Valid convolution = no padding</li>
+  <li>Same convolution: pad so as to offset the shrinking effect of the convolution
+(final image has same dim as input image) -&gt; $2p = f-1$</li>
+</ul>
+
+<p>Note that by convention, in computer vision, f is typically an odd number: 1
+(less common), 3,
+5, 7. That
+has the advantage that you can have a symmetric padding.</p>
+
+<h2 id="video-strided-convolutions">Video: Strided Convolutions</h2>
+
+<p>Stride = by how many pixels you shift the kernel (vertically and horizontally).
+So the convolved image will be smaller with stride 2 than with stride 1.
+Resulting image side length: $(n+2p-f)/s+1$ (potentially rounded if needed)</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Cross-correlation">Cross-correlation</a> vs
+convolution:<br />
+As discussed earlier, the actual convolution operator would require to flip the
+kernel around its axes, since we do \(\int_{-\infty}^{\infty} f(\tau) g(t-\tau)
+d\tau\). But in deep learning, people don’t flip it. So in that sense, this is
+closer to the cross-correlation operator whic is defined, for real functions, as
+\(\int_{-\infty}^{\infty} f(\tau) g(t+\tau) d\tau\). 
+But as explained in the video, the convention is such that people in deep
+learning still call that a convolution operator.</p>
+
+<h2 id="video-convolutions-over-volumes">Video: Convolutions over volumes</h2>
+
+<p>Application: RGB images (3 color channels).<br />
+Convolve RGB image with a 3d kernel (same number of channels).</p>
+
+<p>Notation: Image 6 x 6 x 3 = (height, width, channels).
+Number of channels in image and kernel must be equal.</p>
+
+<p>Really this is 2d convolutions repeated over a stack of 2d images. Not really a 3d
+convolution. You could imagine having an image of dim 6 x 6 x 6, and convolve
+along the third dim also.</p>
+
+<p>Multiple filter:
+You can apply different kernels to the same image(s) and stack the results to
+generate also a 3d output. For intance, you could combine the output of a
+vertical edge detector and horizontal edge detector.</p>
+
+<p>Dim summary when using <code>nb_filters_used</code> filters on an image of <code>c</code> channels: image = n x n x c, kernel = f x f x c, then output = n-f+1 x n-f+1 x
+nb_filters_used</p>
+
+<h2 id="video-one-layer-of-a-convolutional-layer">Video: One layer of a convolutional layer</h2>
+
+<p>Convolutional layer = activation_function (multiple filters–with the right
+number of channels– + a bias), where bias is a single real number.
+So output has same dimension as the example in the previous video. Don’t forget
+that there is a single bias per filter.</p>
+
+<p>And number of parameters is equal to (dim of kernel + 1) x nb_kernels. And this
+number of parameters is independent of the dimension of the input!</p>
+
+<p>Notations for layer $l$:</p>
+<ul>
+  <li>$f^{[l]}$ = filter size</li>
+  <li>$p^{[l]}$ = padding</li>
+  <li>$s^{[l]}$ = stride</li>
+  <li>input: $n_H^{[l-1]} \times n_w^{[l-1]} \times n_C^{[l-1]}$</li>
+  <li>output: $n_H^{[l]} \times n_w^{[l]} \times n_C^{[l]}$, where
+\(n_{H/W}^{[l]} = (n_{H/W}^{[l-1]} + 2p^{[l]} - f^{[l]}) / s^{[l]} + 1\).</li>
+  <li>And $n_c^{[l]}$ is equal to the number of filters used in the convolutional
+layer.</li>
+  <li>Each filter has dim $f^{[l]} \times f^{[l]} \times n_c^{[l-1]}$ as the
+number of channels in the kernel has to be equal to the number of channels in
+the input image.</li>
+  <li>Weights: $f^{[l]} \times f^{[l]} \times n_c^{[l-1]} \times n_c^{[l]}$</li>
+  <li>Bias: $n_c^{[l]}$</li>
+</ul>
+
+<p>Note: ordering Batch, Height, Width, Channel is not universal as some people
+will put channel after batch.</p>
+
+<h2 id="video-a-simple-convolutional-network-example">Video: A simple convolutional network example</h2>
+
+<p>Basic idea is to stack convolutional layers one after the other. At the end, you
+can flatten the last image and pass it to an appropriate loss function.</p>
+
+<p>One general trend is that the image dimension is going down as we progress in
+the net, while the number of channels go up.</p>
+
+<p>Basic convolution network includes: convolutional layers, pooling layers, and
+fully connected layers.</p>
+
+<h2 id="video-pooling-layers">Video: Pooling Layers</h2>
+
+<p>Pooling layers are often found in convolutional networks. The intuition behind
+these layers is not well understood, but they are commonly used as they seem to
+improve performance.</p>
+
+<p>The idea is to apply a filter (or kernel), the same way we did it for
+convolution layers. That is a pooling layers has a size $f$ and a stride $s$.
+But instead of applying a convolution kernel for every step of the filter, we
+instead apply a single function. In practice, we find max pooling (most common)
+and average pooling (not as common). 
+For max pooling for instance, at every step of the filter, we take the max
+within that filter.
+We sometimes find average pooling at the end of a network, to compress an image
+into a single pixel.
+Interestingly, pooling layers have no parameter to learn (only hyperparameters).</p>
+
+<p>When the input image has multiple channels, we apply the pooling filter to each
+layer.
+Most commonly, we don’t apply padding with pooling layers.</p>
+
+<p>Also, it is important to realize that padding, in the context of pooling
+layers, does not have the same meaning as for convolutional layers. In the
+context of pooling layers, same padding means that the picture will be enlarged
+such that the kernel can be applied an exact number of times. Whereas with valid
+padding, the kernel is applied as many times as it can fit. 
+In other words, even with same padding, the output image does not necessarily
+have the same dimension as the input. For instance,</p>
+<pre><code>A = tf.ones((1, 14, 32, 1))
+P1 = tf.nn.max_pool(A, ksize=[1,8,8,1], strides=[1,8,8,1], padding='SAME')
+P2 = tf.nn.max_pool(A, ksize=[1,8,8,1], strides=[1,8,8,1], padding='VALID')
+with tf.Session() as sess:
+    print(f"P1.shape = {sess.run(P1).shape}")
+    print(f"P2.shape = {sess.run(P2).shape}")
+</code></pre>
+<p>will give</p>
+<pre><code>P1.shape = (1, 2, 4, 1)
+P2.shape = (1, 1, 4, 1)
+</code></pre>
+<p>This
+<a href="https://datascience.stackexchange.com/questions/67334/whats-the-purpose-of-padding-with-maxpooling">post</a>
+also explains it well.</p>
+
+<h2 id="video-cnn-example">Video: CNN example</h2>
+
+<p>Introduce an example of CNN to do digit recognition on a 32 x 32 x 3 RGB image.
+The presented CNN is inspired by LeNet-5.</p>
+
+<ul>
+  <li>convolutional layer 1: 6 filters with hyperparameters $f=5, s=1, p=0$</li>
+  <li>max pooling layer 1: $f=2, s=2$.</li>
+  <li>convolutional layer 2: 16 filters with hyperparameters $f=5, s=1, p=0$</li>
+  <li>max pooling layer 2: $f=2, s=2$.</li>
+  <li>fully-connected layer 3: flatten output of max pooling layer 2 -&gt; fc3 = 400 x
+ 120</li>
+  <li>fc4: 120 x 84</li>
+  <li>Softmax layer (I guess fc5 + softmax): 84 x 10 (10 digits to recognize)</li>
+</ul>
+
+<p>We notice that throughout the layers, the image decreases while the number of
+channels increase.
+Also, we notice the alternance conv layer / pool layer a few times, followed by
+a few fully-connected layers.</p>
+
+<h2 id="video-why-convolutions">Video: Why convolutions?</h2>
+
+<p>What makes convolution layers efficient for image recognition?</p>
+<ul>
+  <li>weight sharing: you work on the input image with limited number of parameters</li>
+  <li>sparsity of connections: each output pixel only depends on a few of the input
+ pixels</li>
+  <li>Conv layers are believed to be good at preserving translation invariance.</li>
+</ul>
+
+<h2 id="assignments">Assignments</h2>
+
+<p>I put my assignments on
+<a href="https://github.com/bcrestel/cnn_deeplearningai/tree/main/assignments/week1">github</a>.</p>
+
+<h2 id="additional-references">Additional references</h2>
+
+<p>This blog
+<a href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">post</a> has
+very nice visualizations of what convolutional layers do.</p>
+
+<h2 id="supplementary-note">Supplementary note</h2>
+
+<p>When you have a dilated convolution, the dimension of the output becomes
+\(int \left( \frac{N+2p-d*(f-1) - 1}{s} \right) + 1\).</p>
+:ET

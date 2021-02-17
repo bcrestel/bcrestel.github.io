@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Power iteration for the $k$ dominant eigenvectors &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Power iteration for the $k$ dominant eigenvectors</h1>
+  <span class="post-date">28 Nov 2018</span>
+  <p>First of a disclaimer: This post is not an extensive review of state of the art
+techniques to compute eigenvalues or eigenvectors of a matrix. I’m just
+summarizing a simple result on the power iteration. This being said, I think
+it’s fair that I try to motivate the use of power iteration, given how much bad
+press this algorithm gets.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Power_iteration">power iteration</a> 
+is a simple way to compute the dominant eigenvector of a
+diagonalizable matrix $A$. It is generally slow to converge. What are the
+alternatives. Typically, you could use an eigenvalue-revealing factorizations,
+then get the eigenvectors with the
+<a href="https://en.wikipedia.org/wiki/Rayleigh_quotient_iteration">Rayleigh quotient 
+iteration</a>.
+You could even stop the factorization early and refine the eigenvalue and
+compute the eigenvector at the same time with the Rayleigh quotient iteration,
+which converges at a cubic rate(!).
+However, the eigenvalue-revealing factorizations (that I am aware of) all
+require access to the entries of the matrix. And one of the steps in the
+Rayleigh quotient iteration is an 
+<a href="https://en.wikipedia.org/wiki/Inverse_iteration">inverse iteration</a>, 
+which involves solving a linear system with the matrix $A$.
+All of this to say that in some situations, e.g., if the matrix $A$ is not
+assembled and you can only compute a matvec, and/or if the matrix $A$ is very
+large and sparse such that the matvec is cheap but the inversion costly, you may
+want to rely on the power iteration.</p>
+
+<p>The algorithm is pretty simple. You sample a random vector $v$, then repeat the
+following steps</p>
+<ul>
+  <li>multiply by $A$, i.e., $v = A.v$</li>
+  <li>normalize $v$, i.e., $v = v / | v|$</li>
+</ul>
+
+<p>Then $v$ will converge to the dominant eigenvector. Why? Since $A$ is
+diagonalizable, its eigenvectors form a basis. Let’s call these eigenvectors
+$q_i$ and the corresponding eigenvalues $\lambda_i$. Then we can write any
+random vector as \(v = \sum_i (v^T.q_i) q_i\). And then</p>
+
+\[A^n. v = \sum_i \lambda_i^n (v^T.q_i) q_i\]
+
+<p>After sufficiently many iterations, $A^n . v$ will point toward the dominant
+eigenvector. To avoid blowing everything, we normalize $v$ after each step.</p>
+
+<p>Now the next question is: how to apply power iteration to compute the first $k$
+eigenvectors? No problem, we can do that. Let’s think about the second dominant
+eigenvector. It will be the dominant eigenvector if we look in the hyperplane
+defined by the dominant eigenvector, that is $q_1^\perp$. One idea would be to
+first compute $q_1$ using the power iteration, then repeat the same procedure
+but projecting $v$ onto $q_1^\perp$ at each step. That would be:</p>
+<ul>
+  <li>multiply by $A$, i.e., $v = A.v$</li>
+  <li>project onto $q_1^\perp$, i.e., $v = v - (v^T.q_1)q_1$</li>
+  <li>normalize $v$, i.e., $v = v / | v|$</li>
+</ul>
+
+<p>This algorithm would converge to $q_2$. After doing so, we could repeat the same
+procedure but project onto $(q_1,q_2)^\perp$. And so on, so forth. Now, we can
+actually do all the steps at the same time. Instead of sampling a single vector,
+sample a matrix $V$ with as many columns as you want eigenvectors. Then after
+each left-multiplication by $A$, instead of projecting then normalizing, simply
+do a <a href="https://en.wikipedia.org/wiki/QR_decomposition">QR decomposition</a>
+of $V$ and keep the $Q$ matrix.</p>
+<ul>
+  <li>left-multiply by $A$, i.e., $V = A.V$</li>
+  <li>project and normalize with a QR decomposition, i.e., $V=Q$ where $Q,R = QR(V)$</li>
+</ul>
+
+<p>That matrix will converge
+toward the first $k$ dominant eigenvectors. Here is the code in Python</p>
+<pre><code class="language-python">import numpy as np
+def power_iteration_k(A, k, eps=1e-10):
+    """
+    Inputs:
+        A = matrix (symmetric)
+        k = nb of eigenvectors to compute
+        eps = precision
+    Outputs:
+        v = matrix of the k dominant eigenvectors
+    """
+    m, n = A.shape
+    v = np.random.randn(n*k).reshape((-1,k))
+    v,_ = np.linalg.qr(v)
+    for kk in range(1000):
+        v_old = v.copy()
+        v = A.dot(v)
+        v,_ = np.linalg.qr(v)
+        diff = np.max(np.sqrt(np.sum((v-v_old)**2, axis=0)))
+        if diff &lt; eps:
+            return v
+</code></pre>
+
+<span>[
+  
+    
+    <a href="/tag/NLA"><code class="highligher-rouge"><nobr>NLA</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/eigenvalue"><code class="highligher-rouge"><nobr>eigenvalue</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/poweriteration"><code class="highligher-rouge"><nobr>poweriteration</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/iterative"><code class="highligher-rouge"><nobr>iterative</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/QR"><code class="highligher-rouge"><nobr>QR</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

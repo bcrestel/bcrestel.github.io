@@ -1,0 +1,116 @@
+I"k<p>My company asked us to start signing our commits. Let’s see how we can do that.</p>
+
+<p>Github put together a
+<a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/managing-commit-signature-verification">page</a>
+to explain the different steps.</p>
+
+<h1 id="on-my-local-machine">On my local machine</h1>
+
+<h2 id="create-a-gpg-key">Create a GPG key</h2>
+
+<p>The first step is to add a GPG key to you github account. You can check if you
+already have one by going to Settings &gt; SSH and GPG keys. If the field for GPG
+is empty, then you need to create one. To do so, you need
+<a href="https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/">gnupg</a>.
+On Mac OSX, you can simply install the command line by typing <code>brew install
+gpg</code>.</p>
+
+<p>When this is installed, you can create a GPG key by typing <code>gpg
+--full-generate-key</code>. You’ll be prompted with a series of questions, and after
+that you get a key.</p>
+
+<h2 id="exporting-your-key-to-github">Exporting your key to github</h2>
+
+<p>Now you need to export your public key. To do, find the info
+of your key, by typing</p>
+<pre><code>gpg --list-secret-keys --keyid-format LONG
+</code></pre>
+<p>On the row
+<code>sec</code>, you’ll see <code>rsa4096</code> if you chose 4,096 bits RSA key, and after that is
+your key ID. You can next export that key by typing</p>
+<pre><code>gpg --armor --export &lt;key_ID&gt; &gt; .gpg/public.key
+</code></pre>
+<p>This will save your public key to a file
+<code>.gpg/public.key</code>. You can share that file with whoever needs it.</p>
+
+<p>In the case of github, you’ll copy the content of that file into the box
+provided when you want to add a new GPG key.</p>
+
+<h2 id="sign-your-commits">Sign your commits</h2>
+
+<p>Now that this is done, you add your GPG key to your local git config by doing
+<code>git config --global user.signingkey &lt;key_ID&gt;</code>. You can then sign your commit by
+adding the <code>-S</code> argument when doing <code>git commit</code>….. Well, that is if we didn’t
+break anything. Turns out that homebrew upgraded in the process of installing
+gpg, and it broke all my symlinks for python3. It actually installed 3.9, which
+as unversioned symlinks placed in a different folder. So I had to fix all that,
+and re-install our library.</p>
+
+<p>Now that this works, I still had a few things to do before being able to sign my
+commits. The first, mandatory step is to
+<a href="https://github.com/keybase/keybase-issues/issues/2798">create</a> the following
+environment variable <code>export GPG_TTY=$(tty)</code>. Otherwise, you will never get a
+prompt for the gpg passphrase and your signed commit will fail.
+Once this is done, you can sign your commit with the argument <code>-S</code>, then enter
+your GPG passphrase. 
+You can check that a commit was signed by doing</p>
+<pre><code>git verify-commit &lt;commit_hash&gt;
+</code></pre>
+
+<p>If you want to automate all that, just enter the following
+2 lines:</p>
+<pre><code>git config gpg.program gpg
+git config commit.gpgsign true
+</code></pre>
+<p>and you can commit the same way you were doing before (without the <code>-S</code>
+argument).</p>
+
+<h2 id="save-passphrase-of-the-gpg-key">Save passphrase of the GPG key</h2>
+
+<p>Now I still had to enter my passphrase when signing commits. Which can quickly
+become annoying. So I followed the steps highlighted
+<a href="https://gist.github.com/bcomnes/647477a3a143774069755d672cb395ca">here</a>. At a
+high level, you need to <code>brew install pinentry-mac</code>, then create 2 files,
+<code>~/.gnupg/gpg-agent.conf</code> in which you add</p>
+<pre><code># Connects gpg-agent to the OSX keychain via the brew-installed$
+# pinentry program from GPGtools. This is the OSX 'magic sauce',$
+# allowing the gpg key's passphrase to be stored in the login$
+# keychain, enabling automatic key signing.$
+pinentry-program /usr/local/bin/pinentry-mac
+</code></pre>
+<p>then <code>~/.gnupg/gpg.conf</code> where you add</p>
+<pre><code>use-agent
+</code></pre>
+
+<h1 id="on-a-remote-server">On a remote server</h1>
+<p>Obvioulsy, you don’t need to re-create the key. You can simply modify the global
+<code>.gitconfig</code> file to add <code>user.name, user.email, user.signingkey</code>.</p>
+
+<p>Then, you also need to add your <strong>private</strong> key to <code>gpg</code> on the remote server.
+To do that, you first need to export your private key from your local machine,</p>
+<pre><code>gpg --armor --export-secret-keys &lt;key_ID&gt; &gt; ~/.gpg/private.key
+</code></pre>
+<p>Then on the remote server, you add that private key by doing</p>
+<pre><code>gpg --import ~/.../private.key
+</code></pre>
+<p>You will be prompted for your GPG passphrase, and that’s it. You can check that
+you added the GPG key successfully doing</p>
+<pre><code>gpg --list-secret-keys --keyid-format LONG
+</code></pre>
+
+<p>After that, you can sign your commits with the <code>-S</code> option</p>
+<pre><code>git commit -S
+</code></pre>
+<p>Note that I didn’t have to set up the environment variable <code>GPG_TTY</code> (even
+though that environment variable was not defined).</p>
+
+<p>You can automate the signing of commits the way you would do locally.</p>
+
+<p>It looks like we could use <code>pinentry</code> on a unix server. But I haven’t tried yet.</p>
+
+<h1 id="references">References</h1>
+
+<p>This
+<a href="https://juliansimioni.com/blog/troubleshooting-gpg-git-commit-signing/">post</a>
+is pretty good.</p>
+:ET

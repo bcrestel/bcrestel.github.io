@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Sequence Models by deeplearning.ai &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Sequence Models by deeplearning.ai</h1>
+  <span class="post-date">13 Feb 2021</span>
+  <h1 id="week-1">Week 1</h1>
+
+<h2 id="video-notation">Video: Notation</h2>
+
+<p>\(x^{&lt;t&gt;}\): \(t^\text{th}\) entry in sequence $x$</p>
+
+<p>$T_x$: length of sequence $x$</p>
+
+<p>\(x^{(i)&lt;t&gt;}\): entry $t$ in training example $i$.</p>
+
+<p>Vocabulary, Dictionary: ordered list of all words used (10,000-1M).
+Then each word in that vocabulary can be encoded via one-hot encoding.
+For unknown words, you can have an “unknown” token.</p>
+
+<h2 id="video-rnn-model">Video: RNN Model</h2>
+
+<p>Activation which is passed from one step to the next is called $a$.
+Typically set \(a^{&lt;0&gt;}=0\), then
+\(a^{&lt;t&gt;} = g_1(W_{aa} a^{&lt;t-1&gt;} + W_{ax} x^{&lt;t&gt;} + b_a)\). 
+Activation function
+typically tanh/ReLU.
+Notation often condensed by stacking the matrices such that $W_a = [W_{aa},
+W_{ax}]$.</p>
+
+<p>Output of RNN layer at step t is called $y$.
+\(y^{&lt;t&gt;} = g_2(W_{ya} a^{&lt;t&gt;} + b_y)\). Activation function typically sigmoid.</p>
+
+<p>Important details is that the weights $W_a, W_y$ are shared across all time
+steps.</p>
+
+<h2 id="video-backpropagation-through-time">Video: Backpropagation through time</h2>
+
+<p>Don’t give much details, simply that the loss is the sum of an elementary loss
+at each time step. Something that can be denoted by
+\(L(y, \hat{y}) = \sum_{t=1}^{T_y} L(y^{&lt;t&gt;}, \hat{y}^{&lt;t&gt;})\).
+When you back-propagate, you back propagate through time, ie, “from right to
+left”. Again, keep in mind that the weights are shared across all time steps.</p>
+
+<h2 id="video-different-types-of-rnns">Video: Different types of RNNs</h2>
+
+<ul>
+  <li>one-to-one: not really an RNN; it’s just a fc layer</li>
+  <li>one-to-many: only have an input for the first step. After that first step, \(x^{&lt;t&gt;}\) is 
+replaced by the output generated in the previous step \(y^{&lt;t-1&gt;}\) (like when
+DeepAR is predicting). This is the case of music generation, for example.</li>
+  <li>many-to-one: You have multiple intputs, but only one output you care about.
+In that case, you only care about the last output.
+This is the case of sentiment analysis, for example.</li>
+  <li>many-to-many ($T_x=T_y$): standard case where each input gives an output, at
+each step. There is a potential limitation that the output only depends on the
+previous steps; but this can be remedied with bidirectionnal RNNs (or LSTMs).</li>
+  <li>many-to-many ($T_x \neq T_y$): in that case, you want to use an
+ encoder-decoder architecture. That is, you first pass all of the inputs
+($T_x$), without using the outputs. Then after passing the input, you start
+generating the output (most likely feeding each output as an input at the next
+step).</li>
+</ul>
+
+<p>This list does not include attention, which is covered in week 3.</p>
+
+<h2 id="video-language-model-and-sequence-generation">Video: Language model and sequence generation</h2>
+
+<p>Language model returns the likelihood of a sentence; this can used to decide
+what was most likely said for instance (by comparing likelihood of 2 sentences).</p>
+
+<p>To do that, you can formulate it as a many-to-many RNN, where the output of
+the RNN is passed through a softmax and is trained to predict the probability of
+the next word, given the first few words in the sentence, \(P(y^{&lt;t&gt;} |
+x^{&lt;1&gt;},...)\). Because you now have a lag, you start with the first input being
+0, ie, \(x^{&lt;0&gt;}=0\).</p>
+
+<p>You define the loss at each time step to be \(-\sum_i y_i log(\hat{y}_i)\)
+(cross-entropy loss), with
+$y_i$ being non-zero (ie, 1) only for the true word. Then for the overall loss you
+sum over all time steps. That is equivalent to the log-likelihood of the
+probability of that sentence, as you recursively condition on the previous works
+in the sentence. That is
+\(log P(x_1, x_2, x_3) = log P(x_3|x_1,x_2) + log P(x_2 | x_1) + log P(x_1)\).</p>
+
+<h2 id="video-sampling-novel-sequences">Video: Sampling novel sequences</h2>
+
+<p>Sample from a trained language model (see previous video). You sample by
+recursively sampling a word from your language model, then plugging it back into
+your model as an input for the following step.</p>
+
+<h2 id="video-vanishing-gradients-with-rnns">Video: Vanishing gradients with RNNs</h2>
+
+<p>Deep neural networks are hard to train as they lead to vanishing/exploding
+gradients. RNNs are no different; long sequences will make it resemble a deep
+neural networks. If vanishing gradients can be hard to spot, exploding gradients
+will lead to extremely large parameters (potentially NaN) and can be remedied by
+gradient clipping (re-scaling the gradient so that its norm does not exceed a
+fixed threshold).</p>
+
+<h2 id="video-gated-recurrent-unit-gru">Video: Gated Recurrent Unit (GRU)</h2>
+
+<p>The main idea is to introduce a memory cell $c$ to try and keep information for
+longer number of steps.
+In GRU, $c$ directly replaces the activation $a$. It is updated in each cell by
+taking a convex combination of its previous value and a tentative update
+$\tilde{c}^t$,</p>
+
+<p>\(c^t = \Gamma_u * \tilde{c}^t + (1-\Gamma_u) * c^{t-1}\),
+where $\Gamma_u$ is a gate value between 0 and 1, and the multiplications are
+point-wise.  It is given by
+\(\Gamma_u = \sigma(W_u [c^{t-1}, x^t] + b_u)\) where $\sigma$ is the sigmoid
+function. The tentative update is given by</p>
+
+<p>\(\tilde{c}^t = tanh(W_c [\Gamma_r * c^{t-1}, x^t] + b_c)\), with $\Gamma_r$ a
+relevance gate 
+\(\Gamma_r = \sigma(W_r [c^{t-1}, x^t] + b_r)\).</p>
+
+<h2 id="video-long-short-term-memory-lstm">Video: Long Short Term Memory (LSTM)</h2>
+
+<p>It is slightly different from the GRU with 3 gates (update, forget, output) instead of 2, and the
+relevance gate is replaced by direclty using the previous output.</p>
+
+<p>\(\Gamma_{u,f,o} = \sigma(W_{u,f,o} [a^{t-1}, x^t] + b_{u,f,o})\). 
+Notice that
+instead of $c^{t-1}$ in the gates, we now use $a^{t-1}$.</p>
+
+<p>Now the udpate becomes</p>
+
+<p>\(c^t = \Gamma_u * \tilde{c}^t + \Gamma_f * c^{t-1}\). 
+The $\tilde{c}$ is calcultaed in terms of $a^{t-1}$ instead of $c^{t-1}$,</p>
+
+<p>\(\tilde{c}^t = tanh(W_c [a^{t-1}, x^t] + b_c)\).
+And the output is</p>
+
+<p>\(a^t = \Gamma_o * tanh(c^t)\).</p>
+
+<p>A really good reference for GRU and LSTM is <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Colah’s blog post on
+LSTM</a>. There, he
+uses
+the more typical notation for LSTM and calls $h^t$ the output (instead of $a^t$).</p>
+
+<h2 id="video-bidirectional-rnn">Video: Bidirectional RNN</h2>
+
+<p>Unroll input forward and backward (not backprop though). Then concatenate output
+from both directions and pass to linear layer to generate output of each step.</p>
+
+<p>Can also have Bidirectionnal LSTM or GRU. Actually BLSTM is very popular for
+many NLP tasks.</p>
+
+<p>Disadvantage: you need entire sequence before making a prediction. This can be
+a problem for certain applications (eg, speech recognition).</p>
+
+<h2 id="video-deep-rnns">Video: Deep RNNs</h2>
+
+<p>You can stack layers of RNNs/LSTMs/GRUs on top of each other.
+For each layer, the input stacks its activation from the previous step with the
+output from the layer below at that same time steps.</p>
+
+<p>For RNNs, 3 layers is already quite a lot; so not very deep RNNs networks.
+But sometimes, you find a bunch of RNN layers, then on top seats a fc deep
+network.</p>
+
+<h1 id="week-2">Week 2</h1>
+
+
+<span>[
+  
+    
+    <a href="/tag/rnn"><code class="highligher-rouge"><nobr>rnn</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/deeplearning"><code class="highligher-rouge"><nobr>deeplearning</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/course"><code class="highligher-rouge"><nobr>course</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/How_to_rename_a_commit/">
+            How to rename a commit
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

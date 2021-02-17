@@ -1,0 +1,33 @@
+I"<p>Bayesian Networks are probabilistic graphical models that offer a convenient,
+compact way of representing joint probability distribution. A Bayesian Network
+consists of a Directed Acyclic Graph (DAG) that connects different parameters
+(node), each edge indicating a dependence (an edge from node A to node B if
+the variable A helps explain B). Each node (random variable) is associated a
+distribution in the form of a Conditional Probability Distribution (CPD), the
+condition being on all the parent of that node. By definition, Bayesian Networks
+do not contain cycles. Which is not the case of Markov Random Fields. For that
+reason, Bayesian Networks are most often used when one tries to understand a
+causal relationship between the variables.</p>
+
+<p>The construction of a Bayesian Networks involve at least 2 steps:</p>
+<ol>
+  <li>Generating the structure of the DAG (i.e., what nodes are connected and in
+what direction). That is what the <a href="https://papers.nips.cc/paper/8157-dags-with-no-tears-continuous-optimization-for-structure-learning.pdf">DAGs with NO
+TEARS</a>
+algorithm does, in an efficient wayi (along with
+<a href="https://github.com/xunzheng/notears">code</a>).</li>
+  <li>Estimating the CPDs. This can be done by MLE or Bayesian estimation.</li>
+</ol>
+
+<p>The website for the Quantum Black library causalnex contains a brief
+<a href="https://causalnex.readthedocs.io/en/latest/04_user_guide/04_user_guide.html#">introduction to Bayesian
+Networks</a>.
+A longer, mode in-depth explanation can be found in this Stanford class on
+<a href="https://ermongroup.github.io/cs228-notes/">Probabilistic Graphical Models</a>.
+An in-between solution might be to look at the slides for these two
+presentations <a href="http://www.ee.columbia.edu/~vittorio/Lecture12.pdf">1</a> and
+<a href="http://www.cs.tau.ac.il/~haimk/pgm-seminar/Graphicals-tomer.pdf">2</a>.
+For sequential or temporal models, Dynamic Bayesian Networks were developped.
+Kevin Muprhy has a <a href="https://www.cs.ubc.ca/~murphyk/Papers/dbntalk.pdf">tutorial</a>
+on his webpage.</p>
+:ET

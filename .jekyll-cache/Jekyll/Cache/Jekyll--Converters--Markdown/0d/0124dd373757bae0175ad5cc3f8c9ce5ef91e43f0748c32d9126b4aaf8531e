@@ -1,0 +1,22 @@
+I"^<p>Super simple, but because I have the memory of a squirrel I need to mark it
+down. So when you have session running on a remote server, you can start a
+jupyter notebook on that server. The catch is that you need to specify the ip of
+that remote server, otherwise you won’t connect to the server but locally. If
+you are in bash session on that server, you can do</p>
+<pre><code>jupyter notebook --ip=$(hostname -I)
+</code></pre>
+<p>If you want to start the notebook directly, without connecting to bash first,
+you can do something like</p>
+<pre><code>&lt;server exec sessionid&gt; -- bash -c 'jupyter notebook --ip=$(hostname -I)'
+</code></pre>
+
+<p>When running inside a Docker image, you need to take a few more steps. First,
+you need to publish the <code>8888</code> port of your machine, i.e.,</p>
+<pre><code>docker run -it -p 8888:8888 -v &lt;...&gt; image:version /bin/bash
+</code></pre>
+<p>Then inside your container</p>
+<pre><code>jupyter notebook --ip=$(hostname -I) --allow-root
+</code></pre>
+<p>Then on my laptop, the second url was the one that worked
+(<code>http://127.0.0.1:888/?token=...</code>).</p>
+:ET

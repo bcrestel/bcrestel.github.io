@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Gaussian measures in high dimension &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Gaussian measures in high dimension</h1>
+  <span class="post-date">20 Jan 2018</span>
+  <p>High dimensional spaces can be counter-intuitive. <a href="https://www.johndcook.com/blog/2011/09/01/multivariate-normal-shell/">For instance</a>, 
+most of the mass
+of a sphere in high dimension is concentrated in the outside region of the sphere.
+To see this, remember that the volume of a
+<a href="https://en.wikipedia.org/wiki/N-sphere#Volume_and_surface_area">n-sphere</a> is
+given by
+\[ V_n(r) = \frac{\pi^{n/2}}{\Gamma(n/2+1)} r^n. \]
+With this formula, we find that the percentage of mass of a unit n-sphere found
+in-between two spheres of radii 0.99 and 1.00 (i.e., a shell of thickness 0.01)
+is equal to $10\%$ in $\mathcal{R}^{10}$, $39\%$ in $\mathcal{R}^{50}$, and $63\%$
+in $\mathcal{R}^{100}$.</p>
+
+<p>This example also helps explain why samples from a <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate Gaussian</a>
+in $\mathcal{R}^n$ tend to accumulate on a sphere of radius $\sqrt{n}$ when $n$
+grows large.
+The pdf of a Gaussian decreases exponentially fast as distance from the mean
+grows, but the mass of the space becomes more and more concentrate. The result
+is that the mode of a multivariate standard normal is at a distance
+$\sqrt{n-1}$.</p>
+
+<p>For a multivariate standard normal ($\mu=0$, $\Sigma=I$) in $\mathcal{R}^n$, the $l_2-$norm of the
+samples has a <a href="https://en.wikipedia.org/wiki/Chi_distribution">chi distribution</a>
+with parameter $n$, $\chi_n$; it has mode $\sqrt{n-1}$, and a mean that is
+approximately equal to $\sqrt{n}$ as $n$ grows. This means the variance, given
+by $n$ minus the square of the mean, is approximately equal to zero. 
+Empirically, with 1,000 samples, I found the standard deviation of the samples
+to remain around 0.7 for dimensions $n=$1 to 100,000. A more rigorous
+explanation that almost all samples remain in a band of constant thickness
+can be found
+<a href="https://www.cs.cmu.edu/~venkatg/teaching/CStheory-infoage/chap1-high-dim-space.pdf">here</a>.</p>
+
+<h3 id="side-note">Side note</h3>
+<p>As a ‘fun’ little exercise, we can re-derive the distribution of the $l_2-$norm
+of a multivariate standard normal. Assume $X \sim \mathcal{N}(0,I)$, then
+\[ \mathcal{P}(|X| \leq \alpha) = \iint_{|x| \leq \alpha^2} (2\pi)^{-n/2}
+\exp(-|x|^2/2) dx \]
+We turn to spherical coordinates,
+\[ x_1  = r \cos \theta_1 \]
+\[ x_2  = r \sin \theta_1 \cos \theta_2 \]
+\[ \vdots \]
+\[ x_i = r \sin \theta_1 \ldots \sin \theta_{i-1} \cos \theta_i \]
+\[ \vdots \]
+\[ x_n = r \sin \theta_1 \ldots \ldots \sin \theta_{n-2} \sin \theta_n \]
+And the Jacobian of the transformation is given 
+<a href="https://en.wikipedia.org/wiki/N-sphere#Spherical_coordinates">by</a>
+\[ \left| \frac{\partial x}{\partial \theta} \right| = r^{n-1} \sin^{n-2}
+\theta_1 \ldots \sin \theta_{n-2} \]
+However the exact form of the Jacobian does not matter. Since the pdf of the
+multivariate standard normal only depends on the radius, $\mathcal{P}(|X|\leq
+\alpha)$ will be given by
+\[ \mathcal{P}(|X|\leq \alpha) = S_n (2\pi)^{-n/2} \int_0^{\alpha} r^{n-1}
+e^{-r^2/2} dr , \]
+where $S_n$ is the part of the volume of unit n-sphere that does not depend on
+the radius, i.e., all the integrals for the $\theta_i$’s. Again, we use the
+formula for the volume of a unit n-sphere to get
+\[ \frac{\pi^{n/2}}{\Gamma(n/2+1)} = S_n \int_0^1 r^{n-1} dr \]
+Using the definition of the 
+<a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>
+we re-write $S_n$ as
+\[ S_n = \frac{n \pi^{n/2}}{n/2 \, \Gamma(n/2)} \]
+and finally get
+\[ \mathcal{P}(|X|\leq \alpha) = 
+\frac{1}{2^{n/2-1} \Gamma(n/2)} \int_0^{\alpha} r^{n-1}
+e^{-r^2/2} dr , \]
+which corresponds to a chi distribution.</p>
+
+<span>[
+  
+    
+    <a href="/tag/gaussian"><code class="highligher-rouge"><nobr>gaussian</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/dimensionality"><code class="highligher-rouge"><nobr>dimensionality</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/statistics"><code class="highligher-rouge"><nobr>statistics</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/chi"><code class="highligher-rouge"><nobr>chi</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/distributions"><code class="highligher-rouge"><nobr>distributions</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

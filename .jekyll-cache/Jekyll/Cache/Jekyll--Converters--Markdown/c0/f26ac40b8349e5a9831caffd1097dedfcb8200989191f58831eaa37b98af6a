@@ -1,0 +1,36 @@
+I"å<p>Market impact is often defined as relating the price difference to the volume
+(or POV) traded, i.e.,
+\(S_T - S_0 = k v_T + \varepsilon\)
+That model assumes a normal price dynamics, which may or may not make sense
+depending on your time scale, but this could easily modify to assume a
+log-normal price dynamics by using the difference of the log of the prices
+instead.</p>
+
+<p>However, another very common approach is to assume a power law for the market
+impact, i.e., something like
+\(S_T - S_0 = k v_T^\alpha + \varepsilon\)
+Now comes the questions of fitting that model. And this is what this post is
+about.</p>
+
+<p>There are 2 approaches to go about that:</p>
+<ol>
+  <li>you could fit directly using nonlinear regression techniqes.</li>
+  <li>you could fit instead the log of that expression
+\(\log(S_T - S_0) = \log(k) + \alpha \log(v_T) + \varepsilon\)
+However, those two expressions are not equivalent, primarily because of their
+assumptions on the noise distributions. This is something that is explained in
+the introduction of that
+<a href="https://doi.org/10.1890/11-0538.1">paper</a>
+(note that the conclusions of that paper are heavily criticized by that other
+<a href="https://doi.org/10.1111/bij.12396">paper</a>).</li>
+</ol>
+
+<p>You can estimate the change in the noise variance when applying method 2 by
+using the <a href="/2018/05/04/deltameth">Delta method</a>. This is also discussed into that
+stackexchange
+<a href="https://math.stackexchange.com/questions/3625/easy-to-implement-method-to-fit-a-power-function-regression">question</a>.
+In the most relevant answer, the suggestion is to first fit using the
+log-transform, then use the coefficients obtained with that method to start a
+nonlinear regression solved using Newtonâ€™s method.</p>
+
+:ET

@@ -1,0 +1,33 @@
+I"W<p><a href="https://causalnex.readthedocs.io/en/latest/index.html">CausalNex</a> is a library
+developped by QuantumBlack to facilitate the causal analysis of a dataset.  At
+its root, CausalNex relies on Bayesian Networks.<br />
+For more on Bayesian Networks, have a look at
+<a href="https://en.wikipedia.org/wiki/Bayesian_network">Wikipedia</a> and a
+<a href="https://www.cs.ubc.ca/~murphyk/Bayes/bnintro.html">tutorial</a> by Kevin Murphy.
+The training of these Bayesian
+Networks (causal inference) uses the algorithm introduced in the paper <a href="https://arxiv.org/pdf/1803.01422.pdf">DAGs
+with NO TEARS</a>.</p>
+
+<h1 id="installation">Installation</h1>
+
+<p>The <a href="https://causalnex.readthedocs.io/en/latest/02_getting_started/02_install.html">documentation</a> is pretty clear.
+The library can be easily installed by doing <code>pip install causalnex</code>.
+Note that for some reason (not clear to me), we can’t install via <code>poetry</code>.
+Also, <code>causalnex</code> requires <code>pandas=0.24.0</code>, which seems to be a problem with the
+current project.</p>
+
+<p>Last, but not least, <code>causalnex</code> requires the library <code>pygraphviz</code> which has to
+be installed separately. And of course, <code>pip install pygraphviz</code> returns an
+error. I ended up having to install everything but <code>causalnex</code> via <code>conda</code> the
+<code>pip install causalnex</code>. But this may not be convenient for everyone, and it’s
+weird that the library is so finicky.</p>
+
+<h1 id="tutorial">Tutorial</h1>
+
+<p>The documentation contains (for now) a single
+<a href="https://causalnex.readthedocs.io/en/latest/03_tutorial/03_tutorial.html#">tutorial</a>
+that I will go through.
+The first thing we need to do is download the
+<a href="https://archive.ics.uci.edu/ml/machine-learning-databases/00320/student.zip">dataset</a>, and unzip it.</p>
+
+:ET

@@ -1,0 +1,54 @@
+I"�<p>I end up looking for how to do things in pandas way too often. So I’ll summarize
+some basic features that I need.</p>
+<ul>
+  <li>datetime
+    <ul>
+      <li>converting to datetime format
+        <pre><code class="language-python">df['time'] = pd.to_datetime(df['time'])
+</code></pre>
+        <p>It can also be used on the index</p>
+        <pre><code class="language-python">df.index = pd.to_datetime(df.index)
+</code></pre>
+      </li>
+      <li>Shift a timeindex by constant time
+        <pre><code class="language-python">df.index = df.index - datetime.timedelta(hours=6)
+</code></pre>
+      </li>
+      <li>Change sampling frequency; for instance, going from 1min data to 20min data
+        <pre><code class="language-python">df.set_index('time', inplace=True)
+df20 = df['open'].resample('20min').first()
+df20['close'] = df['close'].resample('20min').last()
+df20['mean'] = 0.5*(df['open'].resample('20min').mean() + df['close'].resample('20min').mean() )
+df20['low'] = df['low'].resample('20min').min()
+df20['high'] = df['high'].resample('20min').max()
+</code></pre>
+        <p>Many different frequencies can be used with <code>resample</code>, the main ones being</p>
+        <pre><code>M   monthly
+W   weekly
+D   daily
+H   hourly
+</code></pre>
+        <p>A nice reference is available
+<a href="https://stackoverflow.com/questions/17001389/pandas-resample-documentation">here</a>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>Normalize data (e.g, ‘volume’) by their daily maximum; assuming the index is every minute,
+    <pre><code class="language-python">df['date'] = df.index.date
+df.volume / df.groupby('date').volume.transform(np.max)
+</code></pre>
+  </li>
+  <li>Plot results (‘res’) of a groupby with timeindex, all on top of each other. The trick
+here is to turn off the use of the index when plotting,
+    <pre><code class="language-python">df.groupby('date').res.plot(use_index=False)
+plt.show()
+</code></pre>
+  </li>
+  <li>take negation of a boolean index selection: <code>~</code>.
+For instance, the following example sets all entries in the ‘movie’ column to
+NaN where they do not end with a colon ‘:’,
+    <pre><code class="language-python">df.loc[~df['movie'].str.endswith(':'),'movie'] = np.NaN
+</code></pre>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Bias adjustment in Box-Cox transformation &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Bias adjustment in Box-Cox transformation</h1>
+  <span class="post-date">29 Jul 2019</span>
+  <p>The <a href="https://otexts.com/fpp2/transformations.html">Box-Cox transformation</a> is a parametric transformation that includes the
+logarithmic transfomration as a special case, and is defined as</p>
+
+\[w_t = \left\{
+\begin{aligned}
+&amp; \log(y_t) , \text{ if } \lambda = 0 \\
+&amp; \frac{(y_t)^\lambda - 1}{\lambda} , \text{ otherwise}
+\end{aligned} \right.\]
+
+<p>Quick node: the inclusion of the log-transformation is justified by the fact
+that $(y_t)^\lambda \approx 1 + \lambda \log(y_t)$ when $\lambda \rightarrow 0$.</p>
+
+<p>Assuming you get better distribution with $w_t$, you can run your inference on
+that variable. But once this is done, you still need to revert it back to the
+quantity of interest, that is $y_t$. The inverse Box-Cox transformation is given
+by</p>
+
+\[y_t = \left\{
+\begin{aligned}
+&amp; \exp(w_t) , \text{ if } \lambda = 0 \\
+&amp; \left(\lambda w_t + 1 \right)^{1/\lambda} , \text{ otherwise}
+\end{aligned} \right.\]
+
+<p>However, one needs to be careful about the distribution of the inverted
+prediction~$y_t$. 
+A general (non-parametric) way of handling this, and the way chosen by
+<a href="https://robjhyndman.com/hyndsight/backtransforming/">Hyndman</a>, is to do a
+Taylor expansion around the mean. That is, calling $f$ the inverted Box-Cox
+transformation, and calling $\mu$ and $\sigma^2$ the mean and variance of the
+transformed variable $w_t$, we would have</p>
+
+<p>\(y_t \approx f(w_t) = f(\mu) + (w_t - \mu) f'(\mu) + \frac12 (w_t - \mu)^2
+f''(\mu).\) Then taking the mean of that expression, we get
+\(\mathbb{E}[y_t] = f(\mu) + \frac12 \sigma^2 f''(\mu).\)</p>
+
+<p>However in the special case of the log-transformation, and if the
+transformed variable $w_t$ was assumed to be normal (large class of models will
+make that assumption when calculating the uncertainty around the mean), we can
+simply use the results of a
+<a href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-Normal</a>, which tells
+us that (1) $\exp(w_t)$ is the median of $y_t$, and (2) the mean of $y_t$ is
+given by $\exp(\mu + \sigma^2/2)$. In the case $\sigma^2 \ll 1$, we recover the
+expression derived from the Taylor expression.</p>
+
+<span>[
+  
+    
+    <a href="/tag/statistics"><code class="highligher-rouge"><nobr>statistics</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/transformation"><code class="highligher-rouge"><nobr>transformation</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

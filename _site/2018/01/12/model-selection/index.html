@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      AIC in linear regression &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">AIC in linear regression</h1>
+  <span class="post-date">12 Jan 2018</span>
+  <p>Model selection is a central problem of statistical inference, whether you have to choose the independent variables to include in your linear regression, or compare between completely unrelated techniques.
+In the context of linear regression, using $R^2$ to compare models would lead to over-fitting, and even the adjusted $R^2$ does not necessarily penalize larger models sufficiently.
+An army of other methods exist (see <a href="http://www.modelselection.org/model-selection.pdf">here</a>), among which 3 really stands out:</p>
+<ul>
+  <li>cross-validation: it comes in many different flavours, but at its core, the idea is to leave out some of your training data to later test your model on. You can repeat the procedure leaving different distinct datasets, or not.
+One obvious disadvantage of cross-validation is its potential computational cost, especially if you want to exhaust all possible splitting of the parameter space. 
+However, in the case of linear regression, the cross-validation error can be
+computed directly after solving the regression. 
+Also, cross-validation is more restricted when applied to time-series data.</li>
+  <li>Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC): these two criteria do explicitly penalize models with large number of parameters.
+    <ul>
+      <li>AIC: It is generally given as
+\[ AIC(\beta) = 2k - 2\ln(\mathcal{L}) \]
+where $k$ is the number of parameters and $\mathcal{L}$ is the likelihood at the MLE.</li>
+      <li>BIC: the BIC criterion imposes a stronger penalty on the number of parameters of the model,
+\[ BIC(\beta) = \ln(n) k - 2\ln(\mathcal{L}) \]
+These two criteria are extremely popular; one disadvantage is their reliance on the Likelihood function which requires a specific distributional assumption.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Just as an exercise, let us derive the AIC in the case of linear regression. For the linear regression, assuming Gaussian noise $\varepsilon \sim \mathcal{N}(0, \Sigma)$, we have $ Y = X \cdotp \beta + \beta $.
+The log-likelihood function is then given by
+\[ \ln(\mathcal{L}) = -\frac12 \left( \ln( \det(2\pi \Sigma) ) \right) - \frac12 (Y - X \cdotp \beta)^T \Sigma^{-1} (Y - X \cdotp \beta) \]
+In the case of iid normal noise, i.e., $\Sigma = \sigma^2 I$, we have
+\[ \ln(\mathcal{L}) = -\frac12 \left( n \ln( 2\pi \sigma^2 ) \right) - \frac1{2\sigma^2} e^T e \]
+where $e = Y - X \cdotp \beta$ and $n$ is the number of observations. 
+Let us denote by $\hat{\beta}$ the MLE (and $\hat{e}=Y-X \cdotp \hat{\beta}$)
+As we typically do not know the value of $\sigma^2$, we instead estimate it with the standard error $s^2 = \frac{e^Te}{n}$. This gives
+\[ AIC = 2k+n + n \ln(2\pi) + n \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) = n \left[ 1 + 2\ln(2\pi) + \frac{2k}n + \ln \left( \frac{\hat{e}^T\hat{e}}{n} \right) \right]. \]
+As a comparision, in Greene (2005) they use $2k/n + \ln(e^Te/n)$, which is, up to constant terms that do not vary in-between models, the same.
+An additional reference for model selection in regression is <a href="http://statweb.stanford.edu/~jtaylo/courses/stats203/notes/selection.pdf">here</a>.</p>
+
+<p>In a future post, I’d like to talk about <a href="https://arxiv.org/pdf/1709.08221.pdf">model averaging</a>.</p>
+
+<span>[
+  
+    
+    <a href="/tag/statistics"><code class="highligher-rouge"><nobr>statistics</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/model_selection"><code class="highligher-rouge"><nobr>model_selection</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/regression"><code class="highligher-rouge"><nobr>regression</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/ML"><code class="highligher-rouge"><nobr>ML</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

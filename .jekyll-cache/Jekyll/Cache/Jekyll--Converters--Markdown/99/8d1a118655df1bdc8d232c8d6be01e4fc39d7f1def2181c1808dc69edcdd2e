@@ -1,0 +1,64 @@
+I"[	<p>I just want to summarize a few results that I find useful when dealing with
+arithmetic and geometric Brownian motions.
+For simplicity, I looked  at unitary time steps. If it’s not the case (e.g., daily
+rate of change, looked hourly), then some minor adjustment needs to be done.</p>
+
+<h2 id="arithmetic-brownian-motion">Arithmetic Brownian motion</h2>
+
+<p>The SDE for the ABM is given by
+\(dI_t = \mu I_0 d_t + \sigma I_0 dW_t\)</p>
+
+<p>The solution is then
+\(I_d = I_0 (1 + \mu d + \sigma W_d)\)
+where $W_d$ is a Brownian motion. This means the following moments for the
+quantity $I_d$,</p>
+
+\[\begin{aligned}
+\mathbb{E}[I_d] &amp; = I_0 (1 + \mu d) \\
+\text{Var}[I_d] &amp; = \sigma^2 I_0^2 d \\
+\text{Cov}[I_d, I_{d'}] &amp; = \sigma^2 I_0^2 \min(d,d') \\
+\end{aligned}\]
+
+<h2 id="geometric-brownian-motion">Geometric Brownian motion</h2>
+
+<p>You can find some info from Wikipedia, 
+<a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">here</a>
+and 
+<a href="https://en.wikipedia.org/wiki/Log-normal_distribution">here</a>.
+The SDE for GBM is
+\(dI_t = \mu I_t d_t + \sigma I_t dW_t\).
+Then the solution is
+\(I_d = I_0 \exp \left( (\mu - \sigma^2/2)d + \sigma W_d \right)\).
+This means the following moments for the
+quantity $I_d$,</p>
+
+\[\begin{aligned}
+\mathbb{E}[I_d] &amp; = I_0 e^{\mu d} \\
+\text{Var}[I_d] &amp; = I_0^2 e^{2\mu d}(e^{\sigma^2 d} - 1) \\
+\text{Cov}[I_d, I_{d'}] &amp; = I_0^2 e^{\mu(d+d')} \left( e^{\sigma^2 \min(d,d')}
+-1 \right)
+\end{aligned}\]
+
+<p>For the covariance, you can derive it as</p>
+
+\[\begin{aligned}
+\text{Cov}[I_d, I_{d'}] &amp; = \mathbb{E}[I_d I_{d'}] - \mathbb{E}[I_d]
+\mathbb{E}[I_{d'}] \\
+&amp; = I_0^2 e^{(\mu-\sigma^2/2)(d+d')} \mathbb{E}[e^{\sigma(W_d + W_{d'})}] - 
+I_0^2 e^{\mu(d+d')}
+\end{aligned}\]
+
+<p>And the last part is equal to $\mathbb{E}[e^Y]$ where $Y$ is 
+<a href="https://en.wikipedia.org/wiki/Log-normal_distribution">log-normal</a> 
+with
+parameters $\log Y \sim \mathcal{N}(0, \sigma^2(d+d’+2\min(d,d’)))$, such that
+$\mathbb{E}[e^Y] = \exp[\sigma^2/2(d+d’+2\min(d,d’)]$ and the result follows.</p>
+
+<p>It is interesting to convert the variables $\mu, \sigma$ into the empirical
+moments of the quantity $I_d$. This is</p>
+
+\[\begin{aligned}
+\mu &amp; = \frac1d \log \frac{\mathbb{E}[I_d]}{I_0} \\
+\sigma^2 &amp; = \frac1d \log \left( 1 + \frac{\text{Var}[I_d]}{I_0^2 e^{2 \mu d}} \right)
+\end{aligned}\]
+:ET

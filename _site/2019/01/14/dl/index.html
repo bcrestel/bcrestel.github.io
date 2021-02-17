@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Literature on Deep Learning &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Literature on Deep Learning</h1>
+  <span class="post-date">14 Jan 2019</span>
+  <h1 id="regularization">Regularization</h1>
+
+<p>In <a href="https://arxiv.org/pdf/1710.10686.pdf">Regularization for Deep Learning: A
+Taxonomy</a>, the authors list and classify a
+large number of regularization techniques for DNN (as of October 2017).</p>
+
+<p>One way Deep Learning avoids over-fitting is by building sparsity.
+The former can be achieved with $L_1$ regularization, or with a post hoc
+pruning, i.e., removing some neurons from the network after training is
+complete. This pruning can be completely random, but most likely will be
+targeted provided some sort of metric (magnitude of weights, gradient,…). In
+<a href="https://openreview.net/pdf?id=HkghWScuoQ">Targeted Dropout</a>, the authors
+observe that dropout also promote sparity (in the sense of small numbers of high
+activations; see <a href="https://wiki.tum.de/display/lfdv/Dropout#Dropout-EffectonSparsity">here</a>), 
+and they propose to dropout, with a
+higher probability, neurons that would be pruned in the post-training stage.</p>
+
+<p>Dropout typically doesn’t work as well for CNN. In <a href="http://papers.nips.cc/paper/8271-dropblock-a-regularization-method-for-convolutional-networks">DropBlock: A regularization method for convolutional networks
+</a>,
+the authors postulate that this is due to the spatial correlation between
+neurons in a CNN, and propose to drop units in a spatially correlated manner
+(DropBlock). They report better results.</p>
+
+<p>A similar issue applied to LSTM-based networks, for which (traditional) dropout doesn’t work. In
+<a href="https://arxiv.org/pdf/1409.2329.pdf">Recurrent neural network regularization</a>,
+the authors introduce a modified way of applying dropout to network with LSTM
+cells; the key is to apply dropout only to non-recurrent connections, i.e.,
+connections between different layers of LSTM cells.</p>
+
+<h1 id="optimization">Optimization</h1>
+
+<p>In <a href="http://papers.nips.cc/paper/8186-adaptive-methods-for-nonconvex-optimization.pdf">Adaptive Methods for Nonconvex
+Optimization</a>,
+the authors study convergence properties of scaled gradient-based methods, and
+highlight the benefit of gradually increasing the mini-batch size during
+training.</p>
+
+<h1 id="network-understanding">Network understanding</h1>
+
+<p>In <a href="https://arxiv.org/pdf/1810.01075.pdf">Implicit Self-Regularization in Deep Neural
+Networks</a>, the authors try to understand
+why DNN work so well and do not overfit by applying ranomd matrix theory to the
+eigenstructure of the last 2 layers of wide range of (fully connected) popular
+networks. Their findings include:</p>
+<ul>
+  <li>DNN are self-regularizing</li>
+  <li>self-regularize in different ways depending on whether it’s an old network
+ (Tikhonov-like) or a more modern architecture (heaviy-tailed
+self-regularization).</li>
+  <li>connect batch size with self-regularzation properties (small batch-size are
+ better self-regularizing).</li>
+</ul>
+
+<span>[
+  
+    
+    <a href="/tag/ML"><code class="highligher-rouge"><nobr>ML</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/deeplearning"><code class="highligher-rouge"><nobr>deeplearning</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

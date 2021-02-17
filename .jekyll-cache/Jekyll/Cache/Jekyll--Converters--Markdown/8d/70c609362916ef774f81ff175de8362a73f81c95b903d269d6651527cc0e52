@@ -1,0 +1,24 @@
+I"R<p>In all cases, I’m assuming the targeted commit hasn’t been pushed. If that’s the
+case, then it’s a different story (and probably a bad idea to do it).</p>
+
+<h2 id="if-its-the-latest-commit">If it’s the latest commit</h2>
+
+<p>You can simply amend the latest commit by doing</p>
+<pre><code>git commit --amend
+</code></pre>
+<p>then change the commit name and save</p>
+
+<h2 id="if-its-not-the-latest-commit">If it’s not the latest commit</h2>
+
+<p>In that case, you will need to rebase.
+Assume you want to change the Nth commit from the top (the latest is the first).
+Then interactively rebase the last N commits,</p>
+<pre><code>git rebase -i HEAD~N
+</code></pre>
+<p>This will prompt a window that shows the last N commits. From there, you can do
+a few things (and a lot of damage, so careful!). But in our case, you just want
+to change <code>pick</code> to <code>reword</code> in front of the commits that you want to modify.
+Then save. It will then open each commit windows for the commits you selected in
+the previous step. For each commit, modify the name the way you want it, then
+save.</p>
+:ET

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Intro to pytorch &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Intro to pytorch</h1>
+  <span class="post-date">07 Jan 2019</span>
+  <p>I want to use this post to summarize a few important facts about using pytorch
+to build and train deep neural nets.</p>
+
+<h2 id="building-a-neural-net">Building a neural net</h2>
+
+<p>First a general note: pytorch uses
+<a href="https://pytorch.org/docs/stable/tensors.html">tensors</a> as its main dataframe.
+For most operations, tensors can be manipulated very much like a numpy array. But
+tensors can be set to a specific device (e.g., GPU), and tensors have certain
+data types that need to be understood. By default, tensors are single precision
+(i.e., <code>torch.Tensor</code> corresponds to <code>torch.FloatTensor</code>–see <a href="https://pytorch.org/docs/master/tensors.html">here</a>);
+this is considered fine to train neural networks, but this will create some
+situation when trying to test the gradient (see below).
+You can find a summary of pytorch tensors basic functionalities
+<a href="https://www.kdnuggets.com/2018/05/pytorch-tensor-basics.html">here</a>.
+There is also an interesting <a href="/2019/01/28/nn_tutorial/">tutorial</a> put together by FastAI which builds a
+simple NN in Python, then gradually adds on pytorch capabilities to simplify and
+clarify the code; this allows you to see what each component of pytorch do.</p>
+
+<p>A few quick notes about pytorch:</p>
+<ul>
+  <li>a trailing <code>_</code> indicates the operator is performed in-place.</li>
+</ul>
+
+<p>You build a neural net by inheriting the torch class <code>Module</code>.</p>
+
+<h3 id="forward">Forward</h3>
+<p>At it most basic, you only need to define the method <code>forward(self, x)</code> which
+defines the forward propagation of your neural net. Typically, all function(al)s
+you need to build your deep net are defined in the constructor, i.e. <code>def
+__init__(self)</code>.
+To stack the layers of your neural net, you propagate the input variable
+(typically <code>x</code>) from one layer to the next one, and return it in the end.
+Torch provides default function(al)s to define each layer (convolutional, rnn,
+lstm, pooling, activation functions,…). 
+The main reference for all those commands is provided in the pytorch
+<a href="https://pytorch.org/docs/stable/nn.html">documentation</a>.</p>
+
+<p>Below is an example that defines the AlexNet,</p>
+<pre><code>import torch.nn as nn
+import torch.nn.functional as F
+
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+	# 2d convolutional layer that takes 3 input images (3-colors)
+	# returns 6 images,
+	# and apply a convolution kernel of size 5x5
+        self.conv1 = nn.Conv2d(3, 6, 5)
+	# max pooling layer which only keeps max value in 2x2 squares (subsampling)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+	# bunch of linear layers (y = Wx + b)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+    def forward(self, x):
+	# apply convolution kernel,
+	# apply pointwise ReLU function
+	# and max pooling
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+	# change shape to go from multiple small images,
+	# to one long vector
+        x = x.view(-1, 16 * 5 * 5)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+
+net = Net()
+</code></pre>
+
+<h3 id="parameters-of-the-network">Parameters of the network</h3>
+<p>The parameters are stored in the iterator <code>net.parameters()</code>. You can convert
+that to a list and see that the length of the list is equal to the number of
+layers x 2, since you have parameters for the weights (<code>weight</code>, $W$) and the biases
+(<code>bias</code>, $b$), and those parameters are stored separately. Typically, the parameters are
+ordered, for each layer, as weights first, bias second.
+To inialize weights, you can either do it by hand (with the <code>data</code> method of
+the <code>weight</code> or <code>bias</code> components of each layer), or use one of default
+functions provided in pytorch (see
+<a href="https://discuss.pytorch.org/t/how-are-layer-weights-and-biases-initialized-by-default/13073">here</a>).</p>
+
+<h3 id="loss-function">Loss function</h3>
+<p>First, note the typical distinction in ML between cost function and loss
+function. The cost function is the average of the loss function over all
+training examples (or all training examples in that batch). The loss function is
+how you measure the performance of your network against the labeled data.</p>
+
+<p>The loss function is defined independently from the neural net. 
+I think the separation is motivated by the fact that the loss function does not
+have any parameters to be trained.
+Pytorch comes with a large variety of loss functions, e.g., the cross-entropy,</p>
+<pre><code>criterion = nn.CrossEntropyLoss()
+</code></pre>
+
+<h3 id="an-optimizer">An optimizer</h3>
+<p>Same as for the loss function, you can use one of the many optimizers provided
+by pytorch, e.g., stochastic gradient descent with momentum,</p>
+<pre><code>optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+</code></pre>
+<p><code>net</code>, here, is the convolutional neural network we defined above. So you only
+need to pass the parameters of the net to the optimizer. But, these parameters
+contain also the gradient information (once calculated).</p>
+
+<p>Note that for some optimizers (e.g., BFGS), you need to do something more
+complicated (see <a href="https://pytorch.org/docs/stable/optim.html">here</a>).</p>
+
+<h2 id="train-the-network">Train the network</h2>
+
+<h3 id="basic-procedure">Basic procedure</h3>
+<p>Once we have defined a neural net, a loss function, and an optimizer, we can
+start training the network. To do so, we need (1) training data, (2)
+derivatives. You set up the iteration over the training data set. But once you
+have a mini-batch, you need to</p>
+<ul>
+  <li>compute the loss
+    <pre><code>outputs = net(data)
+loss = criterion(outputs, labels)
+</code></pre>
+  </li>
+  <li>calculate the gradient
+    <pre><code>loss.backward()
+</code></pre>
+  </li>
+  <li>apply one step of the optimizer:
+    <pre><code>optimizer.step()
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="looking-at-the-gradient">Looking at the gradient</h3>
+<p>You can look at the gradient for each layer, either directly</p>
+<pre><code>net.conv1.bias.grad
+</code></pre>
+<p>or through the parameters (here for the bias of the first layer),</p>
+<pre><code>ii = 0
+for x in net.parameters():
+    if ii == 1:
+        print(x.grad.data)
+    ii += 1
+</code></pre>
+
+<h3 id="gradient-check">Gradient check</h3>
+<p>As an exercise, I decided to check the gradient of the neural net defined in the
+pytorch’s <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html#sphx-glr-beginner-blitz-cifar10-tutorial-py">CIFAR10
+tutorial</a>,
+which is some variation of <a href="https://en.wikipedia.org/wiki/AlexNet">AlexNet</a>.
+To set the values of a layer, you can do</p>
+<pre><code>mynet.layer_nb_x.&lt;bias or weight&gt;.data = pytorch.tensor(....,device=same_device_as_net)
+</code></pre>
+
+<p>So far, I actually only checked the gradient wrt the bias of the first
+convolutional layer. I compare against a finite-difference approximation
+(one-directional). The results are in the corresponding jupyter notebook stored
+on Borgy
+(/mnt/home/bencrestel/pytorch/tutorials/beginner_source/blitz/cifar10_tutorial.ipynb).
+To my great suprise, the gradient checks rather well when using double precision, but
+checks very poorly when using single precision.</p>
+
+<p>I was wondering whether I was
+doing the right thing, but I found a <a href="https://github.com/pytorch/pytorch/issues/5351">bug
+report</a> in the pytorch repo
+where some user reports trouble with gradient check. That issue is answered by
+one of the developpers by switching to double precision.
+Another, more explicit and more convincing report that single precision should
+be avoided for gradient check was found in Stanford’s online course on CNN for
+visual recognition. In the <a href="http://cs231n.github.io/neural-networks-3/#gradcheck">gradient
+checks</a>, they warn the
+readers to use double precision.
+So it seems well accepted that in single precision, the gradient will not check.
+Now on the bright side, looking at the results in single precision, it seems the
+problem comes from the finite-difference check, not the analytical gradient,
+which sorts of make sense.</p>
+
+<h3 id="no_grad">no_grad</h3>
+<p>You sometimes see code where they wrap some code, often layers or value updates,
+inside a with statement</p>
+<pre><code>w1 = torch.tensor(...)
+with torch.no_grad():
+    w1 -= learning_rate * grad_w1
+    ...
+</code></pre>
+<p>It is necessary to tell torch to not track the layer update in the next
+backpropagation step. However, you do not need to do that if you access the
+weights of a layer through the <code>data</code> method,</p>
+<pre><code>net.layer1.weights.data = ...
+</code></pre>
+<p>Indeed, as explained in the comments of that
+<a href="https://github.com/pytorch/tutorials/blob/master/beginner_source/examples_autograd/two_layer_net_autograd.py">code</a>,
+<code>tensor.data</code> gives a tensor that shares the storage with tensor, but doesn’t
+track history.</p>
+
+<h3 id="train-vs-eval">train vs eval</h3>
+<p>You need to specify in what mode the network is, either <code>train</code> (when training) 
+or <code>eval</code> (when you’re done with training and want to use the network). This is
+used, for instance, by some types of layers like <code>BatchNorm</code> or <code>Dropout</code>, that
+behave differently in training and evaluation phases.</p>
+
+<h2 id="using-cuda">Using CUDA</h2>
+<p>You need to explicitly transfer your data structures (neural net,…) onto the
+GPU, using the <code>.to()</code>command. To transfer the neural net, you do</p>
+<pre><code>gpu0 = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+net.to(gpu0)
+</code></pre>
+<p>You also need to transfer the input data onto the GPU if you want to do that,
+e.g.,</p>
+<pre><code>inputs, labels = inputs.to(gpu0), labels.to(gpu0)
+</code></pre>
+<p>Note that when applied to tensors <code>.to(gpu0)</code> creates a copy (unlike when applied to
+the model).
+This is described at the end of the <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html#sphx-glr-beginner-blitz-cifar10-tutorial-py">CIFAR10
+tutorial</a>.</p>
+
+<p>Another good reference for all CUDA matters is the
+<a href="https://pytorch.org/docs/stable/notes/cuda.html">documentation</a>.</p>
+
+<p>A first interesting observation with that CIFAR10 dataset is that for a given
+number of epochs, smaller mini-batches (e.g., default of 4) lead to higher
+accuracy, but will take longer to train than, for instance with mini-batches of
+64 pics. However, since each epoch is faster with larger mini-batches, a more
+fair comparision should be for a fixed run time, in which case it seems larger
+mini-batches win (for that specific application).</p>
+
+<h3 id="using-more-than-1-gpu">Using more than 1 GPU</h3>
+<p>Now by default, pytorch will only use 1 GPU. If you want to use more than 1 GPU,
+you need to use
+<a href="https://pytorch.org/tutorials/beginner/blitz/data_parallel_tutorial.html#sphx-glr-beginner-blitz-data-parallel-tutorial-py">DataParallel</a>.</p>
+
+<span>[
+  
+    
+    <a href="/tag/ML"><code class="highligher-rouge"><nobr>ML</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/deeplearning"><code class="highligher-rouge"><nobr>deeplearning</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/pytorch"><code class="highligher-rouge"><nobr>pytorch</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

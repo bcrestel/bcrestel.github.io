@@ -1,0 +1,15 @@
+I"‹<p>Installation of xgboost requires cmake of version at least 3.17.3. And apt-get
+was only installing cmake 3.5.x, or something like that. A nice solution is
+described in this <a href="https://askubuntu.com/a/865294">post</a>. I picked the second
+approach, from the binary. This is the code I included in my Dockerfile:</p>
+<pre><code>RUN mkdir /opt/cmake &amp;&amp; \
+    cd /opt/cmake &amp;&amp; \
+    wget https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3-Linux-x86_64.sh &amp;&amp; \
+    bash cmake-3.17.3-Linux-x86_64.sh --skip-license &amp;&amp; \
+    ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake &amp;&amp; \
+    echo $(cmake --version)
+</code></pre>
+<p>The last line is just to check that itâ€™s working.
+Also, note that you can install different versions of <code>cmake</code>. You can find your
+favorite one on their <a href="https://cmake.org/download/">website</a>.</p>
+:ET

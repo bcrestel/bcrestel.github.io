@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Convolution, cross-correlation &middot; Fourre-tout
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+   <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+   <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+         processEscapes: true
+       }
+     });
+   </script>
+   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+   <!-- tags -->
+
+  
+
+
+
+
+
+
+
+
+
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="https://bcrestel.github.io">
+          Fourre-tout
+        </a>
+      </h1>
+      <p class="lead">Some notes, some thoughts, some ideas</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="https://bcrestel.github.io">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/archive/">Archive</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/tags/">Tags</a>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+
+    <a href="mailto:ben.crestel@zoho.com"><i class="fa fa-envelope"></i></a>
+    <a href="https://linkedin.com/in/bcrestel"><i class="fa fa-linkedin"></i></a>
+    <a href="https://github.com/bcrestel"><i class="fa fa-github"></i></a>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Convolution, cross-correlation</h1>
+  <span class="post-date">26 Nov 2018</span>
+  <p>In this post, I want to summarize a few results about 
+<a href="https://en.wikipedia.org/wiki/Convolution">convolution</a>
+and/or
+<a href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a>. 
+Note that all results are derived for real functions. To work
+in the complex space, one needs to take the conjugate where appropriate (e.g, in
+the inner product).</p>
+
+<h2 id="definitions">Definitions</h2>
+
+<p>Let’s not worry about regularity and assume with only work with
+$\mathcal{C}^\infty(\mathbb{R})$ 
+functions. This out of the way, we define the
+<strong>convolution</strong> of two functions $f,g$ as</p>
+
+\[\begin{align}
+(f \star g)(t) &amp; = \int_{- \infty}^{\infty} f(s) g(t-s) ds \\
+&amp; = \int_{- \infty}^{\infty} f(t-s) g(s) ds 
+\end{align}\]
+
+<p>The convolution operation commutes, i.e., $f \star g = g \star f$.
+Next, we define the <strong>cross-correlation</strong> of two (real) functions $f,g$ as</p>
+
+\[\begin{align}
+(f \star g)(t) &amp; = \int_{- \infty}^{\infty} f(s) g(t+s) ds \\
+&amp; = \int_{- \infty}^{\infty} f(s-t) g(s) ds \\
+\end{align}\]
+
+<h2 id="cross-correlation-is-the-adjoint-operation-of-convolution">Cross-correlation is the adjoint operation of convolution</h2>
+
+<p>Before we talk about the adjoint, we need to define (1) what operator we’re
+talking about, and (2) what inner product we’re using. Given a function $f$,
+let’s define the convolution operator $C_f: \mathcal{C}^\infty(\mathbb{R})
+\rightarrow \mathcal{C}^\infty(\mathbb{R})$ as $C_f(g) = f \star g$.
+And similarly we define the cross-correlation operator for $f$ as $D_f$.
+For the inner-product on $\mathcal{C}^\infty(\mathbb{R})$, we use $\langle f, g
+\rangle = \int_{-\infty}^{\infty} f(t) g(t) df$. Then for any $f,g,h$,</p>
+
+\[\begin{align*}
+\langle C_f(g), h \rangle 
+&amp;  = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(s) g(t-s) ds \, h(t) dt \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t-s) g(s) h(t) \, ds dt \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t-s) h(t) dt \, g(s) ds \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t) h(t+s) dt \, g(s) ds \\
+&amp; = \int_{-\infty}^{\infty} D_f(h)(s) g(s) ds \\
+&amp; = \langle g, D_f(h) \rangle
+\end{align*}\]
+
+<p>By definition of the <a href="https://en.wikipedia.org/wiki/Adjoint_operator">adjoint</a> 
+of an operator, this shows that $C_f^* = D_f$.</p>
+
+<h2 id="convolution-in-image-processing">Convolution in image processing</h2>
+
+<p>A classical technique for edge detection is to take finite-difference derivatives 
+of the discrete image. 
+This can also be used for edge sharpening.
+In the example below, I plot the logistic function
+$\sigma(x)$ (“original”) 
+along with the logistic function minus its second derivative, $\sigma(x) -
+d^2 \sigma(x)/dx^2$ (“sharpened”).
+<img src="/code/2018-11-26/laplacian.png" alt="logistic" height="250" width="400" /></p>
+
+<p>This can be formulated as taking convolution with a
+specific kernel.
+First of all, let’s define a discrete convolution. Typically, the scaling
+factors coming from discretization are ignored, and since we’re integrating over
+the whole real line there is no boundary case, therefore the discrete
+convolution between functions defined over the $\mathbb{Z}$ integers, $f,g$, is</p>
+
+\[(f \star g)[n] = \sum_{m=-\infty}^{\infty} f[m] g[n-m]\]
+
+<p>In the case of the Laplacian operator (in 1D), we can use the kernel $f$ where
+all entries are zero except the ones at ${-1,0,1}$ which are equal to $[1, -2,
+1]$. In the plot below, I compare the second derivative of the logistic function
+with the convolution of the logistic function with the Laplacian kernel
+described here. Note that I rescaled the convolution by $1/h^2$ where $h$ is the
+grid size (the distance between consecutive evaluation of the function. We see
+that both curvs are on top of each other. The convolution with the discrete
+Laplacian could therefore
+be used for edge sharpening (or edge detection) as we showed in the previous
+example.
+<img src="/code/2018-11-26/fd.png" alt="logistic" height="250" width="400" /></p>
+
+<span>[
+  
+    
+    <a href="/tag/convolution"><code class="highligher-rouge"><nobr>convolution</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/correlation"><code class="highligher-rouge"><nobr>correlation</nobr></code>&nbsp;</a>
+  
+    
+    <a href="/tag/image"><code class="highligher-rouge"><nobr>image</nobr></code>&nbsp;</a>
+  
+]</span>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2021/02/13/Sequence_Models_by_deeplearning.ai_week_1/">
+            Sequence Models by deeplearning.ai
+            <small>13 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/08/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 4)
+            <small>08 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2021/02/02/Notes_for_CNN_course_by_deeplearning.ai/">
+            Notes for CNN course by deeplearning.ai (week 3)
+            <small>02 Feb 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

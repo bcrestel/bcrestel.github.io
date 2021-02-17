@@ -1,0 +1,83 @@
+I"�<p>In this post, I want to summarize a few results about 
+<a href="https://en.wikipedia.org/wiki/Convolution">convolution</a>
+and/or
+<a href="https://en.wikipedia.org/wiki/Cross-correlation">cross-correlation</a>. 
+Note that all results are derived for real functions. To work
+in the complex space, one needs to take the conjugate where appropriate (e.g, in
+the inner product).</p>
+
+<h2 id="definitions">Definitions</h2>
+
+<p>Let’s not worry about regularity and assume with only work with
+$\mathcal{C}^\infty(\mathbb{R})$ 
+functions. This out of the way, we define the
+<strong>convolution</strong> of two functions $f,g$ as</p>
+
+\[\begin{align}
+(f \star g)(t) &amp; = \int_{- \infty}^{\infty} f(s) g(t-s) ds \\
+&amp; = \int_{- \infty}^{\infty} f(t-s) g(s) ds 
+\end{align}\]
+
+<p>The convolution operation commutes, i.e., $f \star g = g \star f$.
+Next, we define the <strong>cross-correlation</strong> of two (real) functions $f,g$ as</p>
+
+\[\begin{align}
+(f \star g)(t) &amp; = \int_{- \infty}^{\infty} f(s) g(t+s) ds \\
+&amp; = \int_{- \infty}^{\infty} f(s-t) g(s) ds \\
+\end{align}\]
+
+<h2 id="cross-correlation-is-the-adjoint-operation-of-convolution">Cross-correlation is the adjoint operation of convolution</h2>
+
+<p>Before we talk about the adjoint, we need to define (1) what operator we’re
+talking about, and (2) what inner product we’re using. Given a function $f$,
+let’s define the convolution operator $C_f: \mathcal{C}^\infty(\mathbb{R})
+\rightarrow \mathcal{C}^\infty(\mathbb{R})$ as $C_f(g) = f \star g$.
+And similarly we define the cross-correlation operator for $f$ as $D_f$.
+For the inner-product on $\mathcal{C}^\infty(\mathbb{R})$, we use $\langle f, g
+\rangle = \int_{-\infty}^{\infty} f(t) g(t) df$. Then for any $f,g,h$,</p>
+
+\[\begin{align*}
+\langle C_f(g), h \rangle 
+&amp;  = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(s) g(t-s) ds \, h(t) dt \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t-s) g(s) h(t) \, ds dt \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t-s) h(t) dt \, g(s) ds \\
+&amp; = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(t) h(t+s) dt \, g(s) ds \\
+&amp; = \int_{-\infty}^{\infty} D_f(h)(s) g(s) ds \\
+&amp; = \langle g, D_f(h) \rangle
+\end{align*}\]
+
+<p>By definition of the <a href="https://en.wikipedia.org/wiki/Adjoint_operator">adjoint</a> 
+of an operator, this shows that $C_f^* = D_f$.</p>
+
+<h2 id="convolution-in-image-processing">Convolution in image processing</h2>
+
+<p>A classical technique for edge detection is to take finite-difference derivatives 
+of the discrete image. 
+This can also be used for edge sharpening.
+In the example below, I plot the logistic function
+$\sigma(x)$ (“original”) 
+along with the logistic function minus its second derivative, $\sigma(x) -
+d^2 \sigma(x)/dx^2$ (“sharpened”).
+<img src="/code/2018-11-26/laplacian.png" alt="logistic" height="250" width="400" /></p>
+
+<p>This can be formulated as taking convolution with a
+specific kernel.
+First of all, let’s define a discrete convolution. Typically, the scaling
+factors coming from discretization are ignored, and since we’re integrating over
+the whole real line there is no boundary case, therefore the discrete
+convolution between functions defined over the $\mathbb{Z}$ integers, $f,g$, is</p>
+
+\[(f \star g)[n] = \sum_{m=-\infty}^{\infty} f[m] g[n-m]\]
+
+<p>In the case of the Laplacian operator (in 1D), we can use the kernel $f$ where
+all entries are zero except the ones at ${-1,0,1}$ which are equal to $[1, -2,
+1]$. In the plot below, I compare the second derivative of the logistic function
+with the convolution of the logistic function with the Laplacian kernel
+described here. Note that I rescaled the convolution by $1/h^2$ where $h$ is the
+grid size (the distance between consecutive evaluation of the function. We see
+that both curvs are on top of each other. The convolution with the discrete
+Laplacian could therefore
+be used for edge sharpening (or edge detection) as we showed in the previous
+example.
+<img src="/code/2018-11-26/fd.png" alt="logistic" height="250" width="400" /></p>
+:ET
