@@ -162,4 +162,50 @@ network.
 
 # Week 2
 
+## Video: Word Representation
+
+One-hot encoding does not give any indication about the similarity between 2 words. They all have the same distance with each other.
+
+Another way to represent words is to use an embedding, ie, a lower-dimensional vector representation, where words with similar meaning are (hopefully) close to each other.
+
+Also mention t-SNE that is a way to visualize in 2D very high dimensional data (eg, word embeddings).
+
+## Video: Using Word Embeddings
+
+Transfer learning and word embeddings:
+1. Train word embeddings from large corpus online (1B-100B words); or even use pre-trained word embedding
+2. Transfer embedding to new task with smaller training set (~100K words). For instance, use word embedding as input for name recognition algorithm -> word embedding should simplify task as it recognizes similar words and present them as similar input to your model.
+3. (Optional) fine-tune word embedding with new data.
+
+Transfer Learning typically useful when you have lots of data for task 1, but limited data for task 2.
+
+Relation to face encoding: encoding (as in face encoding) ~ embedding (as in word embedding). 
+
+## Video: Properties of word embeddings
+
+Word embedding can learn analogies between words (eg, man->king, woman-> queen).
+
+Note that t-SNE is a non-linear mapping (or rather, not an isometry), the geometrical properties found in high-dimensions are not preserved with t-SNE.
+
+How to measure similarity between vectors?
+* Cosine similarity (inner product divided by product of norms)
+* squared norm of the difference between 2 vectors
+
+## Video: Embedding matrix
+
+Can store all your embeddings into a matrix of dimension "embedding dim" (row) x "number of words in corpus" (col). So if you right-multiply this embedding matrix by a one-hot encoder, you recover the embedding for that word.
+
+## Video: Learning word embeddings
+
+Alg for learning word embedding have been simplified over time. But it's informative to look at the first, more complex, algorithms.
+
+You can learn word embedding by building a neural language model. In [A neural probabilistic language model](https://www.jmlr.org/papers/volume3/tmp/bengio03a.pdf), the authors build a simple neural network that takes a sentence, convert each word to its embedding, pass it through a linear layer, then a softmax to predict which one is the next word. You can train the entire network (weights and embeddings) on all text data you have, using SGD/Adam/...
+Sometimes, people will only use the last few (eg, 4) words to predcit the next (instead of the whole sentence).
+
+Sometimes, people also use words before and after (eg, 4 words before, 4 words after) to predict the word in the middle. Or you could use only the last word. Or even use a nearby 1 word (idea of a skip-gram model).
+
+In the end, to build a language model, use the last N-words. But if you just want to build a word embedding, then you can use any of the other contexts mentioned here (words around, last 1-word, nearby 1-word,...).
+
+## Video: Word2Vec
+
 
