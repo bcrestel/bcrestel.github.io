@@ -208,4 +208,98 @@ In the end, to build a language model, use the last N-words. But if you just wan
 
 ## Video: Word2Vec
 
+Introduce the skip-gram model used to build a Word2Vec representation. This
+[blog
+post](https://kelvinniu.com/posts/word2vec-and-negative-sampling/)
+provides a nice introduction. The basic model is very simple. It is basically
+the succession of 2 matrix multiplication. The first one by a matrix of size
+$\mathbb{R}^{N \times d}$ converts a one-hot encoder representation of a word
+(corpus of dimension N) into a word embedding (dim d). The second one does the
+opposite and has dimension $\mathbb{R}^{d \times N}$. That last layer is
+followed by a softmax, $e^{x_i}/\sum_j e^{x_j}$, for each potential output word
+$i$. The loss if the typical
+cross-entropy loss, that is $-\sum_k y_k \text{log}(\hat{y}_k)$, where $y \in
+mathbb{R}^N$ is zero everywhere except for a single entry.
+
+For any sentence, the input (context) is a random word, and the quantity we are trying to
+predict is any word in that same sentence, within a certain window around the
+input word. That output word is taken at random. In the end, it doesn't really
+matter as we're not trying to predict that word, we are just trying to build an
+embedding.
+
+The problem of that approach is that it is extremely slow due to the need to
+sum over all $N$ outputs of the softmax for every prediction. A workaround is to
+use a hierarchical approach.
+But better methods have been designed and will be presented in the next videos.
+
+Original paper: [Efficient Estimation of Word Representations in
+Vector
+Space](https://arxiv.org/pdf/1301.3781.pdf%C3%AC%E2%80%94%20%C3%AC%E2%80%9E%C5%93)
+
+## Video: Negative Sampling
+
+Reference paper: [Distributed Representations of Words and Phrases
+and their Compositionality](https://arxiv.org/pdf/1310.4546.pdf),)
+
+That previous [blog
+post](https://kelvinniu.com/posts/word2vec-and-negative-sampling/) also covers
+negative sampling.
+
+Actually, the blog post and the video kind of differ about the exact details of
+the implementation. So we can also look at [Manning's
+notes](https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes01-wordvecs1.pdf).
+
+In the end, the idea is to not look at all $N$ words in the vocabulary, but only
+the one true word that matches the context and a small number (5-20) of words
+that are not correct. 
+You therefore turn to a small number of binary classifications.
+You can hence use a sigmoid loss to force your network to
+have the true word match the output and the other words return 0.
+The actual details seem to be that the sigmoid loss is applied to the inner
+product between the embeddings of both words. Words that are close in a sentence
+are assumed to be similar.
+
+## Video: GloVe word vectors
+
+[GloVe = Global Vectors for Word
+Representations](https://web.stanford.edu/class/cs224n/readings/cs224n-2019-notes02-wordvecs2.pdf)
+
+GloVe builds from the co-occurrence matrix $X_{ij}$ which counts how often word
+$i$ falls within the vicinity of word $j$. Then we train the word embedding so
+that the inner product between 2 words match (more or less) the logarithm of
+their co-occurence. The match is enforced by a square loss, and a weighting term
+is placed in front, which also takes care of cancelling the loss when
+$X_{ij}=0$.
+
+## Video: Sentiment Classification
+
+Typical situation is that you don't have that many reviews to train your
+sentiment classifier. But you were able to use a very large dataset to train
+your word embedding. So you can use the embedding of the words in your review
+(instead of the words direclty) to learn a more robust sentiment classifier with
+a small dataset.
+
+Also, you could just average the embeddings of all the words in your sentence,
+then pass it through a softmax layer (for each of the possible ratings). But
+this doesn't take the order into account. A better way is to pass the embeddings
+of each word to a LSTM and output a classification at the very end
+(many-to-one).
+
+## Video: Debiasing word embeddings
+
+Bias is likely to creep into the dataset used to train a Word2Vec. So it's
+important to be aware of it, and if possible remove that bias.
+
+One way this can be done is by
+1. identifying the bias directions: for instance for gender bias, take all the
+gender directions (boy - girl, king - queen, ...), and take the average
+2. Neutralize: all words that should be free of gendre bias, just project them
+perpendicularly to the gender directiojn
+3. Equalize: some words are associated to gender, but should be at the same
+distance to gender-free words (eg, nurse shouldn't be closer to woman than man).
+So you can also fix that
+
+
+# Week 3
+
 
