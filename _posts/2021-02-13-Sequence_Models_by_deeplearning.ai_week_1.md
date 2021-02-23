@@ -302,4 +302,137 @@ So you can also fix that
 
 # Week 3
 
+## Video: Basic Models
 
+Introduced 2 types of models:
+* Sequence-to-sequence: this can be used for text translation. This uses a
+ encoder-decoder architecture, which is a many-to-many architecture with $T_x$
+and $T_y$ that are different. So you just pass the input to your LSTM, without
+paying attention to the output generated (encoder), then start generating the $T_y$
+outputs by feeding any genereated token back to the LSTM (decoder).
+* Image Captioning: You can automatically generate captions from an image, by
+ using a similar idea. You would simply replace the encoder in the previous part
+with a CNN (eg, AlexNet) w/o the output (softmax) layer and feed the generated
+embedding of that image into an LSTM, that would then produce the caption.
+
+## Video: Picking the most likely sentence
+
+In machine translation, the encoder-decoder architecture can be interpreted as a
+condition language model. That is the decode part looks very much like a
+language model, but instead of being instantiade by a hidden cell of zeros, it
+is instantiated by the output of the encoder part.
+
+When generating a translation, you don't want to sample the joint probability
+distribution of your decoder at random. You instead want to pick the most likely
+translation, i.e., $\arg \max P(y_1, y_2, \ldots | x)$. A naive approach is to
+pick each most likely work successibley, ie, $\hat{y}_1 = \arg \max P(y_1|x)$,
+then $\hat{y}_2 = \arg \max P(y_2 | \hat{y})_1, x)$,... However, this tends to
+return sub-optimal results. Instead, the correct approach is to search the joint
+probability space directly. This space, unfortunately, is too large to be
+sampled exactly. For instance, imagine your look for the most likely 10 words
+translation with a vocabulary of 10,000 words, that means $10,000^{10}$
+possibilities. That's why we need to use an approxiamte search, eg, beam search.
+
+## Video: Beam search
+
+Beam search is an approximate search algorithm to search for the maximum of a
+joint probability distribution.
+The key parameter is the **beam width**, which defines the number of
+most likely combinations that the beam search algorithm keep at each step. 
+So for instance if the beam width is 3, then at each step $k$, beam search only
+keeps the 3 most likely combinations of words (or partial sentences) when moving on to the next step
+$k+1$, i.e, $(y_1^1, y_2^1,\ldots ,y_k^1), (y_1^2, y_2^2, \ldots, y_k^2),
+(y_1^3, y_2^3,\ldots, y_k^3)$. At the next step, it only starts from these 3
+combinations, then search for the 3 most likely combinations $(y_1,y_2,\ldots,
+y_k, y_{k+1})$ across those 3 networks.
+So at each setp, no matter after how many recursions, we only have to consider
+$3N$ combinations, with $N$ the size of the vocabulary. Instead of $N^2$ with
+the exhaustive search (not that $N^2$ is only at one step, but this compounds
+with the depth).
+
+Notice that when the beam width is set to 1, we recover the greedy algorithm
+described in the previous video.
+
+Ref: [Dive Into Deep Learning](https://d2l.ai/chapter_recurrent-modern/beam-search.html)
+
+## Video: Refinements to Beam Search
+
+Introduce length normalization. Beam search, as introduced before, tends to
+favor short sentences as it searches to maximize the product of smaller numbers
+(less than 1.0).
+To circumvent that problem, a heuristic is to replce the joint probability by
+$P^{1/T_y^\alpha}$ where $T_y$ is the length of the sentence and $0 < \alpha
+\leq 1$. Since we typically maximize the log of the joint probability
+distribution, and after writing the latter as a product of conditional pdf, we
+get $1/T_y^\alpha \sum_i P(y_i | x, y_1, y_2,\ldots)$.
+
+The optimal hyperparameter needs to be found empirically, as for the beam width.
+$\alpha = 1$ will promote long sentences, while $\alpha=0$ will not normalize at
+all. Beam width of $1$ will be like greedy search (cheap, but very sub-optimal).
+On the other hand, a large beam width will yield much better results but at much
+higher compute cost.
+
+## Video: Error analysis in beam search
+
+Now we have a model made of 2 parts: i) estimate the probability of the language
+model (RNN); then ii) estimate the most likely sentence (beam search).
+Using human translated sentences, you can check what part of your model (RNN or
+Beam search) is at fault, then calculate the fraction of errors for each part.
+You can then act on the faulty part of your model (modify model/add more
+data/..., or increase beam width)
+
+## Video: Bleu score
+
+A pretty terrible video. Probably best to look at the [Wikipedia
+page](https://en.wikipedia.org/wiki/BLEU).
+Roughly, Bleu computed a modified precision for a machine-generated translation
+compared to several reference (human-generated) translations.
+There exists modification factors to penalize short translations.
+
+## Video: Attention Model -- Intuition
+
+Attention model replaces standard encoder-decoder architecture. The encoder is
+still the same. However the decoder is a different network that at each step
+takes as input a
+combination of all the outputs from the encoder weighted by attention weights.
+These attention weights tell the decoder on what part of the input it should
+focus its attention. These weights are computed from the previous hidden values
+and all the outputs of the encoder.
+
+## Video: Attention Model
+
+
+In the classical paper that introduced attention, [neural machine translation by jointly learning to align and
+translate](https://arxiv.org/pdf/1409.0473.pdf?utm_source=ColumnsChannel), they
+use a BRNN for the encoder and RNN for the decoder with attention.
+At each step of the decoder, the RNN receives the previous state, along with a
+context that is a linear combination of the outputs of each encoder step.
+
+The weights are all non-negative and sum to 1. To get that, you simply pass the
+intermediate weights to a softmax layer.
+Each intermediate weight comes from an alignment model, which is (typically) a
+single layer neural network that takes the previous state of the decoder and the
+output of that step from the encoder. Then tthis alignment model returns a score
+for each step of the encoder. All these scores are converted to attention
+weights, which are then used to combine the output of the encoder into an input
+context for that step of the decoder.
+
+## Video; Speech recognition
+
+Speech recognition systems takes waveform from speech and returns text. This is
+typically done with sequence models, at the character level, using the CTC cost
+(Connectionist temporal classification). What this does is that it has a "blank"
+character, and it allows repetition of characters. Then it collapses all
+repeated characters not seperated by blanks, then remove the blanks, to end up
+with the sentence.
+
+Note that speech recognition requires very large dataset (~100,000h for best
+industrial applications)
+
+## Video: Trigger Word Detection
+
+Can train network to get triggered by certain words. Could pass waveform through
+a RNN/LSTM/... and return 0 all the time except when trigger word is pronounced
+in which case you return 1.
+
+Might have some issue with an imbalance dataset though.
