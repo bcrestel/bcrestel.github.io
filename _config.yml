@@ -17,7 +17,11 @@ author:
 
 emailme:          mailto:ben.crestel@zoho.com
 
-gems:             [jekyll-paginate, jekyll-seo-tag, jekyll-sitemap, jekyll-gist]
+plugins:
+ - jekyll-paginate
+ - jekyll-seo-tag
+ - jekyll-sitemap
+ - jekyll-gist
 paginate:         5
 
 # Custom vars
