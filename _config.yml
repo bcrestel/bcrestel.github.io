@@ -9,7 +9,7 @@ permalink:        pretty
 title:            Fourre-tout
 tagline:          'A bit of everything'
 description:      'Some notes, some thoughts, some ideas'
-url:              https://bcrestel.github.io
+#url:              https://bcrestel.github.io
 baseurl:          
 
 author:
