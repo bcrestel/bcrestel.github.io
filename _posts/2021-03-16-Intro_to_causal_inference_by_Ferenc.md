@@ -2,7 +2,6 @@
 layout: post
 title: Intro to causal inference by Ferenc
 tags: causality statistics
-published: true
 ---
 
 [Ferenc Huszar](https://www.inference.vc/) put together a series of 3 blog post to introduce different concepts of causal inference:
