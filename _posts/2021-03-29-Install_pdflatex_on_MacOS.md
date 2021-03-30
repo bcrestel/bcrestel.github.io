@@ -25,4 +25,4 @@ Notice that you always run `tlmgr` in `sudo` mode.
 
 A last comment: I went with `basictex`. But if I had to do it again, I would install the full distribution so that I don't have to install so many missing style files.
 
-Ref: https://bilalakil.me/getting-started-and-productive-with-latex-basictex-on-os-x-terminal
+Ref: [Getting started and productive with latex basictex on OSX terminal](https://bilalakil.me/getting-started-and-productive-with-latex-basictex-on-os-x-terminal)
