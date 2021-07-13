@@ -158,7 +158,8 @@ $$f(x + \varepsilon v) = f(x) +
 \frac12 \varepsilon \left( (Ax+b)^T A v + (Av)^T(Ax+b) \right) + 
 \frac12 \varepsilon^2 \|Av\|^2 $$
 
-We can conlude that
+Since $$x^T \cdotp v = v^T \cdotp x$$,
+we can conlude that
 
 $$ \nabla f(x) = A^T \cdotp (Ax+b) $$
 
