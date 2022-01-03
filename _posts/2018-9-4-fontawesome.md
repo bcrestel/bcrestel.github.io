@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Font Awesome on your webpage
-tags: web
+tags: webdev
 ---
 
 Font awesome is an easy way to include cool icons to your website, like the one
