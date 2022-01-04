@@ -9,8 +9,8 @@ permalink:        pretty
 title:            Fourre-tout
 tagline:          'A bit of everything'
 description:      'Some notes, some thoughts, some ideas'
-#url:              https://bcrestel.github.io
-baseurl:          
+url:              https://bcrestel.github.io
+baseurl:              https://bcrestel.github.io
 
 author:
   name:           'Ben C'
